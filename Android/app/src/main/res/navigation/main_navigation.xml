@@ -16,6 +16,7 @@
             android:id="@+id/action_navigation_label_to_addLabelFragment"
             app:destination="@id/addLabelFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/navigation_milestone"
         android:name="com.team1.issuetracker.ui.main.milestone.MileStoneFragment"
@@ -28,4 +29,5 @@
         android:id="@+id/addLabelFragment"
         android:name="com.team1.issuetracker.ui.main.label.AddLabelFragment"
         android:label="AddLabelFragment" />
+
 </navigation>
