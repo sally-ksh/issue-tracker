@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- 하단 삭제 view 영역 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/erase_item_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.33"
+                android:background="#CCD4FF">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/gl_h_30"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.3"/>
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/gl_h_30"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintWidth_percent="0.186"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:src="@drawable/ic_issue_list_close"/>
+
+                <View
+                    android:id="@+id/empty_view_1_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toBottomOf="@id/iv_close"
+                    app:layout_constraintDimensionRatio="129:10"/>
+
+                <TextView
+                    android:id="@+id/tv_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/empty_view_1_1"
+                    android:text="닫기"
+                    style="@style/Text_Secondary1.14_Bold"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 상단 swipe view 영역 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/swipe_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <!-- check box 영역 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_checkbox"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.27"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone">
+
+                <CheckBox
+                    android:id="@+id/checkbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <View
+                android:id="@+id/empty_view_start"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cl_checkbox"
+                app:layout_constraintWidth_percent="0.0444"/>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_v_95.56"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.9556"/>
+
+            <View
+                android:id="@+id/empty_view_1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintDimensionRatio="360:10"/>
+
+            <ImageView
+                android:id="@+id/iv_milestone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/empty_view_1"
+                app:layout_constraintStart_toEndOf="@id/empty_view_start"
+                app:layout_constraintWidth_percent="0.05"
+                app:layout_constraintDimensionRatio="1:1"
+                android:src="@drawable/ic_milestone_unselected"/>
+
+            <TextView
+                android:id="@+id/tv_milestone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Text_Label2.10"
+                app:layout_constraintStart_toEndOf="@id/iv_milestone"
+                app:layout_constraintTop_toTopOf="@id/iv_milestone"
+                app:layout_constraintBottom_toBottomOf="@id/iv_milestone"
+                tools:text="마일스톤"
+                android:layout_marginStart="5dp"
+                android:letterSpacing="0.3" />
+
+            <View
+                android:id="@+id/empty_view_2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/iv_milestone"
+                app:layout_constraintDimensionRatio="360:2"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
+                app:layout_constraintTop_toBottomOf="@id/empty_view_2"
+                app:layout_constraintStart_toEndOf="@id/empty_view_start"
+                app:layout_constraintEnd_toEndOf="@id/gl_v_95.56"
+                android:gravity="left"
+                tools:text="이슈 제목 영역"
+                style="@style/Text_Label1.16_Bold"/>
+
+            <View
+                android:id="@+id/empty_view_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintDimensionRatio="360:3"/>
+
+            <View
+                android:id="@+id/view_for_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintDimensionRatio="16:129"/>
+
+            <TextView
+                android:id="@+id/tv_issue_content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/empty_view_3"
+                app:layout_constraintStart_toEndOf="@id/empty_view_start"
+                android:gravity="left|center_vertical"
+                android:maxLines="2"
+                android:ellipsize="end"
+                style="@style/Text_Grey1.14"
+                tools:text="이슈에 대한 설명(최대 두 줄까지 보여줄 수 있다)"/>
+
+            <View
+                android:id="@+id/empty_view_4"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/tv_issue_content"
+                app:layout_constraintDimensionRatio="360:9"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cv_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:shapeAppearanceOverlay="@style/cardViewRadius"
+                app:layout_constraintTop_toBottomOf="@id/empty_view_4"
+                app:layout_constraintStart_toEndOf="@id/empty_view_start"
+                app:cardElevation="0dp"
+                android:backgroundTint="#D5D5DB">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/view_top"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHeight_percent="0.19"/>
+
+                    <View
+                        android:id="@+id/view_start"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:4"/>
+
+                    <TextView
+                        android:id="@+id/tv_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="@style/Text_Black.14"
+                        app:layout_constraintTop_toBottomOf="@id/view_top"
+                        app:layout_constraintBottom_toTopOf="@id/view_bottom"
+                        app:layout_constraintStart_toEndOf="@id/view_start"
+                        app:layout_constraintEnd_toStartOf="@id/view_end"
+                        tools:text="Label"/>
+
+                    <View
+                        android:id="@+id/view_end"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintDimensionRatio="1:4"/>
+
+                    <View
+                        android:id="@+id/view_bottom"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHeight_percent="0.19"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:id="@+id/empty_view_5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@id/cv_label"
+                app:layout_constraintDimensionRatio="360:15"/>
+
+            <View
+                android:id="@+id/view_line"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                app:layout_constraintTop_toBottomOf="@id/empty_view_5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintWidth_percent="0.95"
+                android:background="@color/Grey5" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+
+</layout>
