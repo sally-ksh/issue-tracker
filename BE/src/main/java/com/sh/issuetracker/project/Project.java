@@ -25,4 +25,9 @@ public class Project {
 
 	@Column(name = "project_description")
 	private String description;
+
+	public Project(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
 }
