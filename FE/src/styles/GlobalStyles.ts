@@ -9,8 +9,8 @@ const GlobalStyles = createGlobalStyle`
 
 	html {
 		font: 400 6.25% "Noto Sans KR", sans-serif ;
-		color: ${({ theme }) => theme.color.black};
-		background-color: ${({ theme }) => theme.color.white};
+		color: ${({ theme }) => theme.color.black[400]};
+		background-color: ${({ theme }) => theme.color.gray[100]};
 		margin: 0;
 		padding: 0;
 	}
@@ -18,6 +18,7 @@ const GlobalStyles = createGlobalStyle`
 	body {
 		width: ${({ theme }) => theme.layout.width};
 		margin: 0 auto;
+		padding: 0 80rem;
 	}
 	
 	div {
@@ -32,6 +33,9 @@ const GlobalStyles = createGlobalStyle`
 
 	button {
 		cursor: pointer;
+		border: none;
+ 		background-color: transparent;
+		padding: 0;
 	}
 
 	a {
