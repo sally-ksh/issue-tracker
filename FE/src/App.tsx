@@ -1,5 +1,11 @@
+import Header from "./components/Header";
+
 const App = () => {
-  return <div>cra-template</div>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 };
 
 export default App;
