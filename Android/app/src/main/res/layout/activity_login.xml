@@ -37,28 +37,29 @@
             android:layout_height="0dp"
             app:layout_constraintTop_toTopOf="@id/gl_title"
             android:backgroundTint="@color/black"
-            app:layout_constraintHeight_percent="0.07"
-            app:layout_constraintWidth_percent="0.5"
+            app:layout_constraintWidth_percent="0.55"
+            app:layout_constraintDimensionRatio="199:48"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingStart="20dp"
-            android:paddingEnd="0dp"
-            android:icon="@drawable/github_logo"
+            app:icon="@drawable/img_github"
+            app:iconGravity="start"
+            app:iconSize="24dp"
             android:textColor="@color/white"
+            app:shapeAppearanceOverlay="@style/btnRadius"
             android:text="@string/github_login_label"/>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/gl_google_login"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5"/>
+      <View
+          android:id="@+id/empty_view_1"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          app:layout_constraintTop_toBottomOf="@id/btn_github_login"
+          app:layout_constraintDimensionRatio="360:20"/>
 
         <Button
             android:id="@+id/btn_google_login"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toBottomOf="@id/gl_google_login"
+            app:layout_constraintTop_toBottomOf="@id/empty_view_1"
             android:background="@drawable/login_button"
             android:backgroundTint="@color/black"
             app:layout_constraintHeight_percent="0.07"
