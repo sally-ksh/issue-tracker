@@ -7,4 +7,6 @@
     <string name="milestone_label">마일스톤</string>
     <string name="label_label">레이블</string>
     <string name="issue_label">이슈</string>
+    <string name="add_label">추가</string>
+    <string name="save_label">저장</string>
 </resources>

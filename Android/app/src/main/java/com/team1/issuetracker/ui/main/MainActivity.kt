@@ -6,7 +6,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.team1.issuetracker.R
-import com.team1.issuetracker.databinding.ActivityLoginBinding
 import com.team1.issuetracker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,4 +24,5 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
 }
