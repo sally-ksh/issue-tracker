@@ -10,6 +10,7 @@ import Milestone from "@/pages/Milestone";
 import NotFound from "@/pages/NotFound";
 
 const App = () => {
+  // FIXME 임시 OAuth
   const isOAuth = true;
 
   return (

@@ -1,6 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 
+import { LAYOUT } from "@/styles/theme";
+
 import fonts from "./fonts";
 
 const GlobalStyles = createGlobalStyle` 
@@ -9,14 +11,14 @@ const GlobalStyles = createGlobalStyle`
 
 	html {
 		font: 400 6.25% "Noto Sans KR", sans-serif ;
-		color: ${({ theme }) => theme.color.black[400]};
-		background-color: ${({ theme }) => theme.color.gray[100]};
+		color: ${({ theme }) => theme.text};
+		background-color: ${({ theme }) => theme.background};
 		margin: 0;
 		padding: 0;
 	}
 
 	body {
-		width: ${({ theme }) => theme.layout.width};
+		width: ${LAYOUT.width}
 		margin: 0 auto;
 		padding: 0 80rem;
 	}
