@@ -21,21 +21,16 @@
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:title="레이블"
-                app:menu="@menu/appbar_plus_menu"
+                app:title="새로운 레이블"
+                app:menu="@menu/save_appbar_menu"
+                app:navigationIcon="@drawable/ic_back"
+                app:navigationIconTint="@color/white"
                 app:elevation="0dp"
-                style="@style/Widget.MaterialComponents.Toolbar.Surface" />
+                app:theme="@style/AppTheme.ActionBar"
+                android:background="@color/Primary1"
+                app:titleTextColor="@color/white"/>
 
         </com.google.android.material.appbar.AppBarLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="label"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
