@@ -1,9 +1,8 @@
 import { ReactComponent as Logo } from "@/assets/Logo.svg";
 import { ReactComponent as UserIcon } from "@/assets/UserIcon.svg";
+import Button from "@/components/common/Button";
 import * as S from "@/components/Header/style";
 import { theme } from "@/styles/theme";
-
-import Button from "../common/Button";
 
 const Header = () => {
   return (
