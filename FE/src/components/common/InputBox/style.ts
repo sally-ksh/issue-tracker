@@ -11,7 +11,7 @@ export const InputBox = styled.input<InputBoxProps>`
   ${({ fontSize }) =>
     fontSize &&
     css`
-      font-size: ${FONT_SIZE[fontSize]};
+      font-size: ${FONT_SIZE[fontSize]}rem;
     `}
 
   ${({ fontWeight }) =>

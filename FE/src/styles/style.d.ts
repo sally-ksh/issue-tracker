@@ -9,12 +9,12 @@ declare module "styled-components" {
   }
 
   export type FontSizeType = {
-    XS: "12rem";
-    S: "14rem";
-    M: "16rem";
-    L: "18rem";
-    XL: "20rem";
-    XXL: "48rem";
+    XS: 12;
+    S: 14;
+    M: 16;
+    L: 18;
+    XL: 20;
+    XXL: 48;
   };
 
   export type FontWeightType = {
@@ -37,8 +37,8 @@ declare module "styled-components" {
   };
 
   export type LayoutType = {
-    width: "1440rem";
-    height: "640rem";
+    width: 1440;
+    height: 640;
   };
 }
 

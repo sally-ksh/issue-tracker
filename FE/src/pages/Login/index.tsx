@@ -15,7 +15,7 @@ const Login = () => {
 
   return (
     <S.LoginContainer>
-      <ImageButton image={Logo} width="342" height="72" />
+      <ImageButton image={Logo} width={342} height={72} />
       <S.GitHubLoginButton>GitHub 계정으로 로그인</S.GitHubLoginButton>
       <span>or</span>
       <S.LoginIdInput placeholder="아이디" type="text" onChange={changeLoginIdState} />

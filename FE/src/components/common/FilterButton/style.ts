@@ -10,8 +10,8 @@ export const FilterButton = styled.button<FilterButtonProps>`
   border-radius: 11rem;
   gap: 8rem;
 
-  width: ${(props) => `${props.width}`};
-  height: ${(props) => `${props.height}`};
+  width: ${(props) => `${props.width}rem`};
+  height: ${(props) => `${props.height}rem`};
 
   ${({ backgroundColor }) =>
     backgroundColor &&
@@ -23,7 +23,7 @@ export const FilterButton = styled.button<FilterButtonProps>`
     ${({ fontSize }) =>
       fontSize &&
       css`
-        font-size: ${FONT_SIZE[fontSize]};
+        font-size: ${FONT_SIZE[fontSize]}rem;
       `}
 
     ${({ fontWeight }) =>

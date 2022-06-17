@@ -7,8 +7,8 @@ const Header = () => {
   return (
     <div>
       <S.HeaderContainer>
-        <ImageButton image={Logo} width="199" height="40" />
-        <ImageButton image={UserIcon} width="44" height="44" />
+        <ImageButton image={Logo} width={199} height={40} />
+        <ImageButton image={UserIcon} width={44} height={44} />
       </S.HeaderContainer>
     </div>
   );
