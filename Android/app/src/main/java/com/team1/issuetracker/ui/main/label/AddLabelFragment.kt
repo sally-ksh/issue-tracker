@@ -27,15 +27,6 @@ class AddLabelFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.save_appbar_menu, menu)
-        val spannable = SpannableString(menu.getItem(0).title)
-        spannable.setSpan(ForegroundColorSpan(Color.WHITE), 0, spannable.length, 0)
-        menu.getItem(0).title = spannable
-        Log.d("TAG", "${menu.getItem(0).title}")
-        super.onCreateOptionsMenu(menu, inflater)
-    }
 }
