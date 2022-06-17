@@ -1,22 +1,28 @@
 import * as S from "@/components/common/FilterButton/style";
-
-import type { FontSizeType, ColorType, FontWeightType } from "styled-components";
+import { StyleProps } from "@/components/common/type";
 
 export type FilterButtonProps = {
   text?: string;
-  width: string;
-  height: string;
   image?: string;
-  fontSize?: keyof FontSizeType;
-  fontWeight?: keyof FontWeightType;
-  color?: keyof ColorType;
-};
+  isImageFirst?: boolean;
+  state?: number | string;
+} & StyleProps;
 
-const FilterButton = ({ text, image, width, height, fontSize, fontWeight, color }: FilterButtonProps) => {
+const FilterButton = ({ text, image, isImageFirst, state, ...props }: FilterButtonProps) => {
   return (
-    <S.FilterButton width={width} height={height} fontSize={fontSize} fontWeight={fontWeight} color={color}>
-      <span>{text}</span>
-      {image ? <img src={image}></img> : null}
+    <S.FilterButton {...props}>
+      {isImageFirst ? (
+        <>
+          {image ? <img src={image} /> : null}
+          <span>{text}</span>
+        </>
+      ) : (
+        <>
+          <span>{text}</span>
+          {image ? <img src={image} /> : null}
+        </>
+      )}
+      {state ? <span>{state}</span> : null}
     </S.FilterButton>
   );
 };
