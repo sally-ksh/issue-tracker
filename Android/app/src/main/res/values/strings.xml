@@ -9,5 +9,7 @@
     <string name="issue_label">이슈</string>
     <string name="add_label">추가</string>
     <string name="save_label">저장</string>
+    <string name="github_client_id">201079016bf7f2a7f4b1</string>
+    <string name="github_redirect_url">funnyhan://issuetracker</string>
 
 </resources>
