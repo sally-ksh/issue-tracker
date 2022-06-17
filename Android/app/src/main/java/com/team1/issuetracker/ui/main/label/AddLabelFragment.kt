@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.*
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.fragment.app.Fragment
-import com.team1.issuetracker.R
 import com.team1.issuetracker.databinding.FragmentAddLabelBinding
 
 class AddLabelFragment: Fragment() {
@@ -24,7 +23,7 @@ class AddLabelFragment: Fragment() {
     ): View {
         binding = FragmentAddLabelBinding.inflate(layoutInflater)
         val view = binding.root
-        return view
+        return viewgi
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
