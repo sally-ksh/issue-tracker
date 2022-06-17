@@ -1,36 +1,45 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 
-import { LAYOUT } from "@/styles/theme";
-
-import fonts from "./fonts";
+import { FONT_SIZE, FONT_WEIGHT, LAYOUT } from "@/styles/theme";
 
 const GlobalStyles = createGlobalStyle` 
 	${reset}
-	${fonts}
-
-	html {
-		font: 400 6.25% "Noto Sans KR", sans-serif ;
-		color: ${({ theme }) => theme.text};
-		background-color: ${({ theme }) => theme.background};
+	
+	* {
 		margin: 0;
 		padding: 0;
+		box-sizing: border-box;
+		font: inherit;
+		color: inherit;
+		flex-shrink: 0;
 	}
 
+	html {
+		font: ${FONT_WEIGHT.base} 6.25%/2 "Noto Sans KR", sans-serif ;
+		color: ${({ theme }) => theme.text};
+		background-color: ${({ theme }) => theme.background};
+		height: 100%;
+	}
+	
+
 	body {
-		width: ${LAYOUT.width}
+		width: ${LAYOUT.width};
 		margin: 0 auto;
 		padding: 0 80rem;
+		font-size: ${FONT_SIZE.M};
+		height: 100%;
 	}
 	
 	div {
 		box-sizing: border-box;
+
 	}
 
-
-	img {
-		width: 100%;
-		height: 100%;
+	input {
+		border:none;
+		background-color: transparent;
+		outline:none;
 	}
 
 	button {

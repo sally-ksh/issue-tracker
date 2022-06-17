@@ -4,6 +4,21 @@ import { FilterButtonProps } from "@/components/common/FilterButton";
 import { COLOR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
 
 export const FilterButton = styled.button<FilterButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 11rem;
+  gap: 8rem;
+
+  width: ${(props) => `${props.width}`};
+  height: ${(props) => `${props.height}`};
+
+  ${({ backgroundColor }) =>
+    backgroundColor &&
+    css`
+      background-color: ${COLOR[backgroundColor]};
+    `}
+
   span {
     ${({ fontSize }) =>
       fontSize &&
@@ -24,10 +39,12 @@ export const FilterButton = styled.button<FilterButtonProps>`
       `}
   }
 
+  span + span {
+    font-weight: ${FONT_WEIGHT.base};
+  }
+
   img {
-    width: ${(props) => `${props.width}rem`};
-    height: ${(props) => `${props.height}rem`};
     background: url(${(props) => props.image}) no-repeat;
-    background-size: ${(props) => `${props.width}rem`} ${(props) => `${props.height}rem`};
+    // TODO 재사용성 고려..
   }
 `;
