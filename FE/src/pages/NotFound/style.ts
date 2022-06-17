@@ -14,8 +14,8 @@ export const NotFoundContainer = styled.div`
   padding: 50rem;
   width: 400rem;
   span {
-    color: ${COLOR.black[400]};
-    font-size: ${FONT_SIZE.XXL};
+    color: ${COLOR["black-400"]};
+    font-size: ${FONT_SIZE.XXL}rem;
   }
 `;
 
@@ -23,8 +23,8 @@ export const HomeButton = styled.button`
   width: 120px;
   height: 80px;
   margin-top: 30rem;
-  background-color: ${COLOR.blue[400]};
-  color: ${COLOR.white[400]};
+  background-color: ${COLOR["blue-400"]};
+  color: ${COLOR["white-400"]};
   border-radius: 30rem;
-  font-size: ${FONT_SIZE.XL};
+  font-size: ${FONT_SIZE.XL}rem;
 `;

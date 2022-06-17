@@ -15,8 +15,8 @@ const IssueList = () => {
           <FilterButton
             text="필터"
             image={ArrowDown}
-            width="128rem"
-            height="40rem"
+            width={128}
+            height={40}
             fontWeight="bold"
             color="gray-900"
             style={{ justifyContent: "space-evenly" }}
@@ -38,8 +38,8 @@ const IssueList = () => {
               text="레이블"
               image={Label}
               isImageFirst={true}
-              width="160rem"
-              height="40rem"
+              width={160}
+              height={40}
               fontWeight="bold"
               color="gray-900"
               state={"(3)"}
@@ -48,8 +48,8 @@ const IssueList = () => {
               text="마일스톤"
               image={Milestone}
               isImageFirst={true}
-              width="160rem"
-              height="40rem"
+              width={160}
+              height={40}
               fontWeight="bold"
               color="gray-900"
               state={"(3)"}
@@ -59,8 +59,8 @@ const IssueList = () => {
             text="이슈작성"
             fontSize="XS"
             image={Plus}
-            width="120rem"
-            height="40rem"
+            width={120}
+            height={40}
             isImageFirst={true}
             backgroundColor="blue-400"
             color="white-400"

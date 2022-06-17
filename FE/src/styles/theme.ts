@@ -1,12 +1,12 @@
 import type { ColorType, DefaultTheme, FontSizeType, FontWeightType, LayoutType } from "styled-components";
 
 export const FONT_SIZE: FontSizeType = {
-  XS: "12rem",
-  S: "14rem",
-  M: "16rem",
-  L: "18rem",
-  XL: "20rem",
-  XXL: "48rem",
+  XS: 12,
+  S: 14,
+  M: 16,
+  L: 18,
+  XL: 20,
+  XXL: 48,
 };
 
 export const FONT_WEIGHT: FontWeightType = {
@@ -33,8 +33,8 @@ export const COLOR: ColorType = {
 };
 
 export const LAYOUT: LayoutType = {
-  width: "1440rem",
-  height: "640rem",
+  width: 1440,
+  height: 640,
 };
 
 // TODO darkMode 미구현

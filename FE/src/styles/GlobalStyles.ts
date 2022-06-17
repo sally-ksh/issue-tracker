@@ -24,10 +24,10 @@ const GlobalStyles = createGlobalStyle`
 	
 
 	body {
-		width: ${LAYOUT.width};
+		width: ${LAYOUT.width}rem;
 		margin: 0 auto;
 		padding: 0 80rem;
-		font-size: ${FONT_SIZE.M};
+		font-size: ${FONT_SIZE.M}rem;
 		height: 100%;
 	}
 	

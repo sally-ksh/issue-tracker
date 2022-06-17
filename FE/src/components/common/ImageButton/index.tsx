@@ -2,8 +2,8 @@ import * as S from "@/components/common/ImageButton/style";
 
 export type ImageButtonProps = {
   image: string;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
 };
 
 const ImageButton = ({ image, width, height }: ImageButtonProps) => {
