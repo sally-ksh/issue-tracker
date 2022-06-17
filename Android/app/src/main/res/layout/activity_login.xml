@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/Backgrounds2"
+        tools:context=".ui.login.LoginActivity">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fontFamily="@font/title_font"
+            android:gravity="center"
+            android:text="@string/title"
+            android:textColor="@color/black"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toBottomOf="@id/gl_title"
+            app:layout_constraintHeight_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_title"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_github_login"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/github_login_label"
+            android:textColor="@color/white"
+            app:icon="@drawable/img_github"
+            app:iconGravity="start"
+            app:iconSize="24dp"
+            app:iconTintMode="multiply"
+            app:layout_constraintDimensionRatio="199:48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_title"
+            app:layout_constraintWidth_percent="0.55"
+            app:shapeAppearanceOverlay="@style/btnRadius" />
+
+        <View
+            android:id="@+id/empty_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="360:20"
+            app:layout_constraintTop_toBottomOf="@id/btn_github_login" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_google_login"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@color/black"
+            android:text="@string/google_login_label"
+            android:textColor="@color/white"
+            app:icon="@drawable/img_google"
+            app:iconGravity="start"
+            app:iconSize="24dp"
+            app:iconTintMode="multiply"
+            app:layout_constraintDimensionRatio="199:48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/empty_view_1"
+            app:layout_constraintWidth_percent="0.55"
+            app:shapeAppearanceOverlay="@style/btnRadius" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

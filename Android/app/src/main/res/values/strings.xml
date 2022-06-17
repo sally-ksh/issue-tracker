@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">IssueTracker</string>
+    <string name="title">Issue Tracker</string>
+    <string name="github_login_label">깃헙 계정 로그인</string>
+    <string name="google_login_label">구글 계정 로그인</string>
+    <string name="my_label">내계정</string>
+    <string name="milestone_label">마일스톤</string>
+    <string name="label_label">레이블</string>
+    <string name="issue_label">이슈</string>
+    <string name="add_label">추가</string>
+    <string name="save_label">저장</string>
+
 </resources>

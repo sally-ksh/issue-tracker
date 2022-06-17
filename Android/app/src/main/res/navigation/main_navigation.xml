@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/navigation_issue">
+
+    <fragment
+        android:id="@+id/navigation_issue"
+        android:name="com.team1.issuetracker.ui.main.issue.IssueFragment"
+        android:label="IssueFragment" />
+    <fragment
+        android:id="@+id/navigation_label"
+        android:name="com.team1.issuetracker.ui.main.label.LabelFragment"
+        android:label="LabelFragment" >
+        <action
+            android:id="@+id/action_navigation_label_to_addLabelFragment"
+            app:destination="@id/addLabelFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_milestone"
+        android:name="com.team1.issuetracker.ui.main.milestone.MileStoneFragment"
+        android:label="MileStoneFragment" />
+    <fragment
+        android:id="@+id/navigation_my"
+        android:name="com.team1.issuetracker.ui.main.my.MyFragment"
+        android:label="MyFragment" />
+    <fragment
+        android:id="@+id/addLabelFragment"
+        android:name="com.team1.issuetracker.ui.main.label.AddLabelFragment"
+        android:label="AddLabelFragment" />
+
+</navigation>

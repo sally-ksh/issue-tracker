@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_issue"
+        android:enabled="true"
+        android:icon="@drawable/selector_issue"
+        android:title="@string/issue_label"/>
+    <item
+        android:id="@+id/navigation_label"
+        android:enabled="true"
+        android:icon="@drawable/selector_label"
+        android:title="@string/label_label"/>
+    <item
+        android:id="@+id/navigation_milestone"
+        android:enabled="true"
+        android:icon="@drawable/selector_milestone"
+        android:title="@string/milestone_label"/>
+    <item
+        android:id="@+id/navigation_my"
+        android:enabled="true"
+        android:icon="@drawable/ic_my"
+        android:title="@string/my_label"/>
+</menu>
