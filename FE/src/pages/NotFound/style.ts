@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { COLOR, FONT_SIZE } from "@/styles/theme";
+import { COLOR, FONTSIZE } from "@/styles/constTheme";
 
 export const NotFoundContainer = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const NotFoundContainer = styled.div`
   width: 400rem;
   span {
     color: ${COLOR["black-400"]};
-    font-size: ${FONT_SIZE.XXL}rem;
+    font-size: ${FONTSIZE.XXL}rem;
   }
 `;
 
@@ -26,5 +26,5 @@ export const HomeButton = styled.button`
   background-color: ${COLOR["blue-400"]};
   color: ${COLOR["white-400"]};
   border-radius: 30rem;
-  font-size: ${FONT_SIZE.XL}rem;
+  font-size: ${FONTSIZE.XL}rem;
 `;

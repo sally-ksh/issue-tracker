@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { COLOR, FONT_SIZE } from "@/styles/theme";
+import { COLOR, FONTSIZE } from "@/styles/constTheme";
 
 export const LoginContainer = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ export const LoginContainer = styled.div`
   transform: translate(-50%, -50%);
   span {
     color: ${COLOR["gray-900"]};
-    font-size: ${FONT_SIZE.M}rem;
+    font-size: ${FONTSIZE.M}rem;
   }
 `;
 
@@ -23,7 +23,7 @@ export const GitHubLoginButton = styled.button`
   background-color: ${COLOR["black-400"]};
   margin: 60rem 0 24rem 0;
   color: ${COLOR["white-400"]};
-  font-size: ${FONT_SIZE.L}rem;
+  font-size: ${FONTSIZE.L}rem;
 `;
 
 export const LoginIdInput = styled.input`
@@ -35,7 +35,7 @@ export const LoginIdInput = styled.input`
   margin-top: 24rem;
   padding-left: 25rem;
   color: ${COLOR["gray-700"]};
-  font-size: ${FONT_SIZE.L}rem;
+  font-size: ${FONTSIZE.L}rem;
   box-sizing: border-box;
 `;
 
@@ -46,5 +46,5 @@ export const LoginButton = styled.button`
   background-color: ${COLOR["blue-400"]};
   margin: 24rem;
   color: ${COLOR["white-400"]};
-  font-size: ${FONT_SIZE.L}rem;
+  font-size: ${FONTSIZE.L}rem;
 `;

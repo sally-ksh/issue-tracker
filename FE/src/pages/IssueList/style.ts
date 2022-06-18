@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { COLOR } from "@/styles/theme";
+import { COLOR } from "@/styles/constTheme";
 
 export const FilterContainer = styled.div`
   display: flex;
@@ -44,4 +44,4 @@ export const NavContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const FilterOptionPopUp = styled.div``;
+export const IssueSearchFilterPopUp = styled.div``;

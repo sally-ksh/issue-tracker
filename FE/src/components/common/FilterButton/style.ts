@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
 
 import { FilterButtonProps } from "@/components/common/FilterButton";
-import { COLOR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { FONTWEIGHT } from "@/styles/constTheme";
+import { styledFont } from "@/utils/style";
 
 export const FilterButton = styled.button<FilterButtonProps>`
   display: flex;
@@ -16,31 +17,18 @@ export const FilterButton = styled.button<FilterButtonProps>`
   ${({ backgroundColor }) =>
     backgroundColor &&
     css`
-      background-color: ${COLOR[backgroundColor]};
+      background-color: ${backgroundColor};
     `}
 
   span {
-    ${({ fontSize }) =>
-      fontSize &&
+    ${({ fontSize, fontWeight, color }) =>
       css`
-        font-size: ${FONT_SIZE[fontSize]}rem;
-      `}
-
-    ${({ fontWeight }) =>
-      fontWeight &&
-      css`
-        font-weight: ${FONT_WEIGHT[fontWeight]};
-      `}
-
-      ${({ color }) =>
-      color &&
-      css`
-        color: ${COLOR[color]};
+        ${styledFont({ fontSize: fontSize, fontWeight: fontWeight, color: color })}
       `}
   }
 
   span + span {
-    font-weight: ${FONT_WEIGHT.base};
+    font-weight: ${FONTWEIGHT.base};
   }
 
   img {
