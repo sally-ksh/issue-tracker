@@ -1,10 +1,12 @@
 package com.team1.issuetracker.ui.main.issue
 
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,10 +22,9 @@ class IssueFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_issue, container, false)
         val view = binding.root
-
         return view
     }
 
@@ -44,8 +45,24 @@ class IssueFragment: Fragment() {
             }
         }
 
-        binding.topAppBar.setNavigationOnClickListener {
-            PrintLog.printLog("issue filter")
-        }
+//        binding.topAppBar.setNavigationOnClickListener {
+//            PrintLog.printLog("issue filter")
+//            if (binding.cloFilterLayout.visibility == View.VISIBLE) {
+//                binding.cloFilterLayout.visibility = View.GONE
+//                binding.imgMore1.animate().setDuration(200).rotation(180f)
+//            } else {
+//                binding.cloFilterLayout.visibility = View.VISIBLE
+//                binding.imgMore1.animate().setDuration(200).rotation(0f)
+//                changeAppbar()
+//            }
+//        }
+    }
+
+    private fun changeAppbar() {
+        binding.topAppBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Primary1))
+        binding.topAppBar.inflateMenu(R.menu.filter_appbar_menu)
+        binding.topAppBar.title = "필터"
+        binding.topAppBar.setTitleTextColor(R.color.white)
+        binding.topAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cancel)
     }
 }
