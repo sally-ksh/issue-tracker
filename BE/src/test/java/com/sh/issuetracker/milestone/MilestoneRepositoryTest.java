@@ -55,7 +55,7 @@ class MilestoneRepositoryTest {
 		Project testProject = projectRepository.save(getAnotherProject());
 		milestoneRepository.save(getMilestone(testProject));
 
-		List<Milestone> expected = milestoneRepository.findAllByProjectProjectId(TEXT_PROJECT_ID);
+		List<Milestone> expected = milestoneRepository.findAllByProjectId(TEXT_PROJECT_ID);
 
 		assertThat(expected).extracting("project.name").doesNotContain(TEST_PROJECT_NAME);
 	}
