@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,10 @@ class LoginActivity : AppCompatActivity() {
         binding.btnGithubLogin.setOnClickListener {
 //            startActivity(Intent(this, MainActivity::class.java))
             login()
+        }
+
+        binding.btnGoogleLogin.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 
