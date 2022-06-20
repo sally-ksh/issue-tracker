@@ -24,7 +24,7 @@
                 app:title="레이블"
                 app:menu="@menu/appbar_plus_menu"
                 app:elevation="0dp"
-                style="@style/Widget.MaterialComponents.Toolbar.Surface" />
+                android:background="@color/white"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 

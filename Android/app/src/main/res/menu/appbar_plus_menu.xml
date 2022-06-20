@@ -7,7 +7,6 @@
         android:id="@+id/action_add"
         android:title="@string/add_label"
         android:icon="@drawable/ic_add"
-        android:iconTint="@color/Primary1"
         app:showAsAction="always"
         tools:targetApi="o" />
 

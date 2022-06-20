@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.03"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_label"/>
+            app:layout_constraintTop_toBottomOf="@id/et_title"/>
 
         <TextView
             android:id="@+id/tv_description_label"
@@ -96,7 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.03"
-            app:layout_constraintTop_toBottomOf="@id/tv_description_label"/>
+            app:layout_constraintTop_toBottomOf="@id/et_description"/>
 
         <TextView
             android:id="@+id/tv_background_label"
@@ -117,7 +117,7 @@
             app:layout_constraintTop_toBottomOf="@id/view_background"
             app:layout_constraintStart_toEndOf="@id/tv_background_label"
             android:textSize="14sp"
-            android:hint="필수 입력"
+            android:hint="#808080"
             android:background="@android:color/transparent"/>
 
         <ImageView
@@ -134,7 +134,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintHeight_percent="0.03"
-            app:layout_constraintTop_toBottomOf="@id/tv_background_label"/>
+            app:layout_constraintTop_toBottomOf="@id/et_background"/>
 
         <View
             android:id="@+id/line"
@@ -163,7 +163,6 @@
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:background="@drawable/badge_shape"
-                tools:backgroundTint="@color/Primary1"
                 android:layout_gravity="center"
                 tools:text="Label"/>
 
