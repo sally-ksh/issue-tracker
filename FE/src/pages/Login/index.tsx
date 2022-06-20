@@ -6,7 +6,7 @@ import Logo from "@/assets/Logo.svg";
 import ImageButton from "@/components/common/ImageButton";
 import * as S from "@/pages/Login/style";
 
-const Login = () => {
+const LoginPage = () => {
   const [loginIdInfo, setLoginIdInfo] = useState(null);
   const [loginPwInfo, setLoginPwInfo] = useState(null);
 
@@ -28,4 +28,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

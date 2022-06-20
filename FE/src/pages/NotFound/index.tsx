@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 
 import * as S from "@/pages/NotFound/style";
 
-const NotFound = () => {
+const NotFoundPage = () => {
   return (
     <>
       <S.NotFoundContainer>
@@ -15,4 +15,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default NotFoundPage;

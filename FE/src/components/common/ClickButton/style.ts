@@ -1,14 +1,13 @@
 import styled, { css } from "styled-components";
 
-import { FilterButtonProps } from "@/components/common/FilterButton";
-import { FONTWEIGHT } from "@/styles/constTheme";
+import { ClickButtonProps } from "@/components/common/ClickButton";
 import { styledFont } from "@/utils/style";
 
-export const FilterButton = styled.button<FilterButtonProps>`
+export const ClickButton = styled.button<ClickButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 11rem;
+  border-radius: 8rem;
   gap: 8rem;
 
   width: ${(props) => `${props.width}rem`};
@@ -25,14 +24,5 @@ export const FilterButton = styled.button<FilterButtonProps>`
       css`
         ${styledFont({ fontSize: fontSize, fontWeight: fontWeight, color: color })}
       `}
-  }
-
-  span + span {
-    font-weight: ${FONTWEIGHT.base};
-  }
-
-  img {
-    background: url(${(props) => props.image}) no-repeat;
-    // TODO 재사용성 고려..
   }
 `;

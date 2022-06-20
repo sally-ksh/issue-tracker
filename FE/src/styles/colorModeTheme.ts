@@ -1,6 +1,6 @@
 import { COLOR } from "@/styles/constTheme";
 
-// TODO darkMode 미구현
+// TODO 다크모드 필요한 색만 구현 예정
 
 export const lightTheme = {
   primary: "#f45511",
