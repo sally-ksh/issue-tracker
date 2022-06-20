@@ -1,11 +1,13 @@
-import type { FontSizeType, ColorType, FontWeightType } from "styled-components";
+import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
+
+// type FontSizeTypes<T> = Record<of T, T>;
 
 export type StyleProps = {
   width?: number;
   height?: number;
-  fontSize?: keyof FontSizeType;
-  fontWeight?: keyof FontWeightType;
-  color?: keyof ColorType;
-  backgroundColor?: keyof ColorType;
+  fontSize?: FONTSIZE;
+  fontWeight?: FONTWEIGHT;
+  color?: COLOR;
+  backgroundColor?: COLOR;
   style?: React.CSSProperties;
 };

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import { reset } from "styled-reset";
 
-import { FONT_SIZE, FONT_WEIGHT, LAYOUT } from "@/styles/theme";
+import { FONTSIZE, FONTWEIGHT, LAYOUT } from "@/styles/constTheme";
 
 const GlobalStyles = createGlobalStyle` 
 	${reset}
@@ -16,7 +16,7 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	html {
-		font: ${FONT_WEIGHT.base} 6.25%/2 "Noto Sans KR", sans-serif ;
+		font: ${FONTWEIGHT.base} 6.25%/2 "Noto Sans KR", sans-serif ;
 		color: ${({ theme }) => theme.text};
 		background-color: ${({ theme }) => theme.background};
 		height: 100%;
@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
 		width: ${LAYOUT.width}rem;
 		margin: 0 auto;
 		padding: 0 80rem;
-		font-size: ${FONT_SIZE.M}rem;
+		font-size: ${FONTSIZE.M}rem;
 		height: 100%;
 	}
 	

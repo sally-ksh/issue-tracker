@@ -4,8 +4,8 @@ import * as ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
 import App from "@/App";
+import { theme } from "@/styles/colorModeTheme";
 import GlobalStyles from "@/styles/GlobalStyles";
-import { theme } from "@/styles/theme";
 
 const rootElement = document.getElementById("root");
 const root = ReactDOM.createRoot(rootElement as Element);
