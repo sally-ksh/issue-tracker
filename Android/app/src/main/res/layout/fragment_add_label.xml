@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -32,35 +33,140 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/outlinedTextField"
+        <View
+            android:id="@+id/view_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.14"
-            android:hint="필수 입력"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/lo_appbar"/>
+
+        <TextView
+            android:id="@+id/tv_title_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_title"
+            app:layout_constraintWidth_percent="0.2"
             android:gravity="center"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:background="@android:color/transparent"
-            app:boxStrokeWidth="0dp"
-            app:layout_constraintTop_toBottomOf="@id/lo_appbar">
+            android:textSize="14sp"
+            android:text="제목"
+            android:textColor="@color/Label2"/>
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_title"
+            app:layout_constraintStart_toEndOf="@id/tv_title_label"
+            android:textSize="14sp"
+            android:hint="필수 입력"
+            android:background="@android:color/transparent"/>
+
+        <View
+            android:id="@+id/view_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_label"/>
+
+        <TextView
+            android:id="@+id/tv_description_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_description"
+            app:layout_constraintWidth_percent="0.2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="설명"
+            android:textColor="@color/Label2"/>
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_description"
+            app:layout_constraintStart_toEndOf="@id/tv_description_label"
+            android:textSize="14sp"
+            android:hint="선택 사항"
+            android:background="@android:color/transparent"/>
+
+        <View
+            android:id="@+id/view_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/tv_description_label"/>
+
+        <TextView
+            android:id="@+id/tv_background_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_background"
+            app:layout_constraintWidth_percent="0.2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="배경색"
+            android:textColor="@color/Label2"/>
+
+        <EditText
+            android:id="@+id/et_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_background"
+            app:layout_constraintStart_toEndOf="@id/tv_background_label"
+            android:textSize="14sp"
+            android:hint="필수 입력"
+            android:background="@android:color/transparent"/>
+
+        <ImageView
+            android:id="@+id/btn_color_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="17dp"
+            android:src="@drawable/ic_change"
+            app:layout_constraintTop_toBottomOf="@id/view_background"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/view_last"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/tv_background_label"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Label3"
+            app:layout_constraintTop_toBottomOf="@id/view_last"/>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.3"
+            card_view:layout_constraintWidth_percent="0.9"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            android:layout_marginTop="15dp"
+            card_view:cardCornerRadius="10dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/Grey5">
 
             <TextView
-                android:id="@+id/tv_title_label"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-
-                android:text="제목"
-                android:textColor="@color/Label2"/>
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
+                android:id="@+id/badge_label"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:background="@drawable/badge_shape"
+                tools:backgroundTint="@color/Primary1"
+                android:layout_gravity="center"
+                tools:text="Label"/>
 
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

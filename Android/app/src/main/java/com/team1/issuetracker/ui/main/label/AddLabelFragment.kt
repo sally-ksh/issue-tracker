@@ -23,7 +23,7 @@ class AddLabelFragment: Fragment() {
     ): View {
         binding = FragmentAddLabelBinding.inflate(layoutInflater)
         val view = binding.root
-        return viewgi
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
