@@ -19,7 +19,7 @@ import java.util.Optional;
 @ActiveProfiles("dev")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
-class MilestoneRepositoryTest {
+public class MilestoneRepositoryTest {
 	public static final long TEXT_PROJECT_ID = 1L;
 	public static final String TEST_PROJECT_NAME = "프로젝트2";
 	private final MilestoneRepository milestoneRepository;
