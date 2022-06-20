@@ -1,6 +1,6 @@
-import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
+import { ReactNode } from "react";
 
-// type FontSizeTypes<T> = Record<of T, T>;
+import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
 
 export type StyleProps = {
   width?: number;
@@ -10,4 +10,8 @@ export type StyleProps = {
   color?: COLOR;
   backgroundColor?: COLOR;
   style?: React.CSSProperties;
+};
+
+export type ChildrenProps = {
+  children: ReactNode;
 };

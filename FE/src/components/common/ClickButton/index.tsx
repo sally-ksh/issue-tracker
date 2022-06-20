@@ -1,17 +1,20 @@
-import * as S from "@/components/common/ClickButton/style";
+import { ButtonHTMLAttributes } from "react";
+
 import { StyleProps } from "@/components/common/type";
-import { COLOR } from "@/styles/constTheme";
+
+import * as S from "./style";
 
 export type ClickButtonProps = {
   text?: string;
   svgIcon?: JSX.Element;
   isIconFirst?: boolean;
   state?: number | string;
+  onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 } & StyleProps;
 
-const ClickButton = ({ text, svgIcon, isIconFirst, state, ...props }: ClickButtonProps) => {
+const ClickButton = ({ text, svgIcon, isIconFirst, state, onClick, ...props }: ClickButtonProps) => {
   return (
-    <S.ClickButton {...props}>
+    <S.ClickButton onClick={onClick} {...props}>
       {isIconFirst ? (
         <>
           {svgIcon ? svgIcon : null}

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { ReactComponent as AlertCircle } from "@/assets/AlertCircle.svg";
 import { ReactComponent as Archive } from "@/assets/Archive.svg";
 import { ReactComponent as ArrowDown } from "@/assets/ArrowDown.svg";
@@ -10,7 +8,9 @@ import { ReactComponent as SearchIcon } from "@/assets/SearchIcon.svg";
 import { ReactComponent as UserIcon } from "@/assets/UserIcon.svg";
 import CheckBox from "@/components/common/CheckBox";
 import ClickButton from "@/components/common/ClickButton";
+import Dropdown from "@/components/common/Dropdown";
 import InputBox from "@/components/common/InputBox";
+import LoadingProgress from "@/components/common/LoadingProgress";
 import * as S from "@/pages/IssueList/style";
 import { FONTWEIGHT, COLOR, FONTSIZE } from "@/styles/constTheme";
 
@@ -80,10 +80,31 @@ const IssueListItem = () => {
 };
 
 const IssueSearchFilter = () => {
+  const handleToggleDropdown = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const X = e.currentTarget.clientWidth;
+    const Y = e.currentTarget.clientHeight;
+    const 해당위치x = e.currentTarget.offsetLeft;
+    const 해당위치y = e.currentTarget.offsetTop;
+    const 해당위치width = e.currentTarget.offsetWidth;
+    const 해당위치height = e.currentTarget.offsetHeight;
+    console.log("X,Y :>> ", X, Y);
+    console.log("해당위치x :>> ", 해당위치x);
+    console.log("해당위치y :>> ", 해당위치y);
+    console.log("해당위치width :>> ", 해당위치width);
+    console.log("해당위치height :>> ", 해당위치height);
+    const 해당타겟데이터 = e.currentTarget.getBoundingClientRect();
+    console.log("해당타겟데이터 :>> ", 해당타겟데이터);
+  };
+
+  const 테스트 = () => {
+    console.log("클릭");
+  };
   return (
     <S.FilterContainer>
       <ClickButton
         text="필터"
+        // onClick={handleToggleDropdown}
+        onClick={테스트}
         svgIcon={<ArrowDown />}
         width={128}
         height={40}
