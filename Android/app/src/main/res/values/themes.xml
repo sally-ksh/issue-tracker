@@ -26,7 +26,8 @@
     </style>
 
     <style name="AppTheme.ActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:actionMenuTextColor">@color/white</item>
+<!--        <item name="android:actionMenuTextColor">@drawable/menu_enabled</item>-->
+        <item name="android:drawable">@drawable/menu_enabled</item>
     </style>
 
     <style name="cardViewRadius">
