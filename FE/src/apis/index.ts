@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 
 import instance from "@/apis/interceptors";
+
 import type { PatchIssueStatusType } from "@/apis/type";
 
 const API = {

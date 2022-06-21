@@ -28,6 +28,6 @@ export const FilterButton = styled.button<FilterButtonProps>`
   }
 
   svg {
-    stroke: ${({ color }) => (color ? color : COLOR["black-400"])};
+    stroke: ${({ color }) => (color ? color : COLOR["gray-900"])};
   }
 `;

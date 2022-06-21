@@ -9,7 +9,7 @@ type StyledFontProps = {
 export const styledFont = ({
   fontSize = FONTSIZE.M,
   fontWeight = FONTWEIGHT.base,
-  color = COLOR["black-400"],
+  color = COLOR["gray-900"],
 }: StyledFontProps) => {
   let styledTemplate = "";
 

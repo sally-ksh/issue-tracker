@@ -4,9 +4,9 @@ export type IssueType = {
   title: string;
   content: string;
   status: string;
-  creationDateTime: string | Date;
+  creationDateTime: string;
   milestone: string;
-  label: number[];
+  label: string[];
   writerName: string;
   writerImage: string;
 };

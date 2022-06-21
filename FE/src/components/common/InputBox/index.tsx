@@ -1,6 +1,6 @@
-import type { StyleProps } from "@/components/common/type";
-
 import * as S from "./style";
+
+import type { StyleProps } from "@/components/common/type";
 
 export type InputBoxProps = {
   value?: string;
