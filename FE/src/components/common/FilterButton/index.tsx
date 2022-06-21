@@ -4,7 +4,7 @@ import { StyleProps } from "@/components/common/type";
 
 import * as S from "./style";
 
-export type ClickButtonProps = {
+export type FilterButtonProps = {
   text?: string;
   svgIcon?: JSX.Element;
   isIconFirst?: boolean;
@@ -12,9 +12,9 @@ export type ClickButtonProps = {
   onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 } & StyleProps;
 
-const ClickButton = ({ text, svgIcon, isIconFirst, state, onClick, ...props }: ClickButtonProps) => {
+const FilterButton = ({ text, svgIcon, isIconFirst, state, onClick, ...props }: FilterButtonProps) => {
   return (
-    <S.ClickButton onClick={onClick} {...props}>
+    <S.FilterButton onClick={onClick} {...props}>
       {isIconFirst ? (
         <>
           {svgIcon ? svgIcon : null}
@@ -27,8 +27,8 @@ const ClickButton = ({ text, svgIcon, isIconFirst, state, onClick, ...props }: C
         </>
       )}
       {state ? <span>{state}</span> : null}
-    </S.ClickButton>
+    </S.FilterButton>
   );
 };
 
-export default ClickButton;
+export default FilterButton;
