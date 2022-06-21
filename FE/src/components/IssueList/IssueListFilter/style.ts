@@ -5,9 +5,11 @@ import { COLOR } from "@/styles/constTheme";
 
 export const IssueListFilter = styled.div`
   display: flex;
-  align-items: flex-start;
-  padding: 18rem 54rem 18rem 32rem;
+  justify-content: center;
+  align-items: center;
+  padding: 18rem 30rem 18rem 32rem;
   background-color: ${COLOR["gray-100"]};
+  height: 64rem;
 `;
 
 export const IssueCheckBox = styled(CheckBox)`
@@ -15,5 +17,7 @@ export const IssueCheckBox = styled(CheckBox)`
 `;
 
 export const FilterBox = styled.div`
+  display: flex;
+  gap: 36rem;
   margin-left: auto;
 `;

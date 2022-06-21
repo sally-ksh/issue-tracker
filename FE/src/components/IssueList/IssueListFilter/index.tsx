@@ -5,6 +5,7 @@ import { COLOR, FONTWEIGHT } from "@/styles/constTheme";
 import * as S from "./style";
 
 const IssueListFilter = () => {
+  // TODO logic: checkbox 클릭 시 변경 filter 박스 변경
   return (
     <S.IssueListFilter>
       <S.IssueCheckBox />
@@ -22,9 +23,14 @@ const IssueListFilter = () => {
         isIconFirst={true}
         svgIcon={<Icon type="archive" />}
         fontWeight={FONTWEIGHT.bold}
-        style={{ marginLeft: "24rem", filter: "contrast(30%)" }}
+        style={{ marginLeft: "24rem" }}
       />
-      <S.FilterBox>끝</S.FilterBox>
+      <S.FilterBox>
+        <FilterButton text="담당자" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
+        <FilterButton text="레이블" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
+        <FilterButton text="마일스톤" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
+        <FilterButton text="담당자" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
+      </S.FilterBox>
     </S.IssueListFilter>
   );
 };
