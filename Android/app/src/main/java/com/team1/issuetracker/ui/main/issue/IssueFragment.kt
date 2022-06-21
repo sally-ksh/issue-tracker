@@ -1,8 +1,10 @@
 package com.team1.issuetracker.ui.main.issue
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.util.Printer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +12,21 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.team1.issuetracker.R
 import com.team1.issuetracker.common.PrintLog
+import com.team1.issuetracker.data.model.Issue
 import com.team1.issuetracker.databinding.FragmentIssueBinding
+import com.team1.issuetracker.ui.main.issue.adapter.IssueListAdapter
+import com.team1.issuetracker.ui.main.issue.adapter.SwipeHelper
 
 class IssueFragment: Fragment() {
 
     private lateinit var binding: FragmentIssueBinding
+    private lateinit var issueListAdapter: IssueListAdapter
+    private val sampleIssueList = ArrayList<Issue>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +38,43 @@ class IssueFragment: Fragment() {
         return view
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setAppBar()
+
+        //////////////////////////////////////////////
+        val swipeHelper = SwipeHelper()
+        val itemTouchHelper = ItemTouchHelper(swipeHelper)
+        itemTouchHelper.attachToRecyclerView(binding.rvIssue)
+
+        issueListAdapter = IssueListAdapter {
+            PrintLog.printLog("Issue Item Long Click")
+
+            itemTouchHelper.attachToRecyclerView(null)
+            issueListAdapter.makeCheckBosVisible()
+        }
+
+        binding.rvIssue.apply {
+            adapter = issueListAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+            setOnTouchListener { v, event ->
+                swipeHelper.removePreviousClamp(this)
+                false
+            }
+        }
+
+        val animator = binding.rvIssue.itemAnimator     //리사이클러뷰 애니메이터 get
+        if (animator is SimpleItemAnimator){          //아이템 애니메이커 기본 하위클래스
+            animator.supportsChangeAnimations = false  //애니메이션 값 false (리사이클러뷰가 화면을 다시 갱신 했을때 뷰들의 깜빡임 방지)
+        }
+
+        addSampleIssueData()
+        issueListAdapter.submitList(sampleIssueList.toList())
+
+        //////////////////////////////////////////////////
+
     }
 
     private fun setAppBar(){
@@ -64,5 +107,11 @@ class IssueFragment: Fragment() {
         binding.topAppBar.title = "필터"
         binding.topAppBar.setTitleTextColor(R.color.white)
         binding.topAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cancel)
+    }
+
+    private fun addSampleIssueData(){
+        for(i in 1..15){
+            sampleIssueList.add(Issue(i, "마일스톤$i", "title $i", "content $i", "label$i", ""))
+        }
     }
 }
