@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.team1.issuetracker.R
+import com.team1.issuetracker.common.repeatOnStarted
 import com.team1.issuetracker.databinding.FragmentAddLabelBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -95,12 +96,5 @@ class AddLabelFragment : Fragment() {
         }
     }
 
-
-
-    private fun LifecycleOwner.repeatOnStarted(block: suspend CoroutineScope.() -> Unit) {
-        lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED, block)
-        }
-    }
 
 }

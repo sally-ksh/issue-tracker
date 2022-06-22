@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.team1.issuetracker.ui.main.milestone.AddMileStoneViewModel" />
+            type="com.team1.issuetracker.ui.main.milestone.AddMilestoneViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -62,7 +62,8 @@
             app:layout_constraintStart_toEndOf="@id/tv_title_label"
             android:textSize="14sp"
             android:hint="@string/required_input"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:onTextChanged="@{(text, start, before, count)  -> viewModel.setTitle(text, start, before, count)}"/>
 
         <View
             android:id="@+id/view_description"
@@ -91,7 +92,8 @@
             app:layout_constraintStart_toEndOf="@id/tv_description_label"
             android:textSize="14sp"
             android:hint="@string/choose"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            android:afterTextChanged="@{text -> viewModel.setContent(text)}"/>
 
         <View
             android:id="@+id/view_date"
@@ -120,10 +122,11 @@
             app:layout_constraintStart_toEndOf="@id/tv_date_label"
             android:textSize="14sp"
             android:hint="@string/date_format"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent"
+            setDate="@{viewModel}"/>
 
         <ImageView
-            android:id="@+id/btn_color_change"
+            android:id="@+id/btn_calendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="17dp"

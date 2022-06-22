@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_milestone"
-        android:name="com.team1.issuetracker.ui.main.milestone.MileStoneFragment"
+        android:name="com.team1.issuetracker.ui.main.milestone.MilestoneFragment"
         android:label="MileStoneFragment" >
         <action
             android:id="@+id/action_navigation_milestone_to_addMilestoneFragment"

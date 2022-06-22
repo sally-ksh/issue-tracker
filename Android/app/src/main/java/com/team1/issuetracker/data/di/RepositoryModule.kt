@@ -1,9 +1,7 @@
 package com.team1.issuetracker.data.di
 
-import com.team1.issuetracker.data.repository.LabelRepository
-import com.team1.issuetracker.data.repository.LabelRepositoryImpl
-import com.team1.issuetracker.data.repository.LoginRepository
-import com.team1.issuetracker.data.repository.LoginRepositoryImpl
+import com.team1.issuetracker.data.model.Milestone
+import com.team1.issuetracker.data.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,7 +21,12 @@ abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindLabelRepository(
-        authRepositoryImpl: LabelRepositoryImpl
+        labelRepositoryImpl: LabelRepositoryImpl
     ): LabelRepository
 
+    @Singleton
+    @Binds
+    abstract fun bindMilestoneRepository(
+        milestoneRepositoryImpl: MilestoneRepositoryImpl
+    ): MilestoneRepository
 }

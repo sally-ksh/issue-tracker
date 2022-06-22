@@ -31,8 +31,6 @@ class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelA
             binding.item = label
 
             binding.clCheckbox.isVisible = label.isCheckVisible
-            binding.item = label
-
 
             // 뷰홀더 재사용 과정에서 isClamped 값에 맞지 않는 스와이프 상태가 보일 수 있으므로 아래와 같이 명시적으로 isClamped 값에 따라 스와이프 상태 지정
             if (label.isSwiped) binding.labelView.translationX = binding.root.width * -1f / 10 * 3

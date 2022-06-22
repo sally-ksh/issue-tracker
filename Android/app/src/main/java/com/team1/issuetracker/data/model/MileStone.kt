@@ -1,6 +1,6 @@
 package com.team1.issuetracker.data.model
 
-data class MileStone(
+data class Milestone(
     val id: Int,
     val title: String,
     val progress : Int,
