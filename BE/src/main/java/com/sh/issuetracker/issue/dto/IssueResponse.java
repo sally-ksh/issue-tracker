@@ -1,8 +1,10 @@
 package com.sh.issuetracker.issue.dto;
 
 import com.sh.issuetracker.issue.Issue;
+import com.sh.issuetracker.label.Label;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -21,7 +23,7 @@ public class IssueResponse {
 		private final String author;
 		private final String createdAt;
 		private final String milestoneTitle;
-		private final List<String> labels;
+		private final List<LabelDesign> labels;
 
 		public static Row from(Issue issue) {
 			return Row.builder()
@@ -32,8 +34,26 @@ public class IssueResponse {
 				.author(issue.writer())
 				.createdAt(issue.getCreatedAt())
 				.milestoneTitle(issue.milestoneTitle())
-				.labels(issue.labelNames())
+				.labels(toLabelDesigns(issue))
 				.build();
+		}
+
+		private static List<LabelDesign> toLabelDesigns(Issue issue) {
+			return issue.labels().stream()
+				.map(LabelDesign::new)
+				.collect(Collectors.toList());
+		}
+	}
+
+	public static class LabelDesign {
+		private final String name;
+		private final String backgroundColor;
+		private final String fontColor;
+
+		public LabelDesign(Label label) {
+			this.name = label.getName();
+			this.backgroundColor = label.getBackgroundColor();
+			this.fontColor = label.getFontColorText();
 		}
 	}
 }

@@ -19,6 +19,18 @@ public class IssueService {
 		List<Issue> issues = issueRepository.findAllByProjectIdAndStatus(
 			authUser.getProjectId(),
 			issueStatus);
+		return toDto(issues);
+	}
+
+	public List<IssueResponse.Row> readAllOfAuthor(AuthUser authUser, IssueStatus issueStatus) {
+		List<Issue> issues = issueRepository.findAllByProjectIdAndUserIdAndStatus(
+			authUser.getProjectId(),
+			authUser.getUserId(),
+			issueStatus);
+		return toDto(issues);
+	}
+
+	private List<IssueResponse.Row> toDto(List<Issue> issues) {
 		return issues.stream()
 			.map(IssueResponse.Row::from)
 			.collect(Collectors.toList());

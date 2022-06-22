@@ -19,8 +19,20 @@ public class IssueApiController {
 	private final IssueService issueService;
 
 	@GetMapping(value = {"/","/open"})
-	public ResponseEntity<Void> readAllWithOpen() {
+	public ResponseEntity<List<IssueResponse.Row>> readAllWithOpen() {
 		List<IssueResponse.Row> response = issueService.readAllOf(AuthUser.of(), IssueStatus.OPEN);
-		return ResponseEntity.ok().build();
+		return ResponseEntity.ok().body(response);
+	}
+
+	@GetMapping(value = {"/close"})
+	public ResponseEntity<List<IssueResponse.Row>> readAllWithClose() {
+		List<IssueResponse.Row> response = issueService.readAllOf(AuthUser.of(), IssueStatus.CLOSE);
+		return ResponseEntity.ok().body(response);
+	}
+
+	@GetMapping(value = {"/created_by/me"})
+	public ResponseEntity<List<IssueResponse.Row>> readAllByAuthor() {
+		List<IssueResponse.Row> response = issueService.readAllOfAuthor(AuthUser.of(), IssueStatus.OPEN);
+		return ResponseEntity.ok().body(response);
 	}
 }
