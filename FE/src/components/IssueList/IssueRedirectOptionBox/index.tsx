@@ -1,3 +1,4 @@
+import Button from "@/components/common/Button";
 import FilterButton from "@/components/common/FilterButton";
 import Icon from "@/components/common/Icon";
 import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
@@ -5,6 +6,7 @@ import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
 import * as S from "./style";
 
 const IssueRedirectOptionBox = () => {
+  const handleClick = () => {};
   return (
     <S.Container>
       <S.OptionTab>
@@ -30,17 +32,10 @@ const IssueRedirectOptionBox = () => {
         />
       </S.OptionTab>
 
-      <FilterButton
-        text="이슈 작성"
-        svgIcon={<Icon type="plus" />}
-        fontSize={FONTSIZE.XS}
-        isIconFirst={true}
-        width={120}
-        height={40}
-        backgroundColor={COLOR["blue-400"]}
-        color={COLOR["white-400"]}
-        style={{ justifyContent: "center", gap: "9rem" }}
-      />
+      <Button onClick={handleClick} width={120} fontSize={FONTSIZE.XS}>
+        <Icon type="plus" />
+        이슈 작성
+      </Button>
     </S.Container>
   );
 };

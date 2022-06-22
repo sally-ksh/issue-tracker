@@ -6,7 +6,6 @@ import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
 export const IssueListItem = styled.li`
   display: flex;
   align-items: flex-start;
-  padding: 16rem 54rem 16rem 32rem;
   background-color: ${COLOR["white-400"]};
   height: 100rem;
 `;
@@ -14,6 +13,7 @@ export const IssueListItem = styled.li`
 export const IssueCheckBox = styled(CheckBox)`
   margin-top: 7rem;
   margin-right: 33rem;
+  margin-left: 17rem;
 `;
 
 export const FilterBox = styled.div`
@@ -51,6 +51,7 @@ export const IssueInfo = styled.div`
 
 export const UserIcon = styled.img`
   margin-left: auto;
+  margin-right: 30rem;
   width: 20rem;
   height: 20rem;
   border: 1rem solid ${COLOR["gray-900"]};
