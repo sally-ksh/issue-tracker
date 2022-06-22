@@ -20,7 +20,11 @@
     <fragment
         android:id="@+id/navigation_milestone"
         android:name="com.team1.issuetracker.ui.main.milestone.MileStoneFragment"
-        android:label="MileStoneFragment" />
+        android:label="MileStoneFragment" >
+        <action
+            android:id="@+id/action_navigation_milestone_to_addMilestoneFragment"
+            app:destination="@id/addMilestoneFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_my"
         android:name="com.team1.issuetracker.ui.main.my.MyFragment"
@@ -32,6 +36,14 @@
         <action
             android:id="@+id/action_addLabelFragment_to_navigation_label"
             app:destination="@id/navigation_label" />
+    </fragment>
+    <fragment
+        android:id="@+id/addMilestoneFragment"
+        android:name="com.team1.issuetracker.ui.main.milestone.AddMilestoneFragment"
+        android:label="AddMilestoneFragment" >
+        <action
+            android:id="@+id/action_addMilestoneFragment_to_navigation_milestone"
+            app:destination="@id/navigation_milestone" />
     </fragment>
 
 </navigation>

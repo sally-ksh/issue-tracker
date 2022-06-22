@@ -1,28 +1,26 @@
 package com.team1.issuetracker.ui.main.label
 
-import android.graphics.Color
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.team1.issuetracker.R
-import com.team1.issuetracker.common.LabelColor
 import com.team1.issuetracker.databinding.FragmentAddLabelBinding
-import java.util.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 class AddLabelFragment : Fragment() {
 
     private lateinit var binding: FragmentAddLabelBinding
+    private val viewModel: AddLabelViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +36,32 @@ class AddLabelFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.topAppBar.menu.getItem(0).isEnabled = false
 
+        binding.viewModel = viewModel
+
+        repeatOnStarted {
+            viewModel.labelText.collect {
+                binding.tvBadgeLabel.text = it
+            }
+        }
+
+        repeatOnStarted {
+            viewModel.saveButtonState.collect {
+                binding.topAppBar.menu.getItem(0).isEnabled = it
+            }
+        }
+        repeatOnStarted {
+            viewModel.labelColor.collect {
+                binding.cvBadgeLabel.setCardBackgroundColor(it)
+            }
+        }
+        repeatOnStarted {
+            viewModel.labelColorText.collect {
+                binding.etBackground.setText(it)
+            }
+        }
         setClickSaveButton()
-        changeTitle()
         setColorChangeButton()
-        getDescription()
-        getLabelColor()
-//        getLabel()
+        setBackButton()
     }
 
     private fun setClickSaveButton() {
@@ -70,111 +88,19 @@ class AddLabelFragment : Fragment() {
         }
     }
 
-    private fun changeTitle() {
-        binding.etTitle.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d("TAG", "changeTitle beforeTextChanged")
-            }
-
-            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                when {
-                    text.toString() != "" -> {
-                        Log.d("TAG", "binding.etTitle.text ${text}, $start, $before, $count")
-                        binding.topAppBar.menu.getItem(0).isEnabled = true
-                    }
-                    text.toString() == "" -> {
-                        Log.d("TAG", "blank ${text}, $start, $before, $count")
-                        binding.topAppBar.menu.getItem(0).isEnabled = false
-                    }
-                }
-            }
-
-            override fun afterTextChanged(text: Editable?) {
-                binding.badgeLabel.text = text.toString()
-                setLabelBackground()
-            }
-
-        })
-    }
-
-    private fun getDescription() {
-        binding.etDescription.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d("TAG", "getDescription beforeTextChanged")
-            }
-
-            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.d("TAG", "getDescription beforeTextChanged")
-            }
-
-            override fun afterTextChanged(text: Editable?) {
-                //viewModel에 넘겨준다
-            }
-
-        })
-    }
-
-    private fun getLabelColor() {
-        binding.etBackground.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                Log.d("TAG", "getLabelColor beforeTextChanged")
-            }
-
-            override fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int) {
-                Log.d("TAG", "getLabelColor beforeTextChanged")
-            }
-
-            override fun afterTextChanged(text: Editable?) {
-                //viewModel에 넘겨준다
-                getLabel(text.toString())
-            }
-
-        })
-    }
-
-    private fun getLabel(text: String) {
-        binding.etBackground.onFocusChangeListener =
-            View.OnFocusChangeListener { _, focus ->
-                if (!focus) {
-                    kotlin.runCatching {
-                        Color.parseColor(text)
-                    }.onSuccess {
-                        val shape = ContextCompat.getDrawable(
-                            requireContext(),
-                            R.drawable.badge_shape
-                        ) as GradientDrawable
-                        shape.setColor(it)
-                        binding.badgeLabel.background = shape
-                        Log.d("TAG", "success")
-                    }.onFailure {
-                        Toast.makeText(requireContext(), "올바른 색을 입력해주세요", Toast.LENGTH_SHORT).show()
-                        Log.d("TAG", "fail")
-
-                    }
-                }
-            }
-    }
 
     private fun setColorChangeButton() {
         binding.btnColorChange.setOnClickListener {
-            setLabelBackground()
+            viewModel.setLabelBackground()
         }
     }
 
-    private fun setLabelBackground() {
-        val random = Random()
 
-        val red = random.nextInt(256)
-        val green = random.nextInt(256)
-        val blue = random.nextInt(256)
 
-        val color = LabelColor()
-        val shape =
-            ContextCompat.getDrawable(requireContext(), R.drawable.badge_shape) as GradientDrawable
-
-        shape.setColor(color.getLabelColor(red, green, blue))
-        binding.badgeLabel.background = shape
-        binding.etBackground.setText(color.getColorLabel(red, green, blue))
+    private fun LifecycleOwner.repeatOnStarted(block: suspend CoroutineScope.() -> Unit) {
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED, block)
+        }
     }
 
 }
