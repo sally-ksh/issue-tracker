@@ -1,15 +1,18 @@
 package com.sh.issuetracker.issue;
 
+import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
 import com.sh.issuetracker.user.AuthUser;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 @Service
 public class IssueService {
@@ -34,5 +37,11 @@ public class IssueService {
 		return issues.stream()
 			.map(IssueResponse.Row::from)
 			.collect(Collectors.toList());
+	}
+
+	@Transactional
+	public void update(IssueRequest request) {
+		List<Issue> issues = issueRepository.findByIdIn(request.getIssueIds());
+		issues.stream().forEach(Issue::changeStatus);
 	}
 }
