@@ -35,4 +35,11 @@ public class IssueApiController {
 		List<IssueResponse.Row> response = issueService.readAllOfAuthor(AuthUser.of(), IssueStatus.OPEN);
 		return ResponseEntity.ok().body(response);
 	}
+
+	@GetMapping(value = {"/assigned/me"})
+	public ResponseEntity<List<IssueResponse.Row>> readAllByAssignee() {
+		List<IssueResponse.Row> response = issueService.readAllOfAuthor(AuthUser.of(), IssueStatus.OPEN);
+		return ResponseEntity.ok().body(response);
+	}
+
 }
