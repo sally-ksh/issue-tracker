@@ -1,17 +1,20 @@
 package com.team1.issuetracker.ui.main.issue
 
 import android.annotation.SuppressLint
-import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.text.Html
 import android.util.Log
-import android.util.Printer
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -19,14 +22,20 @@ import com.team1.issuetracker.R
 import com.team1.issuetracker.common.PrintLog
 import com.team1.issuetracker.data.model.Issue
 import com.team1.issuetracker.databinding.FragmentIssueBinding
+import com.team1.issuetracker.ui.main.MainActivity
 import com.team1.issuetracker.ui.main.issue.adapter.IssueListAdapter
 import com.team1.issuetracker.ui.main.issue.adapter.SwipeHelper
+import kotlinx.coroutines.launch
 
 class IssueFragment: Fragment() {
 
     private lateinit var binding: FragmentIssueBinding
     private lateinit var issueListAdapter: IssueListAdapter
     private val sampleIssueList = ArrayList<Issue>()
+
+    private var actionMode: ActionMode? = null
+
+    private val viewModel: IssueViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,12 +44,56 @@ class IssueFragment: Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_issue, container, false)
         val view = binding.root
+
         return view
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val callback = object : ActionMode.Callback {
+            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                Log.d("AppTest", "onCreateActionMode")
+                requireActivity().menuInflater.inflate(R.menu.contextual_action_bar, menu)
+                return true
+            }
+
+            override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                Log.d("AppTest", "onPrepareActionMode")
+                return false
+            }
+
+            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+                return when (item?.itemId) {
+                    R.id.delete -> {
+                        // Handle delete icon press
+                        true
+                    }
+                    R.id.close -> {
+                        // Handle close icon press
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            override fun onDestroyActionMode(mode: ActionMode?) {
+                Log.d("AppTest", "onDestroyActionMode")
+                actionMode = null
+            }
+        }
+
+        /*viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.itemCount.collect{
+                    actionMode?.let {
+                        it.title = it.toString()
+                    }
+                }
+            }
+        }*/
+
 
         setAppBar()
 
@@ -50,7 +103,15 @@ class IssueFragment: Fragment() {
         itemTouchHelper.attachToRecyclerView(binding.rvIssue)
 
         issueListAdapter = IssueListAdapter {
-            PrintLog.printLog("Issue Item Long Click")
+            PrintLog.printLog("Issue Item Long Click")    // 이슈 리스트 아이템 롱 클릭 이벤트 영역!!
+
+            actionMode = (activity as MainActivity).startSupportActionMode(callback)  // ? 맞는 방법
+            actionMode?.let {
+                it.title = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                    Html.fromHtml("<font color='#FFFFFF'>${viewModel.itemCount.value}</font>", Html.FROM_HTML_MODE_LEGACY)
+                else
+                    Html.fromHtml("<font color='#FFFFFF'>${viewModel.itemCount.value}</font>")
+            }
 
             itemTouchHelper.attachToRecyclerView(null)
             issueListAdapter.makeCheckBosVisible()
@@ -77,7 +138,7 @@ class IssueFragment: Fragment() {
 
     }
 
-    private fun setAppBar(){
+   private fun setAppBar(){
         binding.topAppBar.setOnMenuItemClickListener {
             when(it.itemId) {
                 R.id.issue_search -> {
