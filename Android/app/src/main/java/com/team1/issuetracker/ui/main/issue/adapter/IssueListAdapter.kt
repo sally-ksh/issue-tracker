@@ -33,6 +33,16 @@ class IssueListAdapter(private val longClick: () -> Unit) :
                 if (issue.isSwiped) removeItem(adapterPosition)
             }
 
+            // 체크 여부에 따른 배경색
+            if(issue.isChecked) {
+                binding.checkbox.isChecked = true
+                binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.Backgrounds2))
+            }
+            else {
+                binding.checkbox.isChecked = false
+                binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+            }
+
             binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
                     getItem(adapterPosition).isChecked = true
