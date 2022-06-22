@@ -1,9 +1,10 @@
-package com.team1.issuetracker.ui.main.label
+package com.team1.issuetracker.ui.main.label.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.team1.issuetracker.R
 import com.team1.issuetracker.common.SwipeHelper
+import com.team1.issuetracker.ui.main.label.adapter.LabelAdapter
 
 class LabelSwipeHelper: SwipeHelper() {
 

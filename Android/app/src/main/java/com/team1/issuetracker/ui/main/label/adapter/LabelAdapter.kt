@@ -1,4 +1,4 @@
-package com.team1.issuetracker.ui.main.label
+package com.team1.issuetracker.ui.main.label.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +13,9 @@ import com.team1.issuetracker.R
 import com.team1.issuetracker.data.model.Label
 import com.team1.issuetracker.databinding.ItemLabelBinding
 
-class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelAdapter.LabelViewHolder>(LabelDiffUtil) {
+class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelAdapter.LabelViewHolder>(
+    LabelDiffUtil
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelViewHolder {
         return LabelViewHolder(ItemLabelBinding.inflate(LayoutInflater.from(parent.context), parent, false))

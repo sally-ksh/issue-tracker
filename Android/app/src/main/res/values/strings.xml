@@ -11,5 +11,15 @@
     <string name="save_label">저장</string>
     <string name="github_client_id">201079016bf7f2a7f4b1</string>
     <string name="github_redirect_url">funnyhan://issuetracker</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date_format">선택 사항(YYYY-MM-DD)</string>
+    <string name="date_label">완료일</string>
+    <string name="choose">선택 사항</string>
+    <string name="description">설명</string>
+    <string name="required_input">필수 입력</string>
+    <string name="title_label">제목</string>
+    <string name="color_hint">#808080</string>
+    <string name="background_label">배경색</string>
 
 </resources>
