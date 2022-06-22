@@ -1,9 +1,7 @@
 import { useState } from "react";
-
 import { NavLink } from "react-router-dom";
 
 import Logo from "@/assets/Logo.svg";
-import ImageButton from "@/components/common/ImageButton";
 import * as S from "@/pages/Login/style";
 
 const LoginPage = () => {
@@ -15,7 +13,7 @@ const LoginPage = () => {
 
   return (
     <S.LoginContainer>
-      <ImageButton image={Logo} width={342} height={72} />
+      <S.LoginLogo src={Logo} />
       <S.GitHubLoginButton>GitHub 계정으로 로그인</S.GitHubLoginButton>
       <span>or</span>
       <S.LoginIdInput placeholder="아이디" type="text" onChange={changeLoginIdState} />

@@ -1,17 +1,20 @@
-import * as S from "@/components/common/ClickButton/style";
-import { StyleProps } from "@/components/common/type";
-import { COLOR } from "@/styles/constTheme";
+import { ButtonHTMLAttributes } from "react";
 
-export type ClickButtonProps = {
+import { StyleProps } from "@/components/common/type";
+
+import * as S from "./style";
+
+export type FilterButtonProps = {
   text?: string;
   svgIcon?: JSX.Element;
   isIconFirst?: boolean;
   state?: number | string;
+  onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
 } & StyleProps;
 
-const ClickButton = ({ text, svgIcon, isIconFirst, state, ...props }: ClickButtonProps) => {
+const FilterButton = ({ text, svgIcon, isIconFirst, state, onClick, ...props }: FilterButtonProps) => {
   return (
-    <S.ClickButton {...props}>
+    <S.FilterButton onClick={onClick} {...props}>
       {isIconFirst ? (
         <>
           {svgIcon ? svgIcon : null}
@@ -24,8 +27,8 @@ const ClickButton = ({ text, svgIcon, isIconFirst, state, ...props }: ClickButto
         </>
       )}
       {state ? <span>{state}</span> : null}
-    </S.ClickButton>
+    </S.FilterButton>
   );
 };
 
-export default ClickButton;
+export default FilterButton;

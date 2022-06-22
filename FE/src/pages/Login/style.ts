@@ -16,6 +16,11 @@ export const LoginContainer = styled.div`
   }
 `;
 
+export const LoginLogo = styled.img`
+  width: 342rem;
+  height: 72rem;
+`;
+
 export const GitHubLoginButton = styled.button`
   width: 340rem;
   height: 64rem;

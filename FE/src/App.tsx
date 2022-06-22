@@ -1,5 +1,9 @@
+import { lazy, Suspense } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import LoadingProgress from "@/components/common/LoadingProgress";
 import Home from "@/pages/Home";
 import IssueDetail from "@/pages/IssueDetail";
 import IssueList from "@/pages/IssueList";
@@ -16,24 +20,34 @@ import ListLayoutTest from "./test-pages/ListLayoutTest";
 const App = () => {
   // FIXME 임시 OAuth
   const isOAuth = true;
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+      },
+    },
+  });
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <Routes>
-        <Route path="/" element={isOAuth ? <Home /> : <Login />}>
-          <Route index element={<IssueList />} />
-          <Route path="/issue-detail" element={<IssueDetail />} />
-          <Route path="/issue-register" element={<IssueRegister />} />
-          <Route path="/label" element={<Label />} />
-          <Route path="/milestone" element={<Milestone />} />
-        </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/dropdown-test" element={<DropdownTest />} />
-        <Route path="/button-test" element={<ButtonTest />} />
-        <Route path="/list-layout-test" element={<ListLayoutTest />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <Suspense fallback={<LoadingProgress />}>
+          <Routes>
+            <Route path="/" element={isOAuth ? <Home /> : <Login />}>
+              <Route index element={<IssueList />} />
+              <Route path="/issue-detail" element={<IssueDetail />} />
+              <Route path="/issue-register" element={<IssueRegister />} />
+              <Route path="/label" element={<Label />} />
+              <Route path="/milestone" element={<Milestone />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+
   );
 };
 

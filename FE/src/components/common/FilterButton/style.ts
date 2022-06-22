@@ -1,9 +1,10 @@
 import styled, { css } from "styled-components";
 
-import { ClickButtonProps } from "@/components/common/ClickButton";
-import { styledFont } from "@/utils/style";
+import { FilterButtonProps } from "@/components/common/FilterButton";
+import { COLOR } from "@/styles/constTheme";
+import { styledFont } from "@/styles/util";
 
-export const ClickButton = styled.button<ClickButtonProps>`
+export const FilterButton = styled.button<FilterButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,5 +25,9 @@ export const ClickButton = styled.button<ClickButtonProps>`
       css`
         ${styledFont({ fontSize: fontSize, fontWeight: fontWeight, color: color })}
       `}
+  }
+
+  svg {
+    stroke: ${({ color }) => (color ? color : COLOR["gray-900"])};
   }
 `;

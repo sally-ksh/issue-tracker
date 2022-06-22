@@ -1,34 +1,28 @@
 import { useState } from "react";
-
 import styled from "styled-components";
 
-import Portal from "@/components/common/Portal";
 import { COLOR } from "@/styles/constTheme";
 
 function LoadingProgress() {
   const [style, setStyle] = useState({});
 
   setTimeout(() => {
-    const loadingDone = { width: "100%" };
+    const loadingDone = { width: "100vw" };
     setStyle(loadingDone);
   }, 0);
 
-  return (
-    <Portal>
-      <ProgressBlock style={style}>
-        <div>LOADING</div>
-      </ProgressBlock>
-    </Portal>
-  );
+  return <ProgressBlock style={style}></ProgressBlock>;
 }
 
 export default LoadingProgress;
 
-const ProgressBlock = styled.div`
-  width: 0%;
-  position: absolute;
-  margin: 0 auto;
+const ProgressBlock = styled.span`
+  width: 0vw;
+  height: 8rem;
+  left: 0;
+  top: 0;
+  position: fixed;
   background-color: ${COLOR["blue-400"]};
-  text-indent: 9999px;
-  transition: 0.5s ease 0.3s;
+  outline: 2rem solid transparent;
+  transition: 0.4s ease 0s;
 `;

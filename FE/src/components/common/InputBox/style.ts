@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 import { InputBoxProps } from "@/components/common/InputBox/index";
 import { COLOR } from "@/styles/constTheme";
-import { styledFont } from "@/utils/style";
+import { styledFont } from "@/styles/util";
 
 export const InputBox = styled.input<InputBoxProps>`
   ::placeholder {
