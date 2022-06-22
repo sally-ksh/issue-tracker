@@ -1,6 +1,7 @@
 package com.sh.issuetracker.issue;
 
 import com.sh.issuetracker.issuelabel.IssueLabel;
+import com.sh.issuetracker.label.Label;
 import com.sh.issuetracker.milestone.Milestone;
 import com.sh.issuetracker.project.Project;
 import com.sh.issuetracker.user.User;
@@ -35,6 +36,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 
+@ToString(exclude = {"project"})
 @NamedEntityGraph(name = "Issue.all",
 attributeNodes = {
 	@NamedAttributeNode("milestone"),
@@ -110,9 +112,13 @@ public class Issue {
 		return this.milestone.getTitle();
 	}
 
-	public List<String> labelNames() {
+	public List<Label> labels() {
 		return this.issueLabels.stream()
-			.map(IssueLabel::labelName)
+			.map(IssueLabel::getLabel)
 			.collect(Collectors.toList());
+	}
+
+	public void changeStatus() {
+		this.status = this.status.changeAnother();
 	}
 }
