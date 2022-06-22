@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 import { FilterButtonProps } from "@/components/common/FilterButton";
 import { COLOR } from "@/styles/constTheme";
-import { styledFont } from "@/utils/style";
+import { styledFont } from "@/styles/util";
 
 export const FilterButton = styled.button<FilterButtonProps>`
   display: flex;
