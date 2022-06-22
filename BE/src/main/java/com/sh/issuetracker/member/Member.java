@@ -1,21 +1,14 @@
 package com.sh.issuetracker.member;
 
-import com.sh.issuetracker.issue.Issue;
 import com.sh.issuetracker.project.Project;
 import com.sh.issuetracker.user.User;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.NamedAttributeNode;
@@ -26,12 +19,11 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
+// @NamedAttributeNode("issues")
 @NamedEntityGraph(name = "Member.all",
 	attributeNodes = {
 		@NamedAttributeNode("project"),
-		@NamedAttributeNode("user"),
-		@NamedAttributeNode("issues")})
+		@NamedAttributeNode("user")})
 @ToString
 @Where(clause = "is_deleted = false")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -51,9 +43,10 @@ public class Member {
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	private boolean isDeleted;
+	@ColumnDefault("0")
+	private boolean isDeleted = false;
 
-	@ManyToMany
+/*	@ManyToMany
 	@JoinTable(
 		name = "issue_tracker_manager",
 		joinColumns = {
@@ -68,5 +61,5 @@ public class Member {
 			.filter(issue -> issue.openStatus())
 			.map(Issue::getId)
 			.collect(Collectors.toList());
-	}
+	}*/
 }
