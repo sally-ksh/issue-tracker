@@ -2,6 +2,7 @@ package com.team1.issuetracker.data.di
 
 import com.team1.issuetracker.data.network.AuthApi
 import com.team1.issuetracker.data.network.LabelApi
+import com.team1.issuetracker.data.network.MilestoneApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -54,6 +55,19 @@ object NetWorkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(LabelApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMilestoneApi(
+        @Named("login") okHttpClient: OkHttpClient
+    ): MilestoneApi {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MilestoneApi::class.java)
     }
 
 }

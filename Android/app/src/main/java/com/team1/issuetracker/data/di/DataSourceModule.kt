@@ -1,9 +1,6 @@
 package com.team1.issuetracker.data.di
 
-import com.team1.issuetracker.data.datasource.LabelDataSource
-import com.team1.issuetracker.data.datasource.LabelDataSourceImpl
-import com.team1.issuetracker.data.datasource.LoginDataSource
-import com.team1.issuetracker.data.datasource.LoginDataSourceImpl
+import com.team1.issuetracker.data.datasource.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -25,5 +22,11 @@ abstract class DataSourceModule {
     abstract fun bindLabelDataSource(
         labelDataSourceImpl: LabelDataSourceImpl
     ): LabelDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindMilestoneDataSource(
+        milestoneDataSourceImpl: MilestoneDataSourceImpl
+    ): MilestoneDataSource
 
 }

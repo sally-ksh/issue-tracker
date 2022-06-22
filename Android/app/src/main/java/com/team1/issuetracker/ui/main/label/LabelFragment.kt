@@ -18,7 +18,8 @@ import com.team1.issuetracker.R
 import com.team1.issuetracker.common.PrintLog
 import com.team1.issuetracker.databinding.FragmentLabelBinding
 import com.team1.issuetracker.ui.main.MainActivity
-import com.team1.issuetracker.common.SwipeHelper
+import com.team1.issuetracker.ui.main.label.adapter.LabelAdapter
+import com.team1.issuetracker.ui.main.label.adapter.LabelSwipeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

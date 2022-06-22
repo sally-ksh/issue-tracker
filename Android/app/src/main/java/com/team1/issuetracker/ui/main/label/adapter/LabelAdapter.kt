@@ -1,4 +1,4 @@
-package com.team1.issuetracker.ui.main.label
+package com.team1.issuetracker.ui.main.label.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,7 +13,9 @@ import com.team1.issuetracker.R
 import com.team1.issuetracker.data.model.Label
 import com.team1.issuetracker.databinding.ItemLabelBinding
 
-class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelAdapter.LabelViewHolder>(LabelDiffUtil) {
+class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelAdapter.LabelViewHolder>(
+    LabelDiffUtil
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LabelViewHolder {
         return LabelViewHolder(ItemLabelBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -29,8 +31,6 @@ class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelA
             binding.item = label
 
             binding.clCheckbox.isVisible = label.isCheckVisible
-            binding.item = label
-
 
             // 뷰홀더 재사용 과정에서 isClamped 값에 맞지 않는 스와이프 상태가 보일 수 있으므로 아래와 같이 명시적으로 isClamped 값에 따라 스와이프 상태 지정
             if (label.isSwiped) binding.labelView.translationX = binding.root.width * -1f / 10 * 3
