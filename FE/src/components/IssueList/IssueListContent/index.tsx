@@ -18,6 +18,7 @@ const IssueListContent = () => {
   });
 
   console.log("editIssueList :>> ", data);
+
   const handleEditIssueList = ({ issueId, status }: PatchIssueStatusType) => {
     mutate({
       issueId: issueId,

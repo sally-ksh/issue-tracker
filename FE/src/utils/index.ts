@@ -26,15 +26,15 @@ export const getDifferenceTodayToSelectTime = (selectTimeString: string) => {
 
   switch (true) {
     case seconds < 60:
-      return `${seconds}초`;
+      return `방금 전`;
 
     case minutes < 60:
-      return `${minutes}분`;
+      return `${minutes}분 전`;
 
     case hours < 24:
-      return `${hours}시간`;
+      return `${hours}시간 전`;
 
     default:
-      return `${days}일`;
+      return `${days}일 전`;
   }
 };

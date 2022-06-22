@@ -29,7 +29,7 @@ const IssueListFilter = () => {
         <FilterButton text="담당자" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
         <FilterButton text="레이블" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
         <FilterButton text="마일스톤" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
-        <FilterButton text="담당자" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
+        <FilterButton text="작성자" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
       </S.FilterBox>
     </S.IssueListFilter>
   );
