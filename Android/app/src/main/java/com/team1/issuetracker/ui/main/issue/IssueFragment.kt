@@ -81,6 +81,8 @@ class IssueFragment: Fragment() {
             override fun onDestroyActionMode(mode: ActionMode?) {
                 Log.d("AppTest", "onDestroyActionMode")
                 actionMode = null
+
+                issueListAdapter.makeCheckBoxGone() // 모든 아이템 체크박스 보이지 않도록
             }
         }
 
@@ -113,8 +115,8 @@ class IssueFragment: Fragment() {
                     Html.fromHtml("<font color='#FFFFFF'>${viewModel.itemCount.value}</font>")
             }
 
-            itemTouchHelper.attachToRecyclerView(null)
-            issueListAdapter.makeCheckBosVisible()
+            itemTouchHelper.attachToRecyclerView(null) // 체크 박스 활성화 상태에서는 스와이프 안되게
+            issueListAdapter.makeCheckBosVisible() // 모든 아이템 체크박스 보이도록
         }
 
         binding.rvIssue.apply {

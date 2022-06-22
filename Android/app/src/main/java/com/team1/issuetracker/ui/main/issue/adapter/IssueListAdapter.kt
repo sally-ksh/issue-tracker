@@ -4,16 +4,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.internal.MaterialCheckable
+import com.team1.issuetracker.R
 import com.team1.issuetracker.data.model.Issue
 import com.team1.issuetracker.databinding.ItemIssueBinding
 
-class IssueListAdapter(private val longClick: () -> Unit): ListAdapter<Issue, IssueListAdapter.IssueViewHolder>(IssueDiffUtil) {
+class IssueListAdapter(private val longClick: () -> Unit) :
+    ListAdapter<Issue, IssueListAdapter.IssueViewHolder>(IssueDiffUtil) {
 
-    inner class IssueViewHolder(private val binding: ItemIssueBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class IssueViewHolder(private val binding: ItemIssueBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(issue: Issue, longClick: () -> Unit) {
             Log.d("AppTest", "bind")
             binding.clCheckbox.isVisible = issue.isCheckVisible
@@ -21,11 +27,21 @@ class IssueListAdapter(private val longClick: () -> Unit): ListAdapter<Issue, Is
 
 
             // 뷰홀더 재사용 과정에서 isClamped 값에 맞지 않는 스와이프 상태가 보일 수 있으므로 아래와 같이 명시적으로 isClamped 값에 따라 스와이프 상태 지정
-            if(issue.isSwiped) binding.swipeView.translationX = binding.root.width * -1f / 10 * 3
+            if (issue.isSwiped) binding.swipeView.translationX = binding.root.width * -1f / 10 * 3
             else binding.swipeView.translationX = 0f
 
             binding.eraseItemView.setOnClickListener {
-                if(issue.isSwiped) removeItem(adapterPosition)
+                if (issue.isSwiped) removeItem(adapterPosition)
+            }
+
+            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    getItem(adapterPosition).isChecked = true
+                    binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.Backgrounds2))
+                } else {
+                    getItem(adapterPosition).isChecked = false
+                    binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                }
             }
 
             binding.root.setOnLongClickListener(View.OnLongClickListener {
@@ -38,11 +54,11 @@ class IssueListAdapter(private val longClick: () -> Unit): ListAdapter<Issue, Is
             })
         }
 
-        fun setClamped(isClamped: Boolean){
+        fun setClamped(isClamped: Boolean) {
             getItem(adapterPosition).isSwiped = isClamped
         }
 
-        fun getClamped(): Boolean{
+        fun getClamped(): Boolean {
             return getItem(adapterPosition).isSwiped
         }
     }
@@ -56,7 +72,7 @@ class IssueListAdapter(private val longClick: () -> Unit): ListAdapter<Issue, Is
         holder.bind(getItem(position), longClick)
     }
 
-    fun removeItem(position: Int){  // currentList에서 바로 아이템 지우면 에러 발생
+    fun removeItem(position: Int) {  // currentList에서 바로 아이템 지우면 에러 발생
         val newList = currentList.toMutableList()
         newList.removeAt(position)
 
@@ -67,18 +83,40 @@ class IssueListAdapter(private val longClick: () -> Unit): ListAdapter<Issue, Is
         submitList(newList.toList())
     }
 
-    fun makeCheckBosVisible(){
+    fun makeCheckBosVisible() {
         val newList = ArrayList<Issue>()
         currentList.forEach {
-            newList.add(Issue(it.issueId, it.mileStone, it.title, it.content, it.labelContent, it.labelColor, false, true))
+            newList.add(
+                Issue(
+                    it.issueId,
+                    it.mileStone,
+                    it.title,
+                    it.content,
+                    it.labelContent,
+                    it.labelColor,
+                    false,
+                    true
+                )
+            )
         }
         submitList(newList.toList())
     }
 
-    fun makeCheckBoxGone(){
+    fun makeCheckBoxGone() {
         val newList = ArrayList<Issue>()
         currentList.forEach {
-            newList.add(Issue(it.issueId, it.mileStone, it.title, it.content, it.labelContent, it.labelColor, false, false))
+            newList.add(
+                Issue(
+                    it.issueId,
+                    it.mileStone,
+                    it.title,
+                    it.content,
+                    it.labelContent,
+                    it.labelColor,
+                    false,
+                    false
+                )
+            )
         }
         submitList(newList.toList())
     }

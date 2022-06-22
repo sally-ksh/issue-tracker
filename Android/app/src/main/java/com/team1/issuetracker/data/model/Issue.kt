@@ -8,5 +8,6 @@ data class Issue(
     val labelContent: String = "",
     val labelColor: String = "",
     var isSwiped: Boolean = false,
-    var isCheckVisible: Boolean = false
+    var isCheckVisible: Boolean = false,
+    var isChecked: Boolean = false
 )
