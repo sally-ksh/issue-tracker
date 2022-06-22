@@ -1,4 +1,6 @@
 import Button from "@/components/common/Button";
+import Icon from "@/components/common/Icon";
+import { COLOR } from "@/styles/constTheme";
 
 const ButtonTest = () => {
   const onClickHandler = () => {};
@@ -7,19 +9,28 @@ const ButtonTest = () => {
     <>
       <h1>Button Test page</h1>
       <br />
-      <Button value="확인" onClick={onClickHandler} />
+      <Button onClick={onClickHandler}>확인</Button>
       <br />
       <br />
-      <Button value="추가" onClick={onClickHandler} width={150} />
+      <Button onClick={onClickHandler} width={150}>
+        추가
+        <Icon type="arrowDown" stroke={COLOR["white-400"]} />
+      </Button>
       <br />
       <br />
-      <Button value="등록" onClick={onClickHandler} width={150} fontSize={18} />
+      <Button onClick={onClickHandler} width={150} fontSize={18}>
+        등록
+      </Button>
       <br />
       <br />
-      <Button value="취소" onClick={onClickHandler} width={150} fontSize={18} backgroundColor="white" color="blue" />
+      <Button onClick={onClickHandler} width={150} fontSize={18} backgroundColor="white" color="blue">
+        취소
+      </Button>
       <br />
       <br />
-      <Button value="닫기" onClick={onClickHandler} width={150} fontSize={18} backgroundColor="white" color="blue" />
+      <Button onClick={onClickHandler} width={150} fontSize={18} backgroundColor="white" color="blue">
+        닫기
+      </Button>
     </>
   );
 };

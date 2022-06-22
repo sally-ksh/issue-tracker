@@ -7,7 +7,6 @@ export const ListItemBox = styled.div`
 `;
 
 export const ListTitleBox = styled.div`
-  border: 1px solid black;
   display: flex;
   justify-content: space-between;
 `;
