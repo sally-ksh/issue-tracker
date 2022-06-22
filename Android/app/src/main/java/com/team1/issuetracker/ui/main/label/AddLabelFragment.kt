@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.team1.issuetracker.R
 import com.team1.issuetracker.common.LabelColor
 import com.team1.issuetracker.databinding.FragmentAddLabelBinding
@@ -60,6 +61,12 @@ class AddLabelFragment : Fragment() {
                 }
 
             }
+        }
+    }
+
+    private fun setBackButton() {
+        binding.topAppBar.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_addLabelFragment_to_navigation_label)
         }
     }
 

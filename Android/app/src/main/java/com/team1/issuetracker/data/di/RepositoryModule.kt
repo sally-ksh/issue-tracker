@@ -1,5 +1,7 @@
 package com.team1.issuetracker.data.di
 
+import com.team1.issuetracker.data.repository.LabelRepository
+import com.team1.issuetracker.data.repository.LabelRepositoryImpl
 import com.team1.issuetracker.data.repository.LoginRepository
 import com.team1.issuetracker.data.repository.LoginRepositoryImpl
 import dagger.Binds
@@ -17,5 +19,11 @@ abstract class RepositoryModule {
     abstract fun bindAuthRepository(
         authRepositoryImpl: LoginRepositoryImpl
     ): LoginRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindLabelRepository(
+        authRepositoryImpl: LabelRepositoryImpl
+    ): LabelRepository
 
 }

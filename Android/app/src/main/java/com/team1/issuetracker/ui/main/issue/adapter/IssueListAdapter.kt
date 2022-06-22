@@ -9,8 +9,6 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.internal.MaterialCheckable
 import com.team1.issuetracker.R
 import com.team1.issuetracker.data.model.Issue
 import com.team1.issuetracker.databinding.ItemIssueBinding
@@ -20,6 +18,7 @@ class IssueListAdapter(private val longClick: () -> Unit) :
 
     inner class IssueViewHolder(private val binding: ItemIssueBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(issue: Issue, longClick: () -> Unit) {
             Log.d("AppTest", "bind")
             binding.clCheckbox.isVisible = issue.isCheckVisible
@@ -46,7 +45,7 @@ class IssueListAdapter(private val longClick: () -> Unit) :
 
             binding.root.setOnLongClickListener(View.OnLongClickListener {
                 val pos = adapterPosition
-                Log.d("AppTest", "long click pos : ${pos}")
+                Log.d("AppTest", "long click pos : $pos")
 
                 longClick.invoke()
 
