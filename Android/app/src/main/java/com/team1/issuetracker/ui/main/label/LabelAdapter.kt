@@ -1,5 +1,6 @@
 package com.team1.issuetracker.ui.main.label
 
+<<<<<<< HEAD
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -110,6 +111,7 @@ class LabelAdapter(private val longClick: () -> Unit): ListAdapter<Label, LabelA
             )
         }
         submitList(newList.toList())
+
     }
 
     private object LabelDiffUtil: DiffUtil.ItemCallback<Label>() {
