@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import styled from "styled-components";
 
 import { COLOR } from "@/styles/constTheme";
@@ -12,22 +11,18 @@ function LoadingProgress() {
     setStyle(loadingDone);
   }, 0);
 
-  return (
-    <ProgressBlock style={style}>
-      <div>LOADING</div>
-    </ProgressBlock>
-  );
+  return <ProgressBlock style={style}></ProgressBlock>;
 }
 
 export default LoadingProgress;
 
-const ProgressBlock = styled.div`
+const ProgressBlock = styled.span`
   width: 0vw;
+  height: 8rem;
   left: 0;
   top: 0;
   position: fixed;
-  margin: 0 auto;
   background-color: ${COLOR["blue-400"]};
-  text-indent: 9999rem;
-  transition: 0.5s ease 0.3s;
+  outline: 2rem solid transparent;
+  transition: 0.4s ease 0s;
 `;

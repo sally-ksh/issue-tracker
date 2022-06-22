@@ -1,3 +1,4 @@
+import { ReactElement, ReactSVGElement } from "react";
 import styled from "styled-components";
 
 import { ReactComponent as Alertcircle } from "@/assets/AlertCircle.svg";
@@ -13,7 +14,7 @@ import { COLOR } from "@/styles/constTheme";
 type IconProps = {
   type: keyof typeof SVGIcon;
   color?: COLOR;
-};
+} & React.SVGAttributes<SVGSVGElement>;
 
 const SVGIcon = {
   alertCircle: Alertcircle,
@@ -26,10 +27,10 @@ const SVGIcon = {
   userIcon: Usericon,
 };
 
-const Icon = ({ type, color }: IconProps) => {
-  const IconComponent = SVGIcon[type];
+const Icon = ({ type, color, ...rest }: IconProps) => {
+  const IconComponent = SVGIcon[type] as React.FC<React.SVGProps<SVGSVGElement>>;
 
-  return <IconComponent stroke={color || COLOR["gray-900"]} />;
+  return <IconComponent stroke={color || COLOR["gray-900"]} {...rest} />;
 };
 
 export default Icon;

@@ -1,3 +1,6 @@
+import { Suspense } from "react";
+
+import LoadingProgress from "@/components/common/LoadingProgress";
 import IssueListContent from "@/components/IssueList/IssueListContent";
 import IssueListFilter from "@/components/IssueList/IssueListFilter";
 import IssueRedirectOptionBox from "@/components/IssueList/IssueRedirectOptionBox";
@@ -11,12 +14,13 @@ const IssueListPage = () => {
         <IssueSearchFilter />
         <IssueRedirectOptionBox />
       </S.IssueNavContainer>
-
       <S.IssueSearchFilterPopUp />
 
       <S.IssueListContainer>
         <IssueListFilter />
-        <IssueListContent />
+        <Suspense fallback={<LoadingProgress />}>
+          <IssueListContent />
+        </Suspense>
       </S.IssueListContainer>
     </>
   );
