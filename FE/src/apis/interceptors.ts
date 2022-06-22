@@ -8,7 +8,7 @@ export const BASE_URL: { [key: string]: string } = {
 
 const instance = axios.create({
   baseURL: BASE_URL[process.env.NODE_ENV] || BASE_URL.development,
-  timeout: 1000,
+  timeout: 3000,
 });
 
 instance.interceptors.request.use(
@@ -21,7 +21,6 @@ instance.interceptors.request.use(
     if (accessToken) {
       config.headers.Authorization = "Bearer " + accessToken;
     }
-
     return config;
   },
   (error) => {

@@ -4,11 +4,11 @@ export type IssueType = {
   title: string;
   content: string;
   status: string;
-  creationDateTime: string;
+  createdAt: string;
   milestone: string;
   label: string[];
-  writerName: string;
-  writerImage: string;
+  author: string;
+  authorImage: string;
 };
 
 export type PatchIssueStatusType = {
