@@ -5,14 +5,14 @@ import ListLayout from "@/components/common/ListLayout";
 import useComponentVisible from "@/hooks/useComponentVisible";
 
 export type DropdownMenuProps = {
-  value?: string;
-  titleComponent?: JSX.Element;
-  listComponents?: JSX.Element[];
+  nameComponent: React.ReactNode;
+  titleComponent: JSX.Element;
+  listComponents: JSX.Element[];
   width: number;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const DropdownMenu = ({ value, titleComponent, listComponents, width }: DropdownMenuProps) => {
+const DropdownMenu = ({ nameComponent, titleComponent, listComponents, width }: DropdownMenuProps) => {
   const { ref, isVisible, setIsVisible } = useComponentVisible(false);
   const [isBtnOnLeftSide, setIsBtnOnLeftSide] = useState(true);
 
@@ -24,7 +24,7 @@ const DropdownMenu = ({ value, titleComponent, listComponents, width }: Dropdown
 
   return (
     <S.DropdownMenuBox ref={ref}>
-      <S.DropdownMenuBtn onClick={onClickHandler}>{value}</S.DropdownMenuBtn>
+      <S.DropdownMenuBtn onClick={onClickHandler}>{nameComponent}</S.DropdownMenuBtn>
       <S.DropdownMenuListBox isVisible={isVisible} isBtnOnLeftSide={isBtnOnLeftSide}>
         {isVisible && <ListLayout width={width} titleComponent={titleComponent} listComponents={listComponents} />}
       </S.DropdownMenuListBox>

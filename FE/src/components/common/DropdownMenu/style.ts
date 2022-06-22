@@ -12,6 +12,7 @@ export const DropdownMenuBox = styled.div`
 `;
 
 export const DropdownMenuBtn = styled.button`
+  display: flex;
   font-size: ${FONTSIZE.L}rem;
 `;
 

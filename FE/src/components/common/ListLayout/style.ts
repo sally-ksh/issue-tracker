@@ -11,16 +11,18 @@ export const ListLayout = styled.div<ListLayoutProps>`
 
   > div:first-child {
     background-color: ${COLOR["gray-100"]};
+    border-bottom: 1px solid ${COLOR["gray-500"]};
+    padding: 15rem;
   }
 
-  div:last-child {
+  li:last-child {
     border: none;
   }
-`;
 
-export const ListBox = styled.div`
-  width: 100%;
-  border-bottom: 1px solid ${COLOR["gray-500"]};
-  padding: 15px;
-  background-color: ${COLOR["white-400"]};
+  li {
+    width: 100%;
+    border-bottom: 1px solid ${COLOR["gray-500"]};
+    background-color: ${COLOR["white-400"]};
+    padding: 15rem;
+  }
 `;

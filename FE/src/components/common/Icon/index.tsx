@@ -29,7 +29,11 @@ const SVGIcon = {
 
 const Icon = ({ type, color, ...rest }: IconProps) => {
   const IconComponent = SVGIcon[type] as React.FC<React.SVGProps<SVGSVGElement>>;
-
+  const StyledIconComponent = styled(IconComponent)`
+    svg {
+      stroke: ${color || COLOR["gray-900"]};
+    }
+  `;
   return <IconComponent stroke={color || COLOR["gray-900"]} {...rest} />;
 };
 

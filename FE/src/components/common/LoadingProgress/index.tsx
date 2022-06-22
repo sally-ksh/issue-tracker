@@ -24,5 +24,5 @@ const ProgressBlock = styled.span`
   position: fixed;
   background-color: ${COLOR["blue-400"]};
   outline: 2rem solid transparent;
-  transition: 0.4s ease 0s;
+  transition: 1s cubic-bezier(0.79, 0.04, 0.09, 1.11) 0.1s;
 `;
