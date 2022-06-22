@@ -30,7 +30,7 @@ public class IssueLabel {
 	@JoinColumn(name = "label_id")
 	private Label label;
 
-	public String labelName() {
-		return this.label.getName();
+	public Label getLabel() {
+		return this.label;
 	}
 }
