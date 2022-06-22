@@ -84,6 +84,10 @@ public class Issue {
 	@OneToMany(mappedBy = "issue")
 	private List<IssueLabel> issueLabels = new ArrayList<>();
 
+	public boolean openStatus() {
+		return this.status.isOpen();
+	}
+
 	public Long getId() {
 		return this.id;
 	}
