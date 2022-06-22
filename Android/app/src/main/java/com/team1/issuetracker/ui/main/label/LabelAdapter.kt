@@ -1,6 +1,5 @@
 package com.team1.issuetracker.ui.main.label
 
-<<<<<<< HEAD
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
