@@ -6,7 +6,7 @@ export const DropdownMenuTitle = styled.div`
   font-size: 18rem;
 `;
 
-export const DropdownMenuItemBox = styled.div`
+export const DropdownMenuItemBox = styled.li`
   font-size: 16rem;
   color: ${COLOR["gray-900"]};
   display: flex;

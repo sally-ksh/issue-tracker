@@ -7,13 +7,10 @@ export type ListLayoutProps = {
 };
 
 const ListLayout = ({ width, titleComponent, listComponents }: ListLayoutProps) => {
-  const listTitle = <S.ListBox>{titleComponent}</S.ListBox>;
-  const listItem = listComponents?.map((el, idx) => <S.ListBox key={idx}>{el}</S.ListBox>);
-
   return (
     <S.ListLayout width={width}>
-      {listTitle}
-      {listItem}
+      {titleComponent}
+      {listComponents}
     </S.ListLayout>
   );
 };

@@ -7,40 +7,53 @@ import IssueListItem from "@/components/IssueList/IssueListItem";
 const IssueListContent = () => {
   const queryClient = useQueryClient();
 
-  const { data: issueList } = useQuery(["issues"], API.getIssueList);
+  // const { data: issueList } = useQuery(["issues"], API.getIssueList);
 
-  console.log("issueList :>> ", issueList);
+  // console.log("issueList :>> ", issueList);
 
-  const { data, mutate } = useMutation(API.patchIssueStatus, {
-    onSuccess() {
-      queryClient.invalidateQueries(["issues"]);
-    },
-  });
+  // const { data, mutate } = useMutation(API.patchIssueStatus, {
+  //   onSuccess() {
+  //     queryClient.invalidateQueries(["issues"]);
+  //   },
+  // });
 
-  console.log("editIssueList :>> ", data);
+  // console.log("editIssueList :>> ", data);
 
-  const handleEditIssueList = ({ issueId, status }: PatchIssueStatusType) => {
-    mutate({
-      issueId: issueId,
-      status: status,
-    });
+  // const handleEditIssueList = ({ issueId, status }: PatchIssueStatusType) => {
+  //   mutate({
+  //     issueId: issueId,
+  //     status: status,
+  //   });
+  // };
+
+  // return (
+  //   <ul>
+  //     {/* <button onClick={() => handleEditIssueList({ issueId: [1, 2], status: "OPEN" })}>수정하기</button> */}
+  //     {issueList?.data.map((issueInfo: IssueType) => (
+  //       <IssueListItem key={issueInfo.issueId} {...issueInfo} />
+  //     ))}
+  //   </ul>
+  // );
+
+  const issueMock: IssueType = {
+    issueId: 1,
+    issueNumber: 1,
+    title: "가나다라",
+    content: "가나다라",
+    status: "가나다라",
+    createdAt: "가나다라",
+    milestone: "가나다라",
+    label: ["가나다라", "가나다라2"],
+    author: "가나다라",
+    authorImage: "가나다라",
   };
 
   return (
     <ul>
-      {/* <button onClick={() => handleEditIssueList({ issueId: [1, 2], status: "OPEN" })}>수정하기</button> */}
-      {issueList?.data.map((issueInfo: IssueType) => (
-        <IssueListItem key={issueInfo.issueId} {...issueInfo} />
-      ))}
+      <IssueListItem {...issueMock} />
+      <IssueListItem {...issueMock} />
     </ul>
   );
-
-  // return (
-  //   <ul>
-  //     <IssueListItem {...issueMock} />
-  //     <IssueListItem {...issueMock} />
-  //   </ul>
-  // );
 };
 
 export default IssueListContent;

@@ -9,7 +9,7 @@ import { getDifferenceTodayToSelectTime } from "@/utils";
 import * as S from "./style";
 
 const IssueListItem = (issueInfo: IssueType) => {
-  const { issueId, issueNumber, title, content, status, createdAt, milestone, label, author, authorImage } = issueInfo;
+  const { issueNumber, title, createdAt, milestone, label, author, authorImage } = issueInfo;
 
   const timeStampInfoTemplate = useMemo(() => {
     return `이 이슈가 ${getDifferenceTodayToSelectTime(createdAt)}, ${author}님에 의해 작성되었습니다`;
