@@ -14,7 +14,6 @@ import javax.persistence.Table;
 
 import lombok.ToString;
 
-@ToString(exclude = "issue")
 @Table(name = "label_has_issue")
 @Entity
 public class IssueLabel {
