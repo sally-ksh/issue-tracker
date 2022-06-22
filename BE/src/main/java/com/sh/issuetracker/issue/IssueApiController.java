@@ -43,7 +43,13 @@ public class IssueApiController {
 		return ResponseEntity.ok().body(response);
 	}
 
-	@ResponseStatus(HttpStatus.OK)
+	@GetMapping(value = {"/assigned/me"})
+	public ResponseEntity<List<IssueResponse.Row>> readAllByAssignee() {
+		List<IssueResponse.Row> response = issueService.readAllOfAuthor(AuthUser.of(), IssueStatus.OPEN);
+		return ResponseEntity.ok().body(response);
+	}
+  
+  @ResponseStatus(HttpStatus.OK)
 	@PatchMapping("/status")
 	public void updateStatus(@Valid @RequestBody IssueRequest request) {
 		issueService.update(request);
