@@ -28,6 +28,10 @@
     <fragment
         android:id="@+id/addLabelFragment"
         android:name="com.team1.issuetracker.ui.main.label.AddLabelFragment"
-        android:label="AddLabelFragment" />
+        android:label="AddLabelFragment" >
+        <action
+            android:id="@+id/action_addLabelFragment_to_navigation_label"
+            app:destination="@id/navigation_label" />
+    </fragment>
 
 </navigation>

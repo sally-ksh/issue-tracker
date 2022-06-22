@@ -6,15 +6,11 @@ import android.os.Bundle
 import android.text.Html
 import android.util.Log
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -24,8 +20,8 @@ import com.team1.issuetracker.data.model.Issue
 import com.team1.issuetracker.databinding.FragmentIssueBinding
 import com.team1.issuetracker.ui.main.MainActivity
 import com.team1.issuetracker.ui.main.issue.adapter.IssueListAdapter
-import com.team1.issuetracker.ui.main.issue.adapter.SwipeHelper
-import kotlinx.coroutines.launch
+import com.team1.issuetracker.common.SwipeHelper
+import com.team1.issuetracker.ui.main.issue.adapter.IssueSwipeHelper
 
 class IssueFragment: Fragment() {
 
@@ -100,7 +96,7 @@ class IssueFragment: Fragment() {
         setAppBar()
 
         //////////////////////////////////////////////
-        val swipeHelper = SwipeHelper()
+        val swipeHelper = IssueSwipeHelper()
         val itemTouchHelper = ItemTouchHelper(swipeHelper)
         itemTouchHelper.attachToRecyclerView(binding.rvIssue)
 

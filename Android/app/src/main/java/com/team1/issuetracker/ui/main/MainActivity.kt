@@ -8,7 +8,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.team1.issuetracker.R
 import com.team1.issuetracker.databinding.ActivityLoginBinding
 import com.team1.issuetracker.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

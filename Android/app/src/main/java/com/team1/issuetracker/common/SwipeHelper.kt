@@ -1,15 +1,14 @@
-package com.team1.issuetracker.ui.main.issue.adapter
+package com.team1.issuetracker.common
 
 import android.graphics.Canvas
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.team1.issuetracker.R
 import kotlin.math.min
 import kotlin.math.max
 
-class SwipeHelper: ItemTouchHelper.Callback() {  // ItemTouchHelper.Callback 을 구현해야 한다
+abstract class SwipeHelper: ItemTouchHelper.Callback() {  // ItemTouchHelper.Callback 을 구현해야 한다
 
     private var currentPosition: Int? = null
     private var previousPosition: Int? = null
@@ -77,7 +76,7 @@ class SwipeHelper: ItemTouchHelper.Callback() {  // ItemTouchHelper.Callback 을
 
             val view = getView(viewHolder)
 
-            val isClamped = getClamped(viewHolder as IssueListAdapter.IssueViewHolder)
+            val isClamped = getClamped(viewHolder)
             //val isClamped =getTag(viewHolder)
 
             val x = clampViewPositionHorizontal(view, dX, isClamped, isCurrentlyActive)
@@ -139,22 +138,16 @@ class SwipeHelper: ItemTouchHelper.Callback() {  // ItemTouchHelper.Callback 을
 
         Log.d("AppTest", "isClamped = ${currentDx <= -clamp}")
         //setTag(viewHolder, currentDx <= -clamp)  // 스와이프 되고 오른쪽 스와이프 시에만 닫히도록 하게하기 위해  '!isClamped && ' 조건 제거
-        setClamped(viewHolder as IssueListAdapter.IssueViewHolder, currentDx <= -clamp)
+        setClamped(viewHolder, currentDx <= -clamp)
 
         return 2f
     }
 
-    private fun getView(viewHolder: RecyclerView.ViewHolder): View {
-        return (viewHolder as IssueListAdapter.IssueViewHolder).itemView.findViewById(R.id.swipe_view) // 아이템뷰에서 스와이프 영역에 해당하는 뷰 가져오기
-    }
+    abstract fun getView(viewHolder: RecyclerView.ViewHolder): View
 
-    private fun setClamped(viewHolder: IssueListAdapter.IssueViewHolder, isClamped: Boolean){
-        viewHolder.setClamped(isClamped)
-    }
+    abstract fun setClamped(viewHolder: RecyclerView.ViewHolder, isClamped: Boolean)
 
-    private fun getClamped(viewHolder: IssueListAdapter.IssueViewHolder): Boolean{
-        return viewHolder.getClamped()
-    }
+    abstract fun getClamped(viewHolder: RecyclerView.ViewHolder): Boolean
 
     fun setClamp(clamp: Float) {  // activity or fragment에서 clamp 값을 설정할 수도 있다
         this.clamp = clamp
@@ -180,7 +173,7 @@ class SwipeHelper: ItemTouchHelper.Callback() {  // ItemTouchHelper.Callback 을
             getView(viewHolder).translationX = 0f
             //setTag(viewHolder, false)
 
-            setClamped(viewHolder as IssueListAdapter.IssueViewHolder, false)
+            setClamped(viewHolder, false)
             previousPosition = null
         }
     }
