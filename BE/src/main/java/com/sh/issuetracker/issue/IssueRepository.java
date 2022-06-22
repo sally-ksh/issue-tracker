@@ -11,4 +11,6 @@ public interface IssueRepository extends JpaRepository<Issue, Long> {
 
 	@EntityGraph(value = "Issue.all", type = EntityGraph.EntityGraphType.LOAD)
 	List<Issue> findAllByProjectIdAndUserIdAndStatus(Long projectId, Long userId,IssueStatus status);
+
+	List<Issue> findByIdIn(List<Long> issueIds);
 }
