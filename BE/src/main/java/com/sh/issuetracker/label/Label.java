@@ -9,6 +9,8 @@ import java.util.Arrays;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,6 +41,7 @@ public class Label {
 	@Column(name = "label_description")
 	private String description;
 	private String backgroundColor;
+	@Enumerated(EnumType.STRING)
 	private TextColor fontColor;
 	@ColumnDefault("0")
 	private boolean isDeleted;
