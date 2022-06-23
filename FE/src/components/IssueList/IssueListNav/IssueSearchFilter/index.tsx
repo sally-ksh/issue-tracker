@@ -1,14 +1,16 @@
-import FilterButton from "@/components/common/FilterButton";
+import { useState } from "react";
+
+import DropdownMenu from "@/components/common/DropdownMenu/index";
 import Icon from "@/components/common/Icon";
 import InputBox from "@/components/common/InputBox";
 import { COLOR, FONTWEIGHT } from "@/styles/constTheme";
 
-import DropdownMenu from "../../common/DropdownMenu/index";
-
 import * as S from "./style";
 
 const IssueSearchFilter = () => {
-  const issueFilterListTemplate = [
+  const [issueFilter, setIssueFilter] = useState(null);
+
+  const FilterListTemplate = [
     "열린 이슈",
     "내가 작성한 이슈",
     "나에게 할당된 이슈",
@@ -16,29 +18,33 @@ const IssueSearchFilter = () => {
     "닫힌 이슈",
   ];
 
-  const IssueFilterListComponents = issueFilterListTemplate?.map((list, idx) => {
+  const FilterButton = (
+    <>
+      <span>필터</span>
+      <Icon type="arrowDown" />
+    </>
+  );
+
+  const FilterTitle = <S.FilterTitle>이슈 필터</S.FilterTitle>;
+
+  const FilterListComponents = FilterListTemplate?.map((list, idx) => {
     const handleClickFilter = () => {};
 
     return (
-      <S.IssueFilterList key={idx} onClick={handleClickFilter}>
+      <S.FilterList key={idx} onClick={handleClickFilter}>
         <span>{list}</span>
-        <Icon type="alertCircle" />
-        <Icon type="emptyRadioButton" />
-      </S.IssueFilterList>
+        {issueFilter ? <Icon type="checkRadioButton" /> : <Icon type="emptyRadioButton" />}
+      </S.FilterList>
     );
   });
 
   return (
     <S.FilterContainer>
       <DropdownMenu
-        buttonComponent={
-          <S.Test>
-            <span>필터</span>
-            <Icon type="arrowDown" />
-          </S.Test>
-        }
-        titleComponent={<S.Title>이슈 필터</S.Title>}
-        listComponents={IssueFilterListComponents}
+        buttonComponent={FilterButton}
+        titleComponent={FilterTitle}
+        listComponents={FilterListComponents}
+        buttonWidth={128}
         dropdownWidth={240}
       />
       <S.InputContainer>

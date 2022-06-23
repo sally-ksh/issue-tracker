@@ -18,9 +18,9 @@ export const IssueCheckBox = styled(CheckBox)`
 
 export const FilterBox = styled.div`
   display: flex;
-  gap: 36rem;
   margin-left: auto;
   margin-right: 30rem;
+  gap: 20rem;
 `;
 
 export const Title = styled.div`

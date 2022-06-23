@@ -1,8 +1,10 @@
 import * as React from "react";
+import { Suspense } from "react";
 import * as ReactDOM from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 
 import App from "@/App";
+import LoadingProgress from "@/components/common/LoadingProgress";
 import { theme } from "@/styles/colorModeTheme";
 import GlobalStyles from "@/styles/GlobalStyles";
 

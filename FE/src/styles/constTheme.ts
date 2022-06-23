@@ -19,6 +19,7 @@ export const enum COLOR {
   "gray-500" = "#D9DBE9",
   "gray-700" = "#A0A3BD",
   "gray-900" = "#6E7191",
+  "gray-950" = "#4E4B66",
   "black-400" = "#14142B",
   "blue-100" = "#C7EBFF",
   "blue-400" = "#007AFF",

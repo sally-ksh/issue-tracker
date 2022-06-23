@@ -1,17 +1,19 @@
 import styled, { css } from "styled-components";
 
+import { AccountImg } from "@/components/common/AccountImg";
 import CheckBox from "@/components/common/CheckBox";
 import { COLOR, FONTSIZE, FONTWEIGHT } from "@/styles/constTheme";
 
 export const IssueListItem = styled.li`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   background-color: ${COLOR["white-400"]};
   height: 100rem;
 `;
 
 export const IssueCheckBox = styled(CheckBox)`
-  margin-top: 7rem;
+  align-self: flex-start;
+  margin-top: 11rem;
   margin-right: 33rem;
   margin-left: 17rem;
 `;
@@ -49,11 +51,7 @@ export const IssueInfo = styled.div`
   }
 `;
 
-export const UserIcon = styled.img`
+export const UserIcon = styled(AccountImg)`
   margin-left: auto;
   margin-right: 30rem;
-  width: 20rem;
-  height: 20rem;
-  border: 1rem solid ${COLOR["gray-900"]};
-  border-radius: 50%;
 `;

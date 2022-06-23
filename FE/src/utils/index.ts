@@ -38,3 +38,6 @@ export const getDifferenceTodayToSelectTime = (selectTimeString: string) => {
       return `${days}일 전`;
   }
 };
+
+export const timeStampInfoTemplate = (createdAtTime: string, author: string) =>
+  `이 이슈가 ${getDifferenceTodayToSelectTime(createdAtTime)}, ${author}님에 의해 작성되었습니다`;
