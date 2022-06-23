@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.team1.issuetracker.ui.main.label.AddLabelViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/lo_appbar"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="새로운 레이블"
+                app:menu="@menu/save_appbar_menu"
+                app:navigationIcon="@drawable/ic_back"
+                app:navigationIconTint="@color/white"
+                app:elevation="0dp"
+                app:theme="@style/AppTheme.ActionBar"
+                android:background="@color/Primary1"
+                app:titleTextColor="@color/white"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <View
+            android:id="@+id/view_title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/lo_appbar"/>
+
+        <TextView
+            android:id="@+id/tv_title_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_title"
+            app:layout_constraintWidth_percent="0.2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/title_label"
+            android:textColor="@color/Label2"/>
+
+        <EditText
+            android:id="@+id/et_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_title"
+            app:layout_constraintStart_toEndOf="@id/tv_title_label"
+            android:textSize="14sp"
+            android:hint="@string/required_input"
+            android:onTextChanged="@{(text, start, before, count) -> viewModel.onTitleTextWatcher(text, start, before, count)}"
+            android:background="@android:color/transparent"/>
+
+        <View
+            android:id="@+id/view_description"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/et_title"/>
+
+        <TextView
+            android:id="@+id/tv_description_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_description"
+            app:layout_constraintWidth_percent="0.2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/description"
+            android:textColor="@color/Label2"/>
+
+        <EditText
+            android:id="@+id/et_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_description"
+            app:layout_constraintStart_toEndOf="@id/tv_description_label"
+            android:textSize="14sp"
+            android:hint="@string/choose"
+            android:background="@android:color/transparent"
+            android:afterTextChanged="@{(text) -> viewModel.onDescriptionTextWatcher(text)}"/>
+
+        <View
+            android:id="@+id/view_date"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/et_description"/>
+
+        <TextView
+            android:id="@+id/tv_background_label"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_date"
+            app:layout_constraintWidth_percent="0.2"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/background_label"
+            android:textColor="@color/Label2"/>
+
+        <EditText
+            android:id="@+id/et_background"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/view_date"
+            app:layout_constraintStart_toEndOf="@id/tv_background_label"
+            android:textSize="14sp"
+            android:hint="@string/color_hint"
+            android:background="@android:color/transparent"
+            setLabelColor="@{viewModel}"/>
+
+        <ImageView
+            android:id="@+id/btn_color_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="17dp"
+            android:src="@drawable/ic_change"
+            app:layout_constraintTop_toBottomOf="@id/view_date"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <View
+            android:id="@+id/view_last"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.03"
+            app:layout_constraintTop_toBottomOf="@id/et_background"/>
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/Label3"
+            app:layout_constraintTop_toBottomOf="@id/view_last"/>
+
+        <androidx.cardview.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.3"
+            card_view:layout_constraintWidth_percent="0.9"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            android:layout_marginTop="15dp"
+            card_view:cardCornerRadius="10dp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            android:backgroundTint="@color/Grey5">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_badge_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                tools:backgroundTint="@color/Primary1"
+                card_view:cardCornerRadius="100dp">
+
+                <TextView
+                    android:id="@+id/tv_badge_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:paddingEnd="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:layout_gravity="center"
+                    tools:text="Label"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
