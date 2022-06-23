@@ -20,7 +20,7 @@ const IssueListItem = (issueInfo: IssueType) => {
       <S.IssueCheckBox />
       <S.ContentBox>
         <S.IssueHeader>
-          <Icon type="alertCircle" color={COLOR["blue-400"]} fill={COLOR["blue-100"]} />
+          <Icon type="alertCircle" color={COLOR["blue-400"]} />
           <S.IssueTitle>{title}</S.IssueTitle>
           {label?.map((name) => (
             <Label key={name} name={name} backgroundColor={COLOR["blue-700"]} />
@@ -30,7 +30,7 @@ const IssueListItem = (issueInfo: IssueType) => {
           <span>#{issueNumber}</span>
           <span>{timeStampInfoTemplate}</span>
           <span>
-            <Icon type="milestone" width={15} height={16} />
+            <Icon type="milestone" />
             {milestone}
           </span>
         </S.IssueInfo>

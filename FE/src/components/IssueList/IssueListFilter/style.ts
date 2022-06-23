@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import CheckBox from "@/components/common/CheckBox";
+import { FONTSIZE } from "@/styles/constTheme";
 
 export const IssueListFilter = styled.div`
   display: flex;
@@ -20,4 +21,8 @@ export const FilterBox = styled.div`
   gap: 36rem;
   margin-left: auto;
   margin-right: 30rem;
+`;
+
+export const Title = styled.div`
+  font-size: ${FONTSIZE.L};
 `;

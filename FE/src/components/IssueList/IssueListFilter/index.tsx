@@ -1,3 +1,4 @@
+import DropdownMenu from "@/components/common/DropdownMenu";
 import FilterButton from "@/components/common/FilterButton";
 import Icon from "@/components/common/Icon";
 import { COLOR, FONTWEIGHT } from "@/styles/constTheme";
@@ -5,7 +6,18 @@ import { COLOR, FONTWEIGHT } from "@/styles/constTheme";
 import * as S from "./style";
 
 const IssueListFilter = () => {
-  // TODO logic: checkbox 클릭 시 변경 filter 박스 변경
+  const IssueFilterAssigneeListTemplate = ["담당자가 없는 이슈, Oni, Daniel"];
+  // const IssueFilterAssigneeListComponents = IssueFilterAssigneeListTemplate?.map((list, idx) => {
+  //   const handleClickFilter = () => {};
+
+  //   return (
+  //     // <S.IssueFilterList key={idx} onClick={handleClickFilter}>
+  //     //   <span>{list}</span>
+  //     //   <Icon type="emptyRadioButton" />
+  //     // </S.IssueFilterList>
+  //   );
+  // });
+
   return (
     <S.IssueListFilter>
       <S.IssueCheckBox />
@@ -26,6 +38,18 @@ const IssueListFilter = () => {
         style={{ marginLeft: "24rem" }}
       />
       <S.FilterBox>
+        {/* <DropdownMenu
+          buttonComponent={
+            <>
+              <span>담당자</span>
+              <Icon type="arrowDown" />
+            </>
+          }
+          titleComponent={<S.Title>담당자 필터</S.Title>}
+          listComponents={IssueFilterAssigneeListComponents}
+          dropdownWidth={240}
+          buttonWidth={128}
+        /> */}
         <FilterButton text="담당자" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
         <FilterButton text="레이블" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
         <FilterButton text="마일스톤" svgIcon={<Icon type="arrowDown" />} fontWeight={FONTWEIGHT.bold} />
