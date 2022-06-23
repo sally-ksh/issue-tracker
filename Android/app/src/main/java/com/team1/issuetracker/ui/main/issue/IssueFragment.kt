@@ -11,6 +11,9 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.SimpleItemAnimator
@@ -22,12 +25,12 @@ import com.team1.issuetracker.ui.main.MainActivity
 import com.team1.issuetracker.ui.main.issue.adapter.IssueListAdapter
 import com.team1.issuetracker.common.SwipeHelper
 import com.team1.issuetracker.ui.main.issue.adapter.IssueSwipeHelper
+import kotlinx.coroutines.launch
 
-class IssueFragment: Fragment() {
+class IssueFragment : Fragment() {
 
     private lateinit var binding: FragmentIssueBinding
     private lateinit var issueListAdapter: IssueListAdapter
-    private val sampleIssueList = ArrayList<Issue>()
 
     private var actionMode: ActionMode? = null
 
@@ -79,18 +82,26 @@ class IssueFragment: Fragment() {
                 actionMode = null
 
                 issueListAdapter.makeCheckBoxGone() // 모든 아이템 체크박스 보이지 않도록
+                viewModel.checkedSetClear()
             }
         }
 
-        /*viewLifecycleOwner.lifecycleScope.launch {
+        viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.itemCount.collect{
+                    val count = it
                     actionMode?.let {
-                        it.title = it.toString()
+                        it.title = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                            Html.fromHtml(
+                                "<font color='#FFFFFF'>${count}</font>",
+                                Html.FROM_HTML_MODE_LEGACY
+                            )
+                        else
+                            Html.fromHtml("<font color='#FFFFFF'>${count}</font>")
                     }
                 }
             }
-        }*/
+        }
 
 
         setAppBar()
@@ -100,20 +111,28 @@ class IssueFragment: Fragment() {
         val itemTouchHelper = ItemTouchHelper(swipeHelper)
         itemTouchHelper.attachToRecyclerView(binding.rvIssue)
 
-        issueListAdapter = IssueListAdapter {
+        issueListAdapter = IssueListAdapter({
+            // 아이템 롱 클릭
             PrintLog.printLog("Issue Item Long Click")    // 이슈 리스트 아이템 롱 클릭 이벤트 영역!!
 
             actionMode = (activity as MainActivity).startSupportActionMode(callback)  // ? 맞는 방법
             actionMode?.let {
                 it.title = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
-                    Html.fromHtml("<font color='#FFFFFF'>${viewModel.itemCount.value}</font>", Html.FROM_HTML_MODE_LEGACY)
+                    Html.fromHtml(
+                        "<font color='#FFFFFF'>${viewModel.itemCount.value}</font>",
+                        Html.FROM_HTML_MODE_LEGACY
+                    )
                 else
                     Html.fromHtml("<font color='#FFFFFF'>${viewModel.itemCount.value}</font>")
             }
 
             itemTouchHelper.attachToRecyclerView(null) // 체크 박스 활성화 상태에서는 스와이프 안되게
             issueListAdapter.makeCheckBosVisible() // 모든 아이템 체크박스 보이도록
-        }
+        },
+            {
+            // 체크박스
+            viewModel.checkItem(it)
+        })
 
         binding.rvIssue.apply {
             adapter = issueListAdapter
@@ -125,20 +144,26 @@ class IssueFragment: Fragment() {
         }
 
         val animator = binding.rvIssue.itemAnimator     //리사이클러뷰 애니메이터 get
-        if (animator is SimpleItemAnimator){          //아이템 애니메이커 기본 하위클래스
-            animator.supportsChangeAnimations = false  //애니메이션 값 false (리사이클러뷰가 화면을 다시 갱신 했을때 뷰들의 깜빡임 방지)
+        if (animator is SimpleItemAnimator) {          //아이템 애니메이커 기본 하위클래스
+            animator.supportsChangeAnimations =
+                false  //애니메이션 값 false (리사이클러뷰가 화면을 다시 갱신 했을때 뷰들의 깜빡임 방지)
         }
 
-        addSampleIssueData()
-        issueListAdapter.submitList(sampleIssueList.toList())
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.issueList.collect {
+                    issueListAdapter.submitList(it.toList())
+                }
+            }
+        }
 
         //////////////////////////////////////////////////
 
     }
 
-   private fun setAppBar(){
+    private fun setAppBar() {
         binding.topAppBar.setOnMenuItemClickListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.issue_search -> {
                     PrintLog.printLog("issue search")
                     true
@@ -161,16 +186,18 @@ class IssueFragment: Fragment() {
     }
 
     private fun changeAppbar() {
-        binding.topAppBar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.Primary1))
+        binding.topAppBar.setBackgroundColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.Primary1
+            )
+        )
         binding.topAppBar.inflateMenu(R.menu.filter_appbar_menu)
         binding.topAppBar.title = "필터"
-        binding.topAppBar.setTitleTextColor(R.color.white)
-        binding.topAppBar.navigationIcon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_cancel)
+        binding.topAppBar.setTitleTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+        binding.topAppBar.navigationIcon =
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_cancel)
     }
 
-    private fun addSampleIssueData(){
-        for(i in 1..15){
-            sampleIssueList.add(Issue(i, "마일스톤$i", "title $i", "content $i", "label$i", ""))
-        }
-    }
+
 }

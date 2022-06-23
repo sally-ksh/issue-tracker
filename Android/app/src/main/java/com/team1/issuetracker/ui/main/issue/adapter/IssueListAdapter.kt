@@ -10,16 +10,21 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.team1.issuetracker.R
+import com.team1.issuetracker.common.IssueState
+import com.team1.issuetracker.common.PrintLog
 import com.team1.issuetracker.data.model.Issue
 import com.team1.issuetracker.databinding.ItemIssueBinding
 
-class IssueListAdapter(private val longClick: () -> Unit) :
+class IssueListAdapter(
+    private val longClick: () -> Unit,
+    private val itemCheck: (Int) -> Unit
+) :
     ListAdapter<Issue, IssueListAdapter.IssueViewHolder>(IssueDiffUtil) {
 
     inner class IssueViewHolder(private val binding: ItemIssueBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(issue: Issue, longClick: () -> Unit) {
+        fun bind(issue: Issue, longClick: () -> Unit, itemCheck: (Int) -> Unit) {
             Log.d("AppTest", "bind")
             binding.clCheckbox.isVisible = issue.isCheckVisible
             binding.issue = issue
@@ -33,25 +38,50 @@ class IssueListAdapter(private val longClick: () -> Unit) :
                 if (issue.isSwiped) removeItem(adapterPosition)
             }
 
-            // 체크 여부에 따른 배경색
-            if(issue.isChecked) {
+            // 체크 여부에 따른 배경색 설정
+            if (issue.isChecked) {
                 binding.checkbox.isChecked = true
-                binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.Backgrounds2))
-            }
-            else {
+                binding.swipeView.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.Backgrounds2
+                    )
+                )
+            } else {
                 binding.checkbox.isChecked = false
-                binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                binding.swipeView.setBackgroundColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.white
+                    )
+                )
             }
 
-            binding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
-                if (isChecked) {
+            binding.checkbox.setOnClickListener {
+                if(binding.checkbox.isChecked){
+                    PrintLog.printLog("checked")
                     getItem(adapterPosition).isChecked = true
-                    binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.Backgrounds2))
-                } else {
-                    getItem(adapterPosition).isChecked = false
-                    binding.swipeView.setBackgroundColor(ContextCompat.getColor(binding.root.context, R.color.white))
+                    binding.swipeView.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.Backgrounds2
+                        )
+                    )
                 }
+                else{
+                    PrintLog.printLog("unchecked")
+                    getItem(adapterPosition).isChecked = false
+                    binding.swipeView.setBackgroundColor(
+                        ContextCompat.getColor(
+                            binding.root.context,
+                            R.color.white
+                        )
+                    )
+                }
+                itemCheck.invoke(adapterPosition) // IssueFragment에서 뷰모델과 연결된다
             }
+            // 직접 체크 박스 클릭하는 경우만 고려하기 위해 setOnCheckedChangeListener 대신 onClickListene 사용
+
 
             binding.root.setOnLongClickListener(View.OnLongClickListener {
                 val pos = adapterPosition
@@ -78,7 +108,7 @@ class IssueListAdapter(private val longClick: () -> Unit) :
     }
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
-        holder.bind(getItem(position), longClick)
+        holder.bind(getItem(position), longClick, itemCheck)
     }
 
     fun removeItem(position: Int) {  // currentList에서 바로 아이템 지우면 에러 발생
@@ -122,6 +152,7 @@ class IssueListAdapter(private val longClick: () -> Unit) :
                     it.content,
                     it.labelContent,
                     it.labelColor,
+                    false,
                     false,
                     false
                 )
