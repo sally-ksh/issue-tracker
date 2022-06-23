@@ -43,7 +43,14 @@ fun setDate(editText: EditText, viewModel: AddMilestoneViewModel) {
         }
     }
 }
-//
-//@BindingAdapter("setOpenIssue")
-//fun
+
+@BindingAdapter("setOpenIssue")
+fun setOpenIssue(textView: TextView, openIssue: Int) {
+    textView.text = "열린 이슈 ${openIssue}개"
+}
+
+@BindingAdapter("setClosedIssue")
+fun setClosedIssue(textView: TextView, closedIssue: Int) {
+    textView.text = "닫힌 이슈 ${closedIssue}개"
+}
 

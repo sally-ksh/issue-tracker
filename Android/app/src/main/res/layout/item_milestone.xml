@@ -235,6 +235,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="@color/Primary1"
+                    setOpenIssue="@{item.open}"
                     tools:text="열린 이슈 1개"/>
             </androidx.cardview.widget.CardView>
 
@@ -268,6 +269,7 @@
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:textColor="@color/Secondary1"
+                    setClosedIssue="@{item.closed}"
                     tools:text="닫힌 이슈 1개"/>
             </androidx.cardview.widget.CardView>
 
