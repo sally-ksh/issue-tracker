@@ -4,7 +4,7 @@ import * as S from "@/test-pages/DropdownTest/style";
 const DropdownTest = () => {
   const dataFromServer = ["열린 이슈", "내가 작성한 이슈", "나에게 할당된 이슈", "내가 댓글을 남긴 이슈", "닫힌 이슈"];
 
-  const NameComponent = <div>제목</div>;
+  const NameComponent = <div>필터</div>;
 
   const TitleComponent = <S.DropdownMenuTitle>이슈 필터</S.DropdownMenuTitle>;
 
@@ -23,32 +23,36 @@ const DropdownTest = () => {
       <br />
       <S.ButtonBox>
         <DropdownMenu
-          nameComponent={NameComponent}
+          buttonComponent={NameComponent}
           titleComponent={TitleComponent}
           listComponents={ListComponents}
-          width={240}
+          dropdownWidth={240}
+          buttonWidth={120}
         />
         <DropdownMenu
-          nameComponent={NameComponent}
+          buttonComponent={NameComponent}
           titleComponent={TitleComponent}
           listComponents={ListComponents}
-          width={240}
-        />
-      </S.ButtonBox>
-      <S.ButtonBox>
-        <DropdownMenu
-          nameComponent={NameComponent}
-          titleComponent={TitleComponent}
-          listComponents={ListComponents}
-          width={240}
+          dropdownWidth={240}
+          buttonWidth={120}
         />
       </S.ButtonBox>
       <S.ButtonBox>
         <DropdownMenu
-          nameComponent={NameComponent}
+          buttonComponent={NameComponent}
           titleComponent={TitleComponent}
           listComponents={ListComponents}
-          width={240}
+          dropdownWidth={240}
+          buttonWidth={120}
+        />
+      </S.ButtonBox>
+      <S.ButtonBox>
+        <DropdownMenu
+          buttonComponent={NameComponent}
+          titleComponent={TitleComponent}
+          listComponents={ListComponents}
+          dropdownWidth={240}
+          buttonWidth={120}
         />
       </S.ButtonBox>
     </>

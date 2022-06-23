@@ -3,19 +3,43 @@ import Icon from "@/components/common/Icon";
 import InputBox from "@/components/common/InputBox";
 import { COLOR, FONTWEIGHT } from "@/styles/constTheme";
 
+import DropdownMenu from "../../common/DropdownMenu/index";
+
 import * as S from "./style";
 
 const IssueSearchFilter = () => {
+  const issueFilterListTemplate = [
+    "열린 이슈",
+    "내가 작성한 이슈",
+    "나에게 할당된 이슈",
+    "내가 댓글을 남긴 이슈",
+    "닫힌 이슈",
+  ];
+
+  const IssueFilterListComponents = issueFilterListTemplate?.map((list, idx) => {
+    const handleClickFilter = () => {};
+
+    return (
+      <S.IssueFilterList key={idx} onClick={handleClickFilter}>
+        <span>{list}</span>
+        <Icon type="emptyRadioButton" />
+      </S.IssueFilterList>
+    );
+  });
+
   return (
     <S.FilterContainer>
-      <FilterButton
-        text="필터"
-        svgIcon={<Icon type="arrowDown" />}
-        width={128}
-        height={40}
-        fontWeight={FONTWEIGHT.bold}
-        color={COLOR["gray-700"]}
-        style={{ justifyContent: "space-evenly" }}
+      <DropdownMenu
+        buttonComponent={
+          <>
+            <span>필터</span>
+            <Icon type="arrowDown" />
+          </>
+        }
+        titleComponent={<S.Title>이슈 필터</S.Title>}
+        listComponents={IssueFilterListComponents}
+        dropdownWidth={240}
+        buttonWidth={128}
       />
       <S.InputContainer>
         <Icon type="searchIcon" />
