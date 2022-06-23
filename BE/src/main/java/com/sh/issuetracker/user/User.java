@@ -33,4 +33,8 @@ public class User {
 	public String nickName() {
 		return nickName;
 	}
+
+	public String image() {
+		return image;
+	}
 }
