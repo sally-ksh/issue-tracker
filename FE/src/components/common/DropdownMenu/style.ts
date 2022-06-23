@@ -11,7 +11,6 @@ type DropdownMenuBoxProps = {
 
 export const DropdownMenuBox = styled.div`
   position: relative;
-  height: auto;
 `;
 
 export const DropdownMenuBtn = styled.button<Pick<DropdownMenuProps, "buttonWidth">>`

@@ -14,7 +14,6 @@ export const FilterContainer = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 472rem;
   padding-left: 26rem;
   height: 40rem;
   gap: 10rem;
@@ -24,21 +23,18 @@ export const InputContainer = styled.div`
   background-color: ${COLOR["gray-400"]};
 `;
 
+export const Title = styled.div`
+  font-size: ${FONTSIZE.L};
+`;
+
 export const IssueFilterList = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  background-color: ${COLOR["blue-100"]};
-  z-index: 1;
-
-  filter: grayscale(100%);
-
-  :hover {
-    filter: grayscale(0%);
-  }
 `;
 
-export const Title = styled.div`
-  font-size: ${FONTSIZE.L};
+export const Test = styled.div`
+  display: flex;
 `;
+export const TestBox = styled.div``;

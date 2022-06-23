@@ -22,6 +22,7 @@ const IssueSearchFilter = () => {
     return (
       <S.IssueFilterList key={idx} onClick={handleClickFilter}>
         <span>{list}</span>
+        <Icon type="alertCircle" />
         <Icon type="emptyRadioButton" />
       </S.IssueFilterList>
     );
@@ -31,15 +32,14 @@ const IssueSearchFilter = () => {
     <S.FilterContainer>
       <DropdownMenu
         buttonComponent={
-          <>
+          <S.Test>
             <span>필터</span>
             <Icon type="arrowDown" />
-          </>
+          </S.Test>
         }
         titleComponent={<S.Title>이슈 필터</S.Title>}
         listComponents={IssueFilterListComponents}
         dropdownWidth={240}
-        buttonWidth={128}
       />
       <S.InputContainer>
         <Icon type="searchIcon" />

@@ -27,14 +27,12 @@ const DropdownTest = () => {
           titleComponent={TitleComponent}
           listComponents={ListComponents}
           dropdownWidth={240}
-          buttonWidth={120}
         />
         <DropdownMenu
           buttonComponent={NameComponent}
           titleComponent={TitleComponent}
           listComponents={ListComponents}
           dropdownWidth={240}
-          buttonWidth={120}
         />
       </S.ButtonBox>
       <S.ButtonBox>
@@ -43,7 +41,6 @@ const DropdownTest = () => {
           titleComponent={TitleComponent}
           listComponents={ListComponents}
           dropdownWidth={240}
-          buttonWidth={120}
         />
       </S.ButtonBox>
       <S.ButtonBox>
@@ -52,7 +49,6 @@ const DropdownTest = () => {
           titleComponent={TitleComponent}
           listComponents={ListComponents}
           dropdownWidth={240}
-          buttonWidth={120}
         />
       </S.ButtonBox>
     </>

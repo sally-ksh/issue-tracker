@@ -1,23 +1,24 @@
+import SVG from "react-inlinesvg";
 import styled from "styled-components";
 
-import { ReactComponent as Alertcircle } from "@/assets/AlertCircle.svg";
-import { ReactComponent as Archive } from "@/assets/Archive.svg";
-import { ReactComponent as Arrowdown } from "@/assets/ArrowDown.svg";
-import { ReactComponent as CheckRadioButton } from "@/assets/CheckRadioButton.svg";
-import { ReactComponent as EmptyRadioButton } from "@/assets/EmptyRadioButton.svg";
-import { ReactComponent as Label } from "@/assets/Label.svg";
-import { ReactComponent as Milestone } from "@/assets/Milestone.svg";
-import { ReactComponent as Plus } from "@/assets/Plus.svg";
-import { ReactComponent as Searchicon } from "@/assets/SearchIcon.svg";
-import { ReactComponent as Usericon } from "@/assets/UserIcon.svg";
+import Alertcircle from "@/assets/AlertCircle.svg";
+import Archive from "@/assets/Archive.svg";
+import Arrowdown from "@/assets/ArrowDown.svg";
+import CheckRadioButton from "@/assets/CheckRadioButton.svg";
+import EmptyRadioButton from "@/assets/EmptyRadioButton.svg";
+import Label from "@/assets/Label.svg";
+import Milestone from "@/assets/Milestone.svg";
+import Plus from "@/assets/Plus.svg";
+import Searchicon from "@/assets/SearchIcon.svg";
+import Usericon from "@/assets/UserIcon.svg";
 import { COLOR } from "@/styles/constTheme";
 
 type IconProps = {
-  type: keyof typeof SVGIcon;
+  type: keyof typeof SVGpath;
   color?: COLOR;
-} & React.SVGAttributes<SVGSVGElement>;
+};
 
-const SVGIcon = {
+const SVGpath = {
   alertCircle: Alertcircle,
   archive: Archive,
   arrowDown: Arrowdown,
@@ -31,15 +32,13 @@ const SVGIcon = {
 };
 
 const Icon = ({ type, color, ...rest }: IconProps) => {
-  const IconComponent = SVGIcon[type] as React.FC<React.SVGProps<SVGSVGElement>>;
-
-  const StyledIconComponent = styled(IconComponent)`
-    path {
-      stroke: ${color || COLOR["gray-900"]};
-    }
-  `;
-
-  return <StyledIconComponent stroke={color || COLOR["gray-900"]} {...rest} />;
+  return <StyledSVGIcon src={SVGpath[type]} color={color} {...rest} />;
 };
+
+const StyledSVGIcon = styled(SVG)<Pick<IconProps, "color">>`
+  path {
+    stroke: ${({ color }) => color || COLOR["gray-900"]};
+  }
+`;
 
 export default Icon;
