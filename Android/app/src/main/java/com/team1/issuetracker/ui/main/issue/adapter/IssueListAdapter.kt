@@ -17,14 +17,15 @@ import com.team1.issuetracker.databinding.ItemIssueBinding
 
 class IssueListAdapter(
     private val longClick: () -> Unit,
-    private val itemCheck: (Int) -> Unit
+    private val itemCheck: (Int) -> Unit,
+    private val closeSwiped: (Int) -> Unit
 ) :
     ListAdapter<Issue, IssueListAdapter.IssueViewHolder>(IssueDiffUtil) {
 
     inner class IssueViewHolder(private val binding: ItemIssueBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(issue: Issue, longClick: () -> Unit, itemCheck: (Int) -> Unit) {
+        fun bind(issue: Issue, longClick: () -> Unit, itemCheck: (Int) -> Unit, closeSwiped: (Int) -> Unit) {
             Log.d("AppTest", "bind")
             binding.clCheckbox.isVisible = issue.isCheckVisible
             binding.issue = issue
@@ -35,7 +36,7 @@ class IssueListAdapter(
             else binding.swipeView.translationX = 0f
 
             binding.eraseItemView.setOnClickListener {
-                if (issue.isSwiped) removeItem(adapterPosition)
+                if (issue.isSwiped) closeSwiped.invoke(getItem(adapterPosition).issueId)
             }
 
             // 체크 여부에 따른 배경색 설정
@@ -108,7 +109,7 @@ class IssueListAdapter(
     }
 
     override fun onBindViewHolder(holder: IssueViewHolder, position: Int) {
-        holder.bind(getItem(position), longClick, itemCheck)
+        holder.bind(getItem(position), longClick, itemCheck, closeSwiped)
     }
 
     fun removeItem(position: Int) {  // currentList에서 바로 아이템 지우면 에러 발생

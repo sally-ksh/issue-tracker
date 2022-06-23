@@ -87,8 +87,8 @@ class IssueFragment : Fragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.itemCount.collect{
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.itemCount.collect {
                     val count = it
                     actionMode?.let {
                         it.title = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
@@ -130,9 +130,13 @@ class IssueFragment : Fragment() {
             issueListAdapter.makeCheckBosVisible() // 모든 아이템 체크박스 보이도록
         },
             {
-            // 체크박스
-            viewModel.checkItem(it)
-        })
+                // 체크박스
+                viewModel.checkItem(it)
+            },
+            {
+                // 스와이프 후 해당 아이템 close
+                viewModel.requestCloseSpecificIssue(it)
+            })
 
         binding.rvIssue.apply {
             adapter = issueListAdapter
