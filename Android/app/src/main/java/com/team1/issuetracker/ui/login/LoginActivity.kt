@@ -58,6 +58,10 @@ class LoginActivity : AppCompatActivity() {
         binding.btnGoogleLogin.setOnClickListener {
             googleLogin()
         }
+
+        binding.enter.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
     }
 
     private fun googleLogin() {
