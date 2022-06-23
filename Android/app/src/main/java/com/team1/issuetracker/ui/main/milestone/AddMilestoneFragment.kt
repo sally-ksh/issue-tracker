@@ -13,6 +13,7 @@ import com.team1.issuetracker.common.repeatOnStarted
 import com.team1.issuetracker.databinding.FragmentAddMilestoneBinding
 import com.team1.issuetracker.databinding.FragmentMilestoneBinding
 import com.team1.issuetracker.ui.main.label.AddLabelViewModel
+import hirondelle.date4j.DateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -60,11 +61,11 @@ class AddMilestoneFragment : Fragment() {
 
             datePicker.addOnDismissListener {
                 val select = requireNotNull(datePicker.selection)
-                val stringDate = Date(select)
-                val simpleDateFormat = SimpleDateFormat("YYYY-MM-DD")
-                val dateFormat = simpleDateFormat.format(select)
+                val dateTime = DateTime.forInstant(select, TimeZone.getTimeZone("Asia/Seoul"))
+                val dateFormat = dateTime.format("YYYY-MM-DD")
                 viewModel.setDate(dateFormat)
-                Log.d("TAG", "date $dateFormat, $stringDate")
+
+                Log.d("TAG", "date $dateFormat")
             }
 
         }
