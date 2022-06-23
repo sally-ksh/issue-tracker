@@ -20,28 +20,35 @@ import ListLayoutTest from "./test-pages/ListLayoutTest";
 const App = () => {
   // FIXME 임시 OAuth
   const isOAuth = true;
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route path="/" element={isOAuth ? <Home /> : <Login />}>
-            <Route index element={<IssueList />} />
-            <Route path="/issue-detail" element={<IssueDetail />} />
-            <Route path="/issue-register" element={<IssueRegister />} />
-            <Route path="/label" element={<Label />} />
-            <Route path="/milestone" element={<Milestone />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
+      <Suspense fallback={<LoadingProgress />}>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+          <Routes>
+            <Route path="/" element={isOAuth ? <Home /> : <Login />}>
+              <Route index element={<IssueList />} />
+              <Route path="/issue-detail" element={<IssueDetail />} />
+              <Route path="/issue-register" element={<IssueRegister />} />
+              <Route path="/label" element={<Label />} />
+              <Route path="/milestone" element={<Milestone />} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
 
-          <Route path="/ButtonTest" element={<ButtonTest />} />
-          <Route path="/DropdownTest" element={<DropdownTest />} />
-          <Route path="/ListLayoutTest" element={<ListLayoutTest />} />
-        </Routes>
-      </BrowserRouter>
-
+            <Route path="/ButtonTest" element={<ButtonTest />} />
+            <Route path="/DropdownTest" element={<DropdownTest />} />
+            <Route path="/ListLayoutTest" element={<ListLayoutTest />} />
+          </Routes>
+        </BrowserRouter>
+      </Suspense>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
