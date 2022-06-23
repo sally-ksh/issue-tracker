@@ -1,18 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import * as S from "@/components/common/DropdownMenu/style";
 import ListLayout from "@/components/common/ListLayout";
 import useComponentVisible from "@/hooks/useComponentVisible";
 
 export type DropdownMenuProps = {
-  nameComponent: React.ReactNode;
+  buttonComponent: JSX.Element | string;
   titleComponent: JSX.Element;
   listComponents: JSX.Element[];
-  width: number;
+  dropdownWidth: number;
+  buttonWidth?: number;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const DropdownMenu = ({ nameComponent, titleComponent, listComponents, width }: DropdownMenuProps) => {
+const DropdownMenu = ({
+  buttonComponent,
+  titleComponent,
+  listComponents,
+  dropdownWidth,
+  buttonWidth,
+}: DropdownMenuProps) => {
   const { ref, isVisible, setIsVisible } = useComponentVisible(false);
   const [isBtnOnLeftSide, setIsBtnOnLeftSide] = useState(true);
 
@@ -24,9 +31,13 @@ const DropdownMenu = ({ nameComponent, titleComponent, listComponents, width }: 
 
   return (
     <S.DropdownMenuBox ref={ref}>
-      <S.DropdownMenuBtn onClick={onClickHandler}>{nameComponent}</S.DropdownMenuBtn>
+      <S.DropdownMenuBtn onClick={onClickHandler} buttonWidth={buttonWidth}>
+        {buttonComponent}
+      </S.DropdownMenuBtn>
       <S.DropdownMenuListBox isVisible={isVisible} isBtnOnLeftSide={isBtnOnLeftSide}>
-        {isVisible && <ListLayout width={width} titleComponent={titleComponent} listComponents={listComponents} />}
+        {isVisible && (
+          <ListLayout width={dropdownWidth} titleComponent={titleComponent} listComponents={listComponents} />
+        )}
       </S.DropdownMenuListBox>
     </S.DropdownMenuBox>
   );

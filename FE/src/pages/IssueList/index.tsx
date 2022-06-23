@@ -23,7 +23,7 @@ const IssueListPage = () => {
 
   const issueListData = [issueMock, issueMock];
 
-  const ListComponents = issueListData?.map((issueInfo) => {
+  const IssueListComponents = issueListData?.map((issueInfo) => {
     return <IssueListItem key={issueInfo.issueId} {...issueInfo} />;
   });
 
@@ -33,10 +33,8 @@ const IssueListPage = () => {
         <IssueSearchFilter />
         <IssueRedirectOptionBox />
       </S.IssueNavContainer>
-      <S.IssueSearchFilterPopUp />
-
       <S.IssueListContainer>
-        <ListLayout width={1280} titleComponent={<IssueListFilter />} listComponents={ListComponents} />
+        <ListLayout width={1280} titleComponent={<IssueListFilter />} listComponents={IssueListComponents} />
       </S.IssueListContainer>
     </>
   );

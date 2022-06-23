@@ -24,5 +24,14 @@ export const ListLayout = styled.div<ListLayoutProps>`
     border-bottom: 1px solid ${COLOR["gray-500"]};
     background-color: ${COLOR["white-400"]};
     padding: 15rem;
+
+    :hover {
+      cursor: pointer;
+      background-color: ${COLOR["gray-100"]};
+    }
+
+    :active {
+      background-color: ${COLOR["gray-400"]};
+    }
   }
 `;

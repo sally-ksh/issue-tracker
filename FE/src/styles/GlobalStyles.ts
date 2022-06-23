@@ -54,6 +54,11 @@ const GlobalStyles = createGlobalStyle`
 		color: inherit;
 	}
 
+	ui,li,ol{
+		list-style: none;
+
+	}
+
 	span {
 		display:block;
 	}

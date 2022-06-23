@@ -10,5 +10,3 @@ export const IssueNavContainer = styled.div`
 export const IssueListContainer = styled.div`
   margin-top: 24rem;
 `;
-
-export const IssueSearchFilterPopUp = styled.div``;
