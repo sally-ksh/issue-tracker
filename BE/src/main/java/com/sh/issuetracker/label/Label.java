@@ -1,14 +1,14 @@
-package com.sh.issuetracker.milestone;
+package com.sh.issuetracker.label;
 
 import com.sh.issuetracker.project.Project;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Where;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,25 +18,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
-import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = "id")
 @Where(clause = "is_deleted = false")
-@Table(name = "issue_tracker_milestone")
+@Table(name = "issue_tracker_label")
 @Entity
-public class Milestone {
+public class Label {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "milestone_id")
+	@Column(name = "label_id")
 	private Long id;
 
-	private String milestoneTitle;
+	@Column(name = "label_name")
+	private String name;
+	@Column(name = "label_description")
 	private String description;
-	private LocalDateTime completionDate;
-
+	private String backgroundColor;
+	@Enumerated(EnumType.STRING)
+	private TextColor fontColor;
 	@ColumnDefault("0")
 	private boolean isDeleted = false;
 
@@ -44,28 +46,41 @@ public class Milestone {
 	@JoinColumn(name = "project_id")
 	private Project project;
 
-	@Builder
-	public Milestone(String milestoneTitle, String description, Project project) {
-		this.milestoneTitle = milestoneTitle;
+	public Label(
+		String name,
+		String description,
+		String backgroundColor,
+		TextColor fontColor,
+		Project project) {
+		this.name = name;
 		this.description = description;
-		this.completionDate = LocalDateTime.now();
+		this.backgroundColor = backgroundColor;
+		this.fontColor = fontColor;
 		this.isDeleted = false;
 		this.project = project;
 	}
 
-	public Long getId() {
-		return this.id;
+	public void delete() {
+		this.isDeleted = true;
 	}
 
-	public String getTitle() {
-		return milestoneTitle;
+	public Long getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public String getCompletionDate() {
-		return completionDate.toString();
+	public String getBackgroundColor() {
+		return backgroundColor;
+	}
+
+	public String getFontColorText() {
+		return fontColor.toString();
 	}
 }
