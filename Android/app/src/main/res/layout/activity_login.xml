@@ -75,6 +75,18 @@
             app:layout_constraintWidth_percent="0.55"
             app:shapeAppearanceOverlay="@style/btnRadius" />
 
+        <Button
+            android:id="@+id/enter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="비회원"
+            android:layout_marginTop="20sp"
+            app:layout_constraintWidth_percent="0.55"
+            android:backgroundTint="@color/Secondary1"
+            app:layout_constraintTop_toBottomOf="@id/btn_google_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
