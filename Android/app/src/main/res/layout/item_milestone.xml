@@ -196,6 +196,7 @@
                 app:layout_constraintStart_toEndOf="@id/iv_calendar"
                 app:layout_constraintTop_toBottomOf="@id/empty_view_3"
                 android:layout_marginStart="10dp"
+                android:text="@{item.date}"
                 tools:text="완료일(생략 가능)"/>
 
             <View

@@ -59,7 +59,7 @@ class AddMilestoneFragment : Fragment() {
         binding.btnCalendar.setOnClickListener {
             datePicker.show(childFragmentManager, "calendar")
 
-            datePicker.addOnDismissListener {
+            datePicker.addOnPositiveButtonClickListener {
                 val select = requireNotNull(datePicker.selection)
                 val dateTime = DateTime.forInstant(select, TimeZone.getTimeZone("Asia/Seoul"))
                 val dateFormat = dateTime.format("YYYY-MM-DD")
@@ -67,6 +67,7 @@ class AddMilestoneFragment : Fragment() {
 
                 Log.d("TAG", "date $dateFormat")
             }
+
 
         }
     }
