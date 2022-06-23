@@ -38,13 +38,23 @@ class IssueViewModel @Inject constructor(): ViewModel() {
         PrintLog.printLog("itemCount, ${itemCount.value}")
     }
 
+    // 1개 이슈 닫기 - 스와이프 후 삭제 시
+    fun requestCloseSpecificIssue(id: Int){
+        sampleOriginIssueList[id].issueState = IssueState.CloseRequested
+        val tempList = ArrayList<Issue>()
+        sampleOriginIssueList.forEach {
+            if(it.issueState == IssueState.Open) tempList.add(Issue(it.issueId, it.mileStone, it.title, it.content, it.labelContent, it.labelColor, false, false, false, IssueState.Open))
+        }
+        _issueList.value = tempList
+    }
+
     private fun addSampleIssueData(){
 
         val tempList = ArrayList<Issue>()
 
-        sampleOriginIssueList.add(Issue(-1, "마일스톤0", "title 0", "content 0", "label0", "", false, false, false, IssueState.CloseRequested))
-        sampleOriginIssueList.add(Issue(0, "마일스톤1", "title 1", "content 1", "label1", "", false, false, false, IssueState.CloseRequested))
-        for(i in 1..15){
+        //sampleOriginIssueList.add(Issue(-2, "마일스톤0", "title 0", "content 0", "label0", "", false, false, false, IssueState.CloseRequested))
+        //sampleOriginIssueList.add(Issue(-1, "마일스톤1", "title 1", "content 1", "label1", "", false, false, false, IssueState.CloseRequested))
+        for(i in 0..15){
             sampleOriginIssueList.add(Issue(i, "마일스톤$i", "title $i", "content $i", "label$i", ""))
         }
 
