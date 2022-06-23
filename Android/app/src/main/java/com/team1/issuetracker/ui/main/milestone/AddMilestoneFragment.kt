@@ -62,7 +62,7 @@ class AddMilestoneFragment : Fragment() {
                 val select = requireNotNull(datePicker.selection)
                 val stringDate = Date(select)
                 val simpleDateFormat = SimpleDateFormat("YYYY-MM-DD")
-                val dateFormat = simpleDateFormat.format(stringDate)
+                val dateFormat = simpleDateFormat.format(select)
                 viewModel.setDate(dateFormat)
                 Log.d("TAG", "date $dateFormat, $stringDate")
             }
