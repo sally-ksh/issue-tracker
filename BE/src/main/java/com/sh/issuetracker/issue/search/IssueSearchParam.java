@@ -83,7 +83,7 @@ public class IssueSearchParam {
 			if (!IssueStatus.hasValue(issueStatusValue)) {
 				throw new InvalidSearchParamException("허용되지 않는 이슈 겁색어로 검색 요청");
 			}
-			return IssueStatus.of(issueStatusValue);
+			return IssueStatus.from(issueStatusValue);
 		}
 		return IssueStatus.OPEN;
 	}
