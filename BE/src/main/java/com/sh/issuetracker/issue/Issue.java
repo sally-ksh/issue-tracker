@@ -104,8 +104,12 @@ public class Issue {
 		return order;
 	}
 
-	public String writer() {
+	public String author() {
 		return author.nickName();
+	}
+
+	public String authorImage() {
+		return author.image();
 	}
 
 	public String getCreatedAt() {
