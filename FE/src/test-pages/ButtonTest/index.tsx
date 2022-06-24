@@ -14,7 +14,7 @@ const ButtonTest = () => {
       <br />
       <Button onClick={onClickHandler} width={150}>
         추가
-        <Icon type="arrowDown" color={COLOR["white-400"]} />
+        <Icon type="arrowDown" strokecolor={COLOR["white-400"]} />
       </Button>
       <br />
       <br />

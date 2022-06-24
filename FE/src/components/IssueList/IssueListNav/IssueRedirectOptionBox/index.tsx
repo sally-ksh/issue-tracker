@@ -33,7 +33,7 @@ const IssueRedirectOptionBox = () => {
       </S.OptionTab>
 
       <Button onClick={handleClick} width={120} fontSize={FONTSIZE.XS}>
-        <Icon type="plus" color={COLOR["white-400"]} />
+        <Icon type="plus" strokecolor={COLOR["white-400"]} />
         이슈 작성
       </Button>
     </S.Container>

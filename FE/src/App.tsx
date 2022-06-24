@@ -1,49 +1,32 @@
 import { lazy, Suspense } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RecoilRoot, atom, selector, useRecoilState, useRecoilValue } from "recoil";
 
 import LoadingProgress from "@/components/common/LoadingProgress";
-import Home from "@/pages/Home";
-import IssueDetail from "@/pages/IssueDetail";
-import IssueList from "@/pages/IssueList";
-import IssueRegister from "@/pages/IssueRegister";
-import Label from "@/pages/Label";
-import Login from "@/pages/Login";
-import Milestone from "@/pages/Milestone";
-import NotFound from "@/pages/NotFound";
-
-import ButtonTest from "./test-pages/ButtonTest";
-import DropdownTest from "./test-pages/DropdownTest";
-import ListLayoutTest from "./test-pages/ListLayoutTest";
+import Routers from "@/routers";
 
 const App = () => {
   // FIXME 임시 OAuth
   const isOAuth = true;
-  const queryClient = new QueryClient();
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        suspense: true,
+      },
+    },
+  });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
-        <Routes>
-          <Route path="/" element={isOAuth ? <Home /> : <Login />}>
-            <Route index element={<IssueList />} />
-            <Route path="/issue-detail" element={<IssueDetail />} />
-            <Route path="/issue-register" element={<IssueRegister />} />
-            <Route path="/label" element={<Label />} />
-            <Route path="/milestone" element={<Milestone />} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
-
-          <Route path="/ButtonTest" element={<ButtonTest />} />
-          <Route path="/DropdownTest" element={<DropdownTest />} />
-          <Route path="/ListLayoutTest" element={<ListLayoutTest />} />
-        </Routes>
-      </BrowserRouter>
-
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <Suspense fallback={<LoadingProgress />}>
+          <Routers isOAuth={isOAuth} />
+        </Suspense>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </RecoilRoot>
   );
 };
 

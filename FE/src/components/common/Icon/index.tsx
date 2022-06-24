@@ -5,6 +5,7 @@ import Alertcircle from "@/assets/AlertCircle.svg";
 import Archive from "@/assets/Archive.svg";
 import Arrowdown from "@/assets/ArrowDown.svg";
 import CheckRadioButton from "@/assets/CheckRadioButton.svg";
+import ColorCircle from "@/assets/ColorCircle.svg";
 import EmptyRadioButton from "@/assets/EmptyRadioButton.svg";
 import Label from "@/assets/Label.svg";
 import Milestone from "@/assets/Milestone.svg";
@@ -15,7 +16,8 @@ import { COLOR } from "@/styles/constTheme";
 
 type IconProps = {
   type: keyof typeof SVGpath;
-  color?: COLOR;
+  strokecolor?: string;
+  fillcolor?: string;
 };
 
 const SVGpath = {
@@ -29,15 +31,22 @@ const SVGpath = {
   userIcon: Usericon,
   emptyRadioButton: EmptyRadioButton,
   checkRadioButton: CheckRadioButton,
+  colorCircle: ColorCircle,
 };
 
-const Icon = ({ type, color, ...rest }: IconProps) => {
-  return <StyledSVGIcon src={SVGpath[type]} color={color} {...rest} />;
+const Icon = ({ type, strokecolor, fillcolor }: IconProps) => {
+  return <StyledSVGIcon src={SVGpath[type]} strokecolor={strokecolor} fillcolor={fillcolor} />;
 };
 
-const StyledSVGIcon = styled(SVG)<Pick<IconProps, "color">>`
+const StyledSVGIcon = styled(SVG)<Pick<IconProps, "strokecolor" | "fillcolor">>`
+  fill: ${({ fillcolor }) => fillcolor || "none"};
+  svg {
+    fill: ${({ fillcolor }) => fillcolor || "none"};
+  }
+
+  stroke: ${({ strokecolor }) => strokecolor || COLOR["gray-900"]};
   path {
-    stroke: ${({ color }) => color || COLOR["gray-900"]};
+    stroke: ${({ strokecolor }) => strokecolor || COLOR["gray-900"]};
   }
 `;
 

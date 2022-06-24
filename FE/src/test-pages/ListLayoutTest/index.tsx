@@ -1,6 +1,6 @@
 import { IssueType } from "@/apis/type";
 import ListLayout from "@/components/common/ListLayout";
-import IssueListItem from "@/components/IssueList/IssueListItem";
+import IssueListItem from "@/components/IssueList/IssueListContent/IssueListItem";
 import * as S from "@/test-pages/ListLayoutTest/style";
 
 const ListLayoutTest = () => {
