@@ -1,14 +1,20 @@
 export type IssueType = {
   issueId: number;
   issueNumber: number;
-  title: string;
+  issueTitle: string;
   content: string;
-  status: string;
+  issueStatus: string;
   createdAt: string;
-  milestone: string;
-  label: string[];
+  milestoneTitle: string;
+  labels: MilestoneType[];
   author: string;
   authorImage: string;
+};
+
+export type MilestoneType = {
+  name: string;
+  backgroundColor: string;
+  fontColor: "BRIGHT" | "DARK";
 };
 
 export type PatchIssueStatusType = {

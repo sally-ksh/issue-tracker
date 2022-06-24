@@ -2,12 +2,12 @@ import { IssueType } from "@/apis/type";
 import Icon from "@/components/common/Icon";
 import Label from "@/components/common/Label";
 import { COLOR } from "@/styles/constTheme";
-import { getDifferenceTodayToSelectTime, timeStampInfoTemplate } from "@/utils";
+import { timeStampInfoTemplate } from "@/utils";
 
 import * as S from "./style";
 
 const IssueListItem = (issueInfo: IssueType) => {
-  const { issueNumber, title, createdAt, milestone, label, author, authorImage } = issueInfo;
+  const { issueNumber, issueTitle, createdAt, milestoneTitle, labels, author, authorImage } = issueInfo;
 
   return (
     <S.IssueListItem>
@@ -15,9 +15,9 @@ const IssueListItem = (issueInfo: IssueType) => {
       <S.ContentBox>
         <S.IssueHeader>
           <Icon type="alertCircle" strokecolor={COLOR["blue-400"]} />
-          <S.IssueTitle>{title}</S.IssueTitle>
-          {label?.map((name) => (
-            <Label key={name} name={name} backgroundColor={COLOR["blue-700"]} />
+          <S.IssueTitle>{issueTitle}</S.IssueTitle>
+          {labels?.map(({ name, backgroundColor }) => (
+            <Label key={name} name={name} backgroundColor={backgroundColor} />
           ))}
         </S.IssueHeader>
         <S.IssueInfo>
@@ -25,7 +25,7 @@ const IssueListItem = (issueInfo: IssueType) => {
           <span>{timeStampInfoTemplate(createdAt, author)}</span>
           <span>
             <Icon type="milestone" />
-            {milestone}
+            {milestoneTitle}
           </span>
         </S.IssueInfo>
       </S.ContentBox>

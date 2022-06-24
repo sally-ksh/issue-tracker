@@ -9,12 +9,23 @@ const ListLayoutTest = () => {
   const issueMock: IssueType = {
     issueId: 1,
     issueNumber: 1,
-    title: "가나다라",
+    issueTitle: "가나다라",
     content: "가나다라",
-    status: "가나다라",
+    issueStatus: "가나다라",
     createdAt: "가나다라",
-    milestone: "가나다라",
-    label: ["가나다라", "가나다라2"],
+    milestoneTitle: "가나다라",
+    labels: [
+      {
+        name: "FE",
+        backgroundColor: "#ff0000",
+        fontColor: "BRIGHT",
+      },
+      {
+        name: "feature",
+        backgroundColor: "#ffa500",
+        fontColor: "DARK",
+      },
+    ],
     author: "가나다라",
     authorImage: "가나다라",
   };
