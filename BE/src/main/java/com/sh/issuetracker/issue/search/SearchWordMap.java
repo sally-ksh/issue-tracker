@@ -1,7 +1,5 @@
 package com.sh.issuetracker.issue.search;
 
-import org.apache.logging.log4j.util.Strings;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,10 +8,10 @@ public class SearchWordMap {
 
 	public SearchWordMap() {
 		searchWords = new HashMap<>();
-		searchWords.put(SearchKeyType.AUTHOR, null);
-		searchWords.put(SearchKeyType.ASSIGNEE, null);
-		searchWords.put(SearchKeyType.MILESTONE, null);
-		searchWords.put(SearchKeyType.LABEL, null);
+		searchWords.put(SearchKeyType.AUTHOR, "");
+		searchWords.put(SearchKeyType.ASSIGNEE, "");
+		searchWords.put(SearchKeyType.MILESTONE, "");
+		searchWords.put(SearchKeyType.LABEL, "");
 	}
 
 	public void add(SearchKeyType key, String value) {
@@ -22,9 +20,5 @@ public class SearchWordMap {
 
 	public String get(SearchKeyType key) {
 		return searchWords.get(key);
-	}
-
-	public boolean alreadyHasValue(SearchKeyType key) {
-		return Strings.isBlank(searchWords.get(key));
 	}
 }
