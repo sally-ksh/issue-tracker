@@ -48,7 +48,7 @@ public class IssueService {
 		List<Issue> issues = issueRepository.findByIdIn(request.getIssueIds());
 		issues.stream().forEach(Issue::changeStatus);
 	}
-
+  
 	public List<IssueResponse.Row> search(AuthUser authUser, IssueSearchRequest request) {
 		IssueSearchParam searchParam = IssueSearchParam.from(request);
 		List<IssueSearchDto> resultOfSearch = issueSearchRepository.search(authUser, searchParam);

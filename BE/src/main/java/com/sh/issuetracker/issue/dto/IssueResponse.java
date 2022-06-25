@@ -54,7 +54,7 @@ public class IssueResponse {
 				// .labels(toLabelDesigns(issue))
 				.build();
 		}
-
+    
 		private static List<LabelDesign> toLabelDesigns(Issue issue) {
 			return issue.labels().stream()
 				.map(LabelDesign::new)
