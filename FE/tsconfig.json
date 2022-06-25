@@ -15,12 +15,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "outDir": "dist",
+    "outDir": "build",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    
   },
   "include": ["src", "tests", ".eslintrc.js", "craco.config.js"],
-  "exclude": ["node_modules", "**/node_modules/*", "dist"]
+  "exclude": ["node_modules", "**/node_modules/*", "build"]
 }

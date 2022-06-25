@@ -1,5 +1,5 @@
-const IssueRegister = () => {
+const IssueRegisterPage = () => {
   return <div>IssueRegister</div>;
 };
 
-export default IssueRegister;
+export default IssueRegisterPage;

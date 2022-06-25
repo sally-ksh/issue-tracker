@@ -37,6 +37,8 @@ module.exports = {
   ],
   plugins: ["react-hooks", "react", "@typescript-eslint", "import", "jest", "prettier"],
   rules: {
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": ["off"],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-uses-react": "off",
@@ -70,19 +72,8 @@ module.exports = {
     "import/order": [
       "error",
       {
-        groups: ["builtin", "external", "internal", ["parent", "sibling"], "index", "object", "type"],
-        pathGroups: [
-          {
-            pattern: "react",
-            group: "builtin",
-            position: "before",
-          },
-          {
-            pattern: "@/**",
-            group: "internal",
-            position: "after",
-          },
-        ],
+        groups: ["builtin", "external", "internal", "unknown", "parent", "sibling", "index", "object", "type"],
+        pathGroups: [],
         "newlines-between": "always",
         alphabetize: { order: "asc", caseInsensitive: true },
         warnOnUnassignedImports: true,

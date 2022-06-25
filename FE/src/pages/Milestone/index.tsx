@@ -1,5 +1,5 @@
-const Milestone = () => {
+const MilestonePage = () => {
   return <div>Milestone</div>;
 };
 
-export default Milestone;
+export default MilestonePage;

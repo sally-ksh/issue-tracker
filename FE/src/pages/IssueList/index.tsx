@@ -1,18 +1,16 @@
-import ArrowDown from "@/assets/ArrowDown.svg";
-import FilterButton from "@/components/common/FilterButton";
+import IssueListContent from "@/components/IssueList/IssueListContent";
+import IssueListNav from "@/components/IssueList/IssueListNav";
+import IssueRedirectOptionBox from "@/components/IssueList/IssueListNav/IssueRedirectOptionBox";
+import IssueSearchFilter from "@/components/IssueList/IssueListNav/IssueSearchFilter";
 import * as S from "@/pages/IssueList/style";
 
-const IssueList = () => {
+const IssueListPage = () => {
   return (
-    <>
-      <S.FilterContainer>
-        <S.FilterOptionButton></S.FilterOptionButton>
-        <FilterButton text="필터" image={ArrowDown} width="20" height="20" />
-        <S.FilterInput defaultValue="필터 인풋" />
-      </S.FilterContainer>
-      <S.FilterOptionPopUp />
-    </>
+    <S.Container>
+      <IssueListNav />
+      <IssueListContent />
+    </S.Container>
   );
 };
 
-export default IssueList;
+export default IssueListPage;
