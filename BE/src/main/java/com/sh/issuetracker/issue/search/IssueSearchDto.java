@@ -3,33 +3,53 @@ package com.sh.issuetracker.issue.search;
 import com.querydsl.core.annotations.QueryProjection;
 import com.sh.issuetracker.issue.IssueStatus;
 
+import org.apache.logging.log4j.util.Strings;
+
 import java.time.LocalDateTime;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@ToString
 @Getter
-@NoArgsConstructor
 public class IssueSearchDto {
 	private Long issueId;
 	private String issueTitle;
-	private IssueStatus status;
-	private LocalDateTime createdAt;
-	private String author;
-	private String authorImage;
+	private IssueStatus issueStatus;
+	private int issueOrder;
+	private LocalDateTime created;
+	private String nickName;
+	private String image;
 	private String milestoneTitle;
 
 	@QueryProjection
-	public IssueSearchDto(Long issueId, String issueTitle, IssueStatus status, LocalDateTime createdAt,
-		String author, String authorImage, String milestoneName) {
+	public IssueSearchDto(
+		Long issueId,
+		String issueTitle,
+		IssueStatus issueStatus,
+		int issueOrder,
+		LocalDateTime created,
+		String nickName,
+		String image,
+		String milestoneTitle) {
 		this.issueId = issueId;
 		this.issueTitle = issueTitle;
-		this.status = status;
-		this.createdAt = createdAt;
-		this.author = author;
-		this.authorImage = authorImage;
-		this.milestoneTitle = milestoneName;
+		this.issueStatus = issueStatus;
+		this.issueOrder = issueOrder;
+		this.created = created;
+		this.nickName = nickName;
+		this.image = image;
+		this.milestoneTitle = milestoneTitle;
 	}
+
+	public String status() {
+		return issueStatus.toString();
+	}
+
+	public String getCreated() {
+		return created.toString();
+	}
+
+	public String milestoneTitle() {
+		return Strings.isBlank(this.milestoneTitle) ? "" : milestoneTitle;
+	}
+
 }
