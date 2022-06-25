@@ -31,7 +31,7 @@ public enum SearchKeyType {
 	}
 
 	public boolean equals(String word) {
-		return this.toString().equals(word);
+		return this.word.equals(word);
 	}
 
 	private static Map<String, SearchKeyType> keyMapper() {

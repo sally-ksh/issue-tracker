@@ -4,7 +4,6 @@ import com.sh.issuetracker.exception.InvalidSearchParamException;
 import com.sh.issuetracker.issue.IssueStatus;
 import com.sh.issuetracker.issue.dto.IssueSearchRequest;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,6 +15,16 @@ public class IssueSearchParam {
 	private static final String REGEX_MIDDLE_VALUE_SEPARATOR = "[:](.*?)[+]";
 
 	private IssueStatus status;
+	private String author;
+	private String assignee;
+	private String milestone;
+	private String label;
+
+	/**
+	 * 이슈 제목 검색 보류
+	 * @param request
+	 * @return
+	 */
 	private List<String> author;
 	private List<String> assignee;
 	private List<String> milestone;
@@ -86,5 +95,17 @@ public class IssueSearchParam {
 			return IssueStatus.from(issueStatusValue);
 		}
 		return IssueStatus.OPEN;
+	}
+
+	public IssueStatus status() {
+		return this.status;
+	}
+
+	public String author() {
+		return this.author;
+	}
+
+	public String milestone() {
+		return this.milestone;
 	}
 }

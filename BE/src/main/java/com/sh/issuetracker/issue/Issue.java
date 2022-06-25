@@ -12,6 +12,7 @@ import org.hibernate.annotations.Where;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import javax.persistence.Column;
@@ -34,6 +35,7 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 
 @ToString(exclude = {"project"})
 @NamedEntityGraph(name = "Issue.all",
@@ -117,9 +119,9 @@ public class Issue {
 	}
 
 	public String milestoneTitle() {
-		return this.milestone.getTitle();
+		return Objects.isNull(this.milestone) ? "" : this.milestone.getTitle();
 	}
-
+	
 	public List<Label> labels() {
 		return this.issueLabels.stream()
 			.map(IssueLabel::getLabel)
