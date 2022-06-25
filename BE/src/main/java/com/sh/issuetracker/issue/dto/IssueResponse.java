@@ -1,6 +1,7 @@
 package com.sh.issuetracker.issue.dto;
 
 import com.sh.issuetracker.issue.Issue;
+import com.sh.issuetracker.issue.search.IssueSearchDto;
 import com.sh.issuetracker.label.Label;
 
 import java.util.List;
@@ -37,6 +38,20 @@ public class IssueResponse {
 				.createdAt(issue.getCreatedAt())
 				.milestoneTitle(issue.milestoneTitle())
 				.labels(toLabelDesigns(issue))
+				.build();
+		}
+
+		public static Row from(IssueSearchDto issue) {
+			return Row.builder()
+				.issueId(issue.getIssueId())
+				.issueTitle(issue.getIssueTitle())
+				.issueStatus(issue.status())
+				.issueNumber(issue.getIssueOrder())
+				.author(issue.getNickName())
+				.authorImage(issue.getImage())
+				.createdAt(issue.getCreated())
+				.milestoneTitle(issue.milestoneTitle())
+				// .labels(toLabelDesigns(issue))
 				.build();
 		}
 
