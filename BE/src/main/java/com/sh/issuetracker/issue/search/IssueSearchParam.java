@@ -92,4 +92,16 @@ public class IssueSearchParam {
 		}
 		return IssueStatus.OPEN;
 	}
+
+	public IssueStatus status() {
+		return this.status;
+	}
+
+	public String author() {
+		return this.author;
+	}
+
+	public String milestone() {
+		return this.milestone;
+	}
 }
