@@ -51,8 +51,9 @@ public class IssueService {
 
 	public List<IssueResponse.Row> search(AuthUser authUser, IssueSearchRequest request) {
 		IssueSearchParam searchParam = IssueSearchParam.from(request);
-		// List<IssueSearchDto> responses = issueSearchRepository.search(authUser, request);
-		// System.out.println(responses);
-		return null;
+		List<IssueSearchDto> resultOfSearch = issueSearchRepository.search(authUser, searchParam);
+		return resultOfSearch.stream()
+			.map(IssueResponse.Row::from)
+			.collect(Collectors.toList());
 	}
 }
