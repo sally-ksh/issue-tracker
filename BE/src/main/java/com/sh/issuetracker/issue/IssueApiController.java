@@ -3,6 +3,7 @@ package com.sh.issuetracker.issue;
 import com.sh.issuetracker.exception.InvalidSearchParamException;
 import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
+import com.sh.issuetracker.issue.search.IssueSearchRequest;
 import com.sh.issuetracker.issue.dto.IssueSearchRequest;
 import com.sh.issuetracker.user.AuthUser;
 
@@ -69,12 +70,10 @@ public class IssueApiController {
 	/**
 	 * 검색키워드 불일치시 빈 리스트 반환합니다.
 	 * @param exception
-	 * @param httpServletRequest
 	 * @return
 	 */
 	@ExceptionHandler(InvalidSearchParamException.class)
 	public ResponseEntity<List<String>> invalidSearchParamException(
-		InvalidSearchParamException exception,
 		HttpServletRequest httpServletRequest) {
 		log.error(exception.getMessage());
 		return ResponseEntity.status(HttpStatus.OK).body(List.of());

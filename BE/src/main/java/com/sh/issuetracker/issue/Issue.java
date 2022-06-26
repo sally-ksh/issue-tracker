@@ -36,6 +36,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
 @ToString(exclude = {"project"})
 @NamedEntityGraph(name = "Issue.all",
 	attributeNodes = {
