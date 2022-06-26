@@ -2,7 +2,6 @@ package com.sh.issuetracker.issue.search;
 
 import com.sh.issuetracker.exception.InvalidSearchParamException;
 import com.sh.issuetracker.issue.IssueStatus;
-import com.sh.issuetracker.issue.dto.IssueSearchRequest;
 
 import org.apache.logging.log4j.util.Strings;
 
@@ -21,18 +20,6 @@ public class IssueSearchParam {
 	private String assignee;
 	private String milestoneTitle;
 	private String labelName;
-	private String milestone;
-	private String label;
-
-	/**
-	 * 이슈 제목 검색 보류
-	 * @param request
-	 * @return
-	 */
-	private List<String> author;
-	private List<String> assignee;
-	private List<String> milestone;
-	private List<String> label;
 
 	public static IssueSearchParam from(IssueSearchRequest request) {
 		String text = request.getText();

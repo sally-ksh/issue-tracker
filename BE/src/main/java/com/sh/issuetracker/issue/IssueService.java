@@ -3,11 +3,11 @@ package com.sh.issuetracker.issue;
 import com.sh.issuetracker.issue.dto.IssueLabelMapper;
 import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
-import com.sh.issuetracker.issue.dto.IssueSearchRequest;
 import com.sh.issuetracker.issue.search.IssueLabelDto;
 import com.sh.issuetracker.issue.search.IssueSearchDto;
 import com.sh.issuetracker.issue.search.IssueSearchParam;
 import com.sh.issuetracker.issue.search.IssueSearchRepository;
+import com.sh.issuetracker.issue.search.IssueSearchRequest;
 import com.sh.issuetracker.user.AuthUser;
 
 import org.springframework.stereotype.Service;
