@@ -1,8 +1,10 @@
 package com.sh.issuetracker.issue;
 
+import com.sh.issuetracker.issue.dto.IssueLabelMapper;
 import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
 import com.sh.issuetracker.issue.dto.IssueSearchRequest;
+import com.sh.issuetracker.issue.search.IssueLabelDto;
 import com.sh.issuetracker.issue.search.IssueSearchDto;
 import com.sh.issuetracker.issue.search.IssueSearchParam;
 import com.sh.issuetracker.issue.search.IssueSearchRepository;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
@@ -52,9 +55,30 @@ public class IssueService {
 
 	public List<IssueResponse.Row> search(AuthUser authUser, IssueSearchRequest request) {
 		IssueSearchParam searchParam = IssueSearchParam.from(request);
-		List<IssueSearchDto> resultOfSearch = issueSearchRepository.search(authUser, searchParam);
+		List<IssueLabelDto> issueLabels = null;
+		if (searchParam.isNoneOrSearchedForLabel()) {
+			issueLabels = issueSearchRepository.findIssueLabels(searchParam.labelName());
+		}// else issueLabels = null
+
+		List<IssueSearchDto> resultOfSearch = issueSearchRepository.search(
+			authUser,
+			searchParam,
+			toIssueIds(issueLabels));
+
+		IssueLabelMapper issueLabelMapper = IssueLabelMapper.from(issueLabels);
 		return resultOfSearch.stream()
-			.map(IssueResponse.Row::from)
+			.parallel()
+			.map(issue -> IssueResponse.Row.from(issue, issueLabelMapper.getValue(issue.getIssueId())))
+			.collect(Collectors.toList());
+	}
+
+	private List<Long> toIssueIds(List<IssueLabelDto> issueLabels) {
+		if (Objects.isNull(issueLabels)) {
+			return null;
+		}
+		return issueLabels.stream()
+			.parallel()
+			.map(IssueLabelDto::getIssueId)
 			.collect(Collectors.toList());
 	}
 }
