@@ -30,6 +30,10 @@ public enum SearchKeyType {
 		return keys.get(key);
 	}
 
+	public static boolean isNone(String labelName) {
+		return NONE.word.equals(labelName);
+	}
+
 	public boolean equals(String word) {
 		return this.word.equals(word);
 	}

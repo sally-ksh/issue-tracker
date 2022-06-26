@@ -2,7 +2,8 @@ package com.sh.issuetracker.issue.search;
 
 import com.sh.issuetracker.exception.InvalidSearchParamException;
 import com.sh.issuetracker.issue.IssueStatus;
-import com.sh.issuetracker.issue.dto.IssueSearchRequest;
+
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -17,18 +18,8 @@ public class IssueSearchParam {
 	private IssueStatus status;
 	private String author;
 	private String assignee;
-	private String milestone;
-	private String label;
-
-	/**
-	 * 이슈 제목 검색 보류
-	 * @param request
-	 * @return
-	 */
-	private List<String> author;
-	private List<String> assignee;
-	private List<String> milestone;
-	private List<String> label;
+	private String milestoneTitle;
+	private String labelName;
 
 	public static IssueSearchParam from(IssueSearchRequest request) {
 		String text = request.getText();
@@ -43,8 +34,8 @@ public class IssueSearchParam {
 		param.status = toIssueStatus(front);
 		param.author = searchWords.get(SearchKeyType.AUTHOR);
 		param.assignee = searchWords.get(SearchKeyType.ASSIGNEE);
-		param.milestone = searchWords.get(SearchKeyType.MILESTONE);
-		param.label = searchWords.get(SearchKeyType.LABEL);
+		param.milestoneTitle = searchWords.get(SearchKeyType.MILESTONE);
+		param.labelName = searchWords.get(SearchKeyType.LABEL);
 		return param;
 	}
 
@@ -63,12 +54,16 @@ public class IssueSearchParam {
 				break;
 			}
 			invalidOf(key, value);
-			searchWords.add(SearchKeyType.getKey(key), value);
+			searchWords.add(SearchKeyType.getKey(key), trimComma(value));
 		}
 
 		String lastKey = matcherOfKey.group(1);
 		String lastValue = behindSearchWords.substring(behindSearchWords.lastIndexOf(':') + 1);
-		searchWords.add(SearchKeyType.getKey(lastKey), lastValue);
+		searchWords.add(SearchKeyType.getKey(lastKey), trimComma(lastValue));
+	}
+
+	private static String trimComma(String text) {
+		return (text.indexOf('\"') == -1) ? text : text.replaceAll("\"", "");
 	}
 
 	private static void invalidOf(String key, String value) {
@@ -105,7 +100,19 @@ public class IssueSearchParam {
 		return this.author;
 	}
 
-	public String milestone() {
-		return this.milestone;
+	public String milestoneTitle() {
+		return this.milestoneTitle;
+	}
+
+	public String labelName() {
+		return this.labelName;
+	}
+
+	public String assignee() {
+		return assignee;
+	}
+
+	public boolean isNoneOrSearchedForLabel() {
+		return SearchKeyType.isNone(this.labelName) || !Strings.isBlank(this.labelName);
 	}
 }

@@ -4,7 +4,6 @@ import com.sh.issuetracker.exception.InvalidSearchParamException;
 import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
 import com.sh.issuetracker.issue.search.IssueSearchRequest;
-import com.sh.issuetracker.issue.dto.IssueSearchRequest;
 import com.sh.issuetracker.user.AuthUser;
 
 import org.springframework.http.HttpStatus;
@@ -74,6 +73,7 @@ public class IssueApiController {
 	 */
 	@ExceptionHandler(InvalidSearchParamException.class)
 	public ResponseEntity<List<String>> invalidSearchParamException(
+		InvalidSearchParamException exception,
 		HttpServletRequest httpServletRequest) {
 		log.error(exception.getMessage());
 		return ResponseEntity.status(HttpStatus.OK).body(List.of());
