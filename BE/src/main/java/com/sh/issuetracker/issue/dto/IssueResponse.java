@@ -1,6 +1,7 @@
 package com.sh.issuetracker.issue.dto;
 
 import com.sh.issuetracker.issue.Issue;
+import com.sh.issuetracker.issue.search.IssueLabelDto;
 import com.sh.issuetracker.issue.search.IssueSearchDto;
 import com.sh.issuetracker.label.Label;
 
@@ -41,7 +42,7 @@ public class IssueResponse {
 				.build();
 		}
 
-		public static Row from(IssueSearchDto issue) {
+		public static Row from(IssueSearchDto issue, List<LabelDesign> labelDesigns) {
 			return Row.builder()
 				.issueId(issue.getIssueId())
 				.issueTitle(issue.getIssueTitle())
@@ -51,7 +52,7 @@ public class IssueResponse {
 				.authorImage(issue.getImage())
 				.createdAt(issue.getCreated())
 				.milestoneTitle(issue.milestoneTitle())
-				// .labels(toLabelDesigns(issue))
+				.labels(labelDesigns)
 				.build();
 		}
 
@@ -73,6 +74,12 @@ public class IssueResponse {
 			this.name = label.getName();
 			this.backgroundColor = label.getBackgroundColor();
 			this.fontColor = label.getFontColorText();
+		}
+
+		public LabelDesign(IssueLabelDto issueLabel) {
+			this.name = issueLabel.getLabelName();
+			this.backgroundColor = issueLabel.getBackgroundColor();
+			this.fontColor = issueLabel.getFontColor();
 		}
 	}
 }
