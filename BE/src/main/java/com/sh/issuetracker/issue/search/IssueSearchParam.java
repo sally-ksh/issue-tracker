@@ -1,6 +1,6 @@
 package com.sh.issuetracker.issue.search;
 
-import com.sh.issuetracker.exception.InvalidSearchParamException;
+import com.sh.issuetracker.exception.NoneSearchParamException;
 import com.sh.issuetracker.issue.IssueStatus;
 
 import org.apache.logging.log4j.util.Strings;
@@ -68,10 +68,10 @@ public class IssueSearchParam {
 
 	private static void invalidOf(String key, String value) {
 		if (!SearchKeyType.hasKey(key)) {
-			throw new InvalidSearchParamException("IssueSearchParam - toKeys() , invalid key : " + key);
+			throw new NoneSearchParamException("IssueSearchParam - toKeys() , invalid key : " + key);
 		}
 		if (SearchKeyType.AUTHOR.equals(key) && SearchKeyType.NONE.equals(value)) {
-			throw new InvalidSearchParamException("IssueSearchParam - toKeys(), invalid search word");
+			throw new NoneSearchParamException("IssueSearchParam - toKeys(), invalid search word");
 		}
 	}
 
@@ -85,7 +85,7 @@ public class IssueSearchParam {
 		if (text.startsWith("is")) {
 			String issueStatusValue = text.substring(text.indexOf(':') + 1);
 			if (!IssueStatus.hasValue(issueStatusValue)) {
-				throw new InvalidSearchParamException("허용되지 않는 이슈 겁색어로 검색 요청");
+				throw new NoneSearchParamException("허용되지 않는 이슈 겁색어로 검색 요청");
 			}
 			return IssueStatus.from(issueStatusValue);
 		}
