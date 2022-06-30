@@ -26,6 +26,10 @@ repositories {
 }
 
 dependencies {
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient
+    implementation 'org.apache.httpcomponents:httpclient:4.5.13'
+    implementation 'com.auth0:java-jwt:3.19.0'
+    
     implementation 'com.querydsl:querydsl-jpa'
     annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
 
