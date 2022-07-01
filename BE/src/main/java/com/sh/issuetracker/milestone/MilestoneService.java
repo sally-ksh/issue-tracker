@@ -2,7 +2,7 @@ package com.sh.issuetracker.milestone;
 
 import com.sh.issuetracker.issue.IssueService;
 import com.sh.issuetracker.issue.IssueStatus;
-import com.sh.issuetracker.issue.dto.NumberOfIssueStatusImpl;
+import com.sh.issuetracker.issue.dto.NumberOfIssueStatusDto;
 import com.sh.issuetracker.milestone.dto.MilestoneRequest;
 import com.sh.issuetracker.milestone.dto.MilestoneResponse;
 import com.sh.issuetracker.project.Project;
@@ -38,11 +38,11 @@ public class MilestoneService {
 		List<Long> ids = milestones.stream()
 			.map(Milestone::getId)
 			.collect(Collectors.toList());
-		Map<Long, NumberOfIssueStatusImpl> numberOfIssueStatusMap = issueService.readByMilestones(ids);
+		Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = issueService.readByMilestones(ids);
 		return milestones.stream()
 			.map(milestone -> {
 				if (numberOfIssueStatusMap.containsKey(milestone.getId())) {
-					NumberOfIssueStatusImpl numberOfIssueStatus = numberOfIssueStatusMap.get(milestone.getId());
+					NumberOfIssueStatusDto numberOfIssueStatus = numberOfIssueStatusMap.get(milestone.getId());
 					Map<IssueStatus, Long> statusAndCount = numberOfIssueStatus.getStatusAndCount();
 					return MilestoneResponse.from(milestone, statusAndCount);
 				}
