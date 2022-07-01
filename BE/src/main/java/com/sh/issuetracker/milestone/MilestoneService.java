@@ -27,8 +27,8 @@ public class MilestoneService {
 
 	@Transactional
 	public MilestoneResponse create(MilestoneRequest.Creation creationRequest, AuthUser authUser) {
-		Project projectInfo = projectService.get(authUser.getProjectId());
-		Milestone milestone = milestoneRepository.save(creationRequest.toMilestone(projectInfo));
+		Project project = projectService.get(authUser.getProjectId());
+		Milestone milestone = milestoneRepository.save(creationRequest.toMilestone(project));
 		return MilestoneResponse.from(milestone);
 	}
 
