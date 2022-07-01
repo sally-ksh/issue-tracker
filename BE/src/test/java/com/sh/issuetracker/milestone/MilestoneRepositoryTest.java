@@ -37,7 +37,7 @@ public class MilestoneRepositoryTest {
 	@BeforeEach
 	void beforeEach() {
 		project = projectRepository.findById(TEXT_PROJECT_ID)
-			.orElseThrow(()-> new RuntimeException("해당 프로젝트는 존재하지 않습니다."));
+			.orElseThrow(() -> new RuntimeException("해당 프로젝트는 존재하지 않습니다."));
 	}
 
 	@Test

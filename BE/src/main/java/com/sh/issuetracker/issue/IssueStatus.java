@@ -23,6 +23,10 @@ public enum IssueStatus {
 		return valueMap.get(value);
 	}
 
+	public static IssueStatus get(String value) {
+		return OPEN.toString().equals(value) ? OPEN : CLOSE;
+	}
+
 	public IssueStatus changeAnother() {
 		if (this == OPEN) {
 			return CLOSE;
