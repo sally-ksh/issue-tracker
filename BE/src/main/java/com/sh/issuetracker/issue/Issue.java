@@ -36,7 +36,6 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 @ToString(exclude = {"project"})
 @NamedEntityGraph(name = "Issue.all",
 	attributeNodes = {
@@ -121,7 +120,7 @@ public class Issue {
 	public String milestoneTitle() {
 		return Objects.isNull(this.milestone) ? "" : this.milestone.getTitle();
 	}
-	
+
 	public List<Label> labels() {
 		return this.issueLabels.stream()
 			.map(IssueLabel::getLabel)
