@@ -4,7 +4,7 @@ import com.sh.issuetracker.issue.dto.IssueLabelMapper;
 import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
 import com.sh.issuetracker.issue.dto.NumberOfIssueStatus;
-import com.sh.issuetracker.issue.dto.NumberOfIssueStatusImpl;
+import com.sh.issuetracker.issue.dto.NumberOfIssueStatusDto;
 import com.sh.issuetracker.issue.search.IssueLabelDto;
 import com.sh.issuetracker.issue.search.IssueSearchDto;
 import com.sh.issuetracker.issue.search.IssueSearchParam;
@@ -86,13 +86,13 @@ public class IssueService {
 			.collect(Collectors.toList());
 	}
 
-	public Map<Long, NumberOfIssueStatusImpl> readByMilestones(List<Long> milestoneIds) {
+	public Map<Long, NumberOfIssueStatusDto> readByMilestones(List<Long> milestoneIds) {
 		List<NumberOfIssueStatus> numberOfIssueStatuses = issueRepository.findGroupBy(milestoneIds);
-		Map<Long, NumberOfIssueStatusImpl> numberOfIssueStatusMap = new HashMap<>();
+		Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = new HashMap<>();
 		for (NumberOfIssueStatus numberOfIssueStatus : numberOfIssueStatuses) {
 			Long milestoneIdKey = numberOfIssueStatus.getMilestoneId();
 			if (!numberOfIssueStatusMap.containsKey(milestoneIdKey)) {
-				numberOfIssueStatusMap.put(milestoneIdKey, new NumberOfIssueStatusImpl());
+				numberOfIssueStatusMap.put(milestoneIdKey, new NumberOfIssueStatusDto());
 			}
 			numberOfIssueStatusMap.get(milestoneIdKey)
 				.insert(numberOfIssueStatus.getIssueStatus(), numberOfIssueStatus.getStatusCount());
