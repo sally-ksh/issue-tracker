@@ -21,8 +21,8 @@ public class LabelService {
 
 	public LabelResponse create(LabelRequest.Creation request, AuthUser authUser) {
 		Project project = projectService.get(authUser.getProjectId());
-		Label labelInfo = labelRepository.save(request.toLabel(project));
-		return LabelResponse.from(labelInfo);
+		Label label = labelRepository.save(request.toLabel(project));
+		return LabelResponse.from(label);
 	}
 
 	public List<LabelResponse> readAll(AuthUser authUser) {
