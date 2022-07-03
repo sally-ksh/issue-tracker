@@ -4,10 +4,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NumberOfIssueStatusAndMilestoneDto {
-	private static Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = new HashMap<>();
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
-	public static Map<Long, NumberOfIssueStatusDto> from(List<NumberOfIssueStatus> numberOfIssueStatuses) {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class NumberOfIssueStatusAndMilestoneDto {
+	private Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = new HashMap<>();
+
+	public static NumberOfIssueStatusAndMilestoneDto from(List<NumberOfIssueStatus> numberOfIssueStatuses) {
+		NumberOfIssueStatusAndMilestoneDto numberOfIssueStatusAndMilestoneDto = new NumberOfIssueStatusAndMilestoneDto();
+		return numberOfIssueStatusAndMilestoneDto.mapper(numberOfIssueStatuses);
+	}
+
+	public NumberOfIssueStatusAndMilestoneDto mapper(
+		List<NumberOfIssueStatus> numberOfIssueStatuses) {
 		for (NumberOfIssueStatus numberOfIssueStatus : numberOfIssueStatuses) {
 			Long milestoneIdKey = numberOfIssueStatus.getMilestoneId();
 			if (!numberOfIssueStatusMap.containsKey(milestoneIdKey)) {
@@ -16,7 +26,14 @@ public class NumberOfIssueStatusAndMilestoneDto {
 			numberOfIssueStatusMap.get(milestoneIdKey)
 				.insert(numberOfIssueStatus.getIssueStatus(), numberOfIssueStatus.getStatusCount());
 		}
-		return numberOfIssueStatusMap;
+		return this;
 	}
 
+	public boolean contain(Long key) {
+		return this.numberOfIssueStatusMap.containsKey(key);
+	}
+
+	public Map<com.sh.issuetracker.issue.IssueStatus, Long> countByStatus(Long key) {
+		return this.numberOfIssueStatusMap.get(key).getStatusAndCount();
+	}
 }

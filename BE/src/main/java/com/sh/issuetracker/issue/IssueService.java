@@ -5,7 +5,6 @@ import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
 import com.sh.issuetracker.issue.dto.NumberOfIssueStatus;
 import com.sh.issuetracker.issue.dto.NumberOfIssueStatusAndMilestoneDto;
-import com.sh.issuetracker.issue.dto.NumberOfIssueStatusDto;
 import com.sh.issuetracker.issue.search.IssueLabelDto;
 import com.sh.issuetracker.issue.search.IssueSearchDto;
 import com.sh.issuetracker.issue.search.IssueSearchParam;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -86,7 +84,7 @@ public class IssueService {
 			.collect(Collectors.toList());
 	}
 
-	public Map<Long, NumberOfIssueStatusDto> readByMilestones(List<Long> milestoneIds) {
+	public NumberOfIssueStatusAndMilestoneDto readByMilestones(List<Long> milestoneIds) {
 		List<NumberOfIssueStatus> numberOfIssueStatuses = issueRepository.findGroupBy(milestoneIds);
 		return NumberOfIssueStatusAndMilestoneDto.from(numberOfIssueStatuses);
 	}
