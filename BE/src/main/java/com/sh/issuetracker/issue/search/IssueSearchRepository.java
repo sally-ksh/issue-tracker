@@ -144,6 +144,6 @@ public class IssueSearchRepository {
 	}
 
 	private BooleanExpression getLabelNameEq(String labelName) {
-		return SearchKeyType.isNone(labelName) ? null : issueLabel.label.name.eq(labelName);
+		return SearchKeyType.isNoneOrBlank(labelName) ? null : issueLabel.label.name.eq(labelName);
 	}
 }
