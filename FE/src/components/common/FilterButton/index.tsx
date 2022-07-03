@@ -1,22 +1,32 @@
-import * as S from "@/components/common/FilterButton/style";
+import { ButtonHTMLAttributes } from "react";
 
-import type { FontSizeType, ColorType, FontWeightType } from "styled-components";
+import { StyleProps } from "@/components/common/type";
+
+import * as S from "./style";
 
 export type FilterButtonProps = {
   text?: string;
-  width: string;
-  height: string;
-  image?: string;
-  fontSize?: keyof FontSizeType;
-  fontWeight?: keyof FontWeightType;
-  color?: keyof ColorType;
-};
+  svgIcon?: JSX.Element;
+  isIconFirst?: boolean;
+  state?: number | string;
+  onClick?: ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
+} & StyleProps;
 
-const FilterButton = ({ text, image, width, height, fontSize, fontWeight, color }: FilterButtonProps) => {
+const FilterButton = ({ text, svgIcon, isIconFirst, state, onClick, ...props }: FilterButtonProps) => {
   return (
-    <S.FilterButton width={width} height={height} fontSize={fontSize} fontWeight={fontWeight} color={color}>
-      <span>{text}</span>
-      {image ? <img src={image}></img> : null}
+    <S.FilterButton onClick={onClick} {...props}>
+      {isIconFirst ? (
+        <>
+          {svgIcon ? svgIcon : null}
+          <span>{text}</span>
+        </>
+      ) : (
+        <>
+          <span>{text}</span>
+          {svgIcon ? svgIcon : null}
+        </>
+      )}
+      {state ? <span>{state}</span> : null}
     </S.FilterButton>
   );
 };

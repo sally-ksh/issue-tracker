@@ -1,6 +1,5 @@
 package com.sh.issuetracker.milestone;
 
-import com.sh.issuetracker.milestone.MilestoneService;
 import com.sh.issuetracker.milestone.dto.MilestoneRequest;
 import com.sh.issuetracker.milestone.dto.MilestoneResponse;
 import com.sh.issuetracker.user.AuthUser;
@@ -20,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/issue-tracker/milestone")
+@RequestMapping("/api/issue-tracker/milestones")
 public class MilestoneApiController {
 	private final MilestoneService milestoneService;
 

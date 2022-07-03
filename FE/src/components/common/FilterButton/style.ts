@@ -1,33 +1,33 @@
 import styled, { css } from "styled-components";
 
 import { FilterButtonProps } from "@/components/common/FilterButton";
-import { COLOR, FONT_SIZE, FONT_WEIGHT } from "@/styles/theme";
+import { COLOR } from "@/styles/constTheme";
+import { styledFont } from "@/styles/util";
 
 export const FilterButton = styled.button<FilterButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8rem;
+  gap: 8rem;
+
+  width: ${(props) => `${props.width}rem`};
+  height: ${(props) => `${props.height}rem`};
+
+  ${({ backgroundColor }) =>
+    backgroundColor &&
+    css`
+      background-color: ${backgroundColor};
+    `}
+
   span {
-    ${({ fontSize }) =>
-      fontSize &&
+    ${({ fontSize, fontWeight, color }) =>
       css`
-        font-size: ${FONT_SIZE[fontSize]};
-      `}
-
-    ${({ fontWeight }) =>
-      fontWeight &&
-      css`
-        font-weight: ${FONT_WEIGHT[fontWeight]};
-      `}
-
-      ${({ color }) =>
-      color &&
-      css`
-        color: ${COLOR[color]};
+        ${styledFont({ fontSize: fontSize, fontWeight: fontWeight, color: color })}
       `}
   }
 
-  img {
-    width: ${(props) => `${props.width}rem`};
-    height: ${(props) => `${props.height}rem`};
-    background: url(${(props) => props.image}) no-repeat;
-    background-size: ${(props) => `${props.width}rem`} ${(props) => `${props.height}rem`};
+  svg {
+    stroke: ${({ color }) => (color ? color : COLOR["gray-900"])};
   }
 `;

@@ -1,7 +1,9 @@
 package com.sh.issuetracker.milestone;
 
-import com.sh.issuetracker.milestone.dto.MilestoneResponse;
 import com.sh.issuetracker.project.Project;
+
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 
@@ -19,23 +21,24 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@ToString(exclude = "project")
-@EqualsAndHashCode(of = "milestoneId")
+@EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Where(clause = "is_deleted = false")
 @Table(name = "issue_tracker_milestone")
 @Entity
 public class Milestone {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long milestoneId;
+	@Column(name = "milestone_id")
+	private Long id;
 
 	private String milestoneTitle;
 	private String description;
 	private LocalDateTime completionDate;
-	@Column(name = "deleted")
-	private boolean isDeleted;
+
+	@ColumnDefault("0")
+	private boolean isDeleted = false;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "project_id")
@@ -50,16 +53,19 @@ public class Milestone {
 		this.project = project;
 	}
 
-	MilestoneResponse toDto() {
-		return MilestoneResponse.builder()
-			.id(this.milestoneId)
-			.title(this.milestoneTitle)
-			.description(this.description)
-			.completionDate(this.completionDate.toString())
-			.build();
+	public Long getId() {
+		return this.id;
 	}
 
-	Long getId() {
-		return this.milestoneId;
+	public String getTitle() {
+		return milestoneTitle;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getCompletionDate() {
+		return completionDate.toString();
 	}
 }

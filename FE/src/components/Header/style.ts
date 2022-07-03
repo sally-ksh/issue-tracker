@@ -1,13 +1,23 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 30rem;
+  padding: 30rem 0;
 `;
 
-export const UserIconButton = styled.button`
-  width: 44px;
-  height: 44px;
+type LogoProps = {
+  image: string;
+};
+
+export const Logo = styled.h1<LogoProps>`
+  width: 199rem;
+  height: 40rem;
+
+  ${({ image }) =>
+    image &&
+    css`
+      background: url(${image}) no-repeat;
+    `};
 `;

@@ -1,5 +1,5 @@
-const Label = () => {
+const LabelPage = () => {
   return <div>Label</div>;
 };
 
-export default Label;
+export default LabelPage;

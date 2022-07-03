@@ -19,7 +19,7 @@ import java.util.Optional;
 @ActiveProfiles("dev")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @DataJpaTest
-class MilestoneRepositoryTest {
+public class MilestoneRepositoryTest {
 	public static final long TEXT_PROJECT_ID = 1L;
 	public static final String TEST_PROJECT_NAME = "프로젝트2";
 	private final MilestoneRepository milestoneRepository;
@@ -37,7 +37,7 @@ class MilestoneRepositoryTest {
 	@BeforeEach
 	void beforeEach() {
 		project = projectRepository.findById(TEXT_PROJECT_ID)
-			.orElseThrow(()-> new RuntimeException("해당 프로젝트는 존재하지 않습니다."));
+			.orElseThrow(() -> new RuntimeException("해당 프로젝트는 존재하지 않습니다."));
 	}
 
 	@Test
@@ -55,7 +55,7 @@ class MilestoneRepositoryTest {
 		Project testProject = projectRepository.save(getAnotherProject());
 		milestoneRepository.save(getMilestone(testProject));
 
-		List<Milestone> expected = milestoneRepository.findAllByProjectProjectId(TEXT_PROJECT_ID);
+		List<Milestone> expected = milestoneRepository.findAllByProjectId(TEXT_PROJECT_ID);
 
 		assertThat(expected).extracting("project.name").doesNotContain(TEST_PROJECT_NAME);
 	}
