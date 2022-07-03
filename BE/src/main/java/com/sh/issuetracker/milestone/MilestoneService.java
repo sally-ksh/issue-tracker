@@ -1,7 +1,6 @@
 package com.sh.issuetracker.milestone;
 
 import com.sh.issuetracker.issue.IssueService;
-import com.sh.issuetracker.issue.IssueStatus;
 import com.sh.issuetracker.issue.dto.NumberOfIssueStatusDto;
 import com.sh.issuetracker.milestone.dto.MilestoneRequest;
 import com.sh.issuetracker.milestone.dto.MilestoneResponse;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,19 +32,10 @@ public class MilestoneService {
 
 	@Transactional(readOnly = true)
 	public List<MilestoneResponse> readAll(AuthUser authUser) {
-		List<Milestone> milestones = milestoneRepository.findAllByProjectId(authUser.getProjectId());
-		List<Long> ids = milestones.stream()
-			.map(Milestone::getId)
-			.collect(Collectors.toList());
-		Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = issueService.readByMilestones(ids);
-		return milestones.stream()
-			.map(milestone -> {
-				if (numberOfIssueStatusMap.containsKey(milestone.getId())) {
-					NumberOfIssueStatusDto numberOfIssueStatus = numberOfIssueStatusMap.get(milestone.getId());
-					Map<IssueStatus, Long> statusAndCount = numberOfIssueStatus.getStatusAndCount();
-					return MilestoneResponse.from(milestone, statusAndCount);
-				}
-				return MilestoneResponse.from(milestone);
-			}).collect(Collectors.toList());
+		List<Milestone> milestoneInfo = milestoneRepository.findAllByProjectId(authUser.getProjectId());
+		Milestones milestones = Milestones.from(milestoneInfo);
+		Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = issueService.readByMilestones(
+			milestones.getMilestoneIds());
+		return milestones.toResponses(numberOfIssueStatusMap);
 	}
 }
