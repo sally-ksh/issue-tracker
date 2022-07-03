@@ -1,7 +1,9 @@
 package com.sh.issuetracker.issue.search;
 
-import com.sh.issuetracker.exception.InvalidSearchParamException;
+import com.sh.issuetracker.exception.NoneSearchParamException;
 import com.sh.issuetracker.issue.IssueStatus;
+
+import org.apache.logging.log4j.util.Strings;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,14 +18,9 @@ public class IssueSearchParam {
 	private IssueStatus status;
 	private String author;
 	private String assignee;
-	private String milestone;
-	private String label;
+	private String milestoneTitle;
+	private String labelName;
 
-	/**
-	 * 이슈 제목 검색 보류
-	 * @param request
-	 * @return
-	 */
 	public static IssueSearchParam from(IssueSearchRequest request) {
 		String text = request.getText();
 		int firstKeySeparatorIdx = text.indexOf('+');
@@ -37,8 +34,8 @@ public class IssueSearchParam {
 		param.status = toIssueStatus(front);
 		param.author = searchWords.get(SearchKeyType.AUTHOR);
 		param.assignee = searchWords.get(SearchKeyType.ASSIGNEE);
-		param.milestone = searchWords.get(SearchKeyType.MILESTONE);
-		param.label = searchWords.get(SearchKeyType.LABEL);
+		param.milestoneTitle = searchWords.get(SearchKeyType.MILESTONE);
+		param.labelName = searchWords.get(SearchKeyType.LABEL);
 		return param;
 	}
 
@@ -57,22 +54,24 @@ public class IssueSearchParam {
 				break;
 			}
 			invalidOf(key, value);
-			if (searchWords.alreadyHasValue(SearchKeyType.getKey(key))) {
-				throw new InvalidSearchParamException("중복된 검색키 요청은 빈 리스트를 반환합니다.");
-			}
-			searchWords.add(SearchKeyType.getKey(key), value);
+			searchWords.add(SearchKeyType.getKey(key), trimComma(value));
 		}
+
 		String lastKey = matcherOfKey.group(1);
 		String lastValue = behindSearchWords.substring(behindSearchWords.lastIndexOf(':') + 1);
-		searchWords.add(SearchKeyType.getKey(lastKey), lastValue);
+		searchWords.add(SearchKeyType.getKey(lastKey), trimComma(lastValue));
+	}
+
+	private static String trimComma(String text) {
+		return (text.indexOf('\"') == -1) ? text : text.replaceAll("\"", "");
 	}
 
 	private static void invalidOf(String key, String value) {
 		if (!SearchKeyType.hasKey(key)) {
-			throw new InvalidSearchParamException("IssueSearchParam - toKeys() , invalid key : " + key);
+			throw new NoneSearchParamException("IssueSearchParam - toKeys() , invalid key : " + key);
 		}
 		if (SearchKeyType.AUTHOR.equals(key) && SearchKeyType.NONE.equals(value)) {
-			throw new InvalidSearchParamException("IssueSearchParam - toKeys(), invalid search word");
+			throw new NoneSearchParamException("IssueSearchParam - toKeys(), invalid search word");
 		}
 	}
 
@@ -86,10 +85,34 @@ public class IssueSearchParam {
 		if (text.startsWith("is")) {
 			String issueStatusValue = text.substring(text.indexOf(':') + 1);
 			if (!IssueStatus.hasValue(issueStatusValue)) {
-				throw new InvalidSearchParamException("허용되지 않는 이슈 겁색어로 검색 요청");
+				throw new NoneSearchParamException("허용되지 않는 이슈 겁색어로 검색 요청");
 			}
 			return IssueStatus.from(issueStatusValue);
 		}
 		return IssueStatus.OPEN;
+	}
+
+	public IssueStatus status() {
+		return this.status;
+	}
+
+	public String author() {
+		return this.author;
+	}
+
+	public String milestoneTitle() {
+		return this.milestoneTitle;
+	}
+
+	public String labelName() {
+		return this.labelName;
+	}
+
+	public String assignee() {
+		return assignee;
+	}
+
+	public boolean isNoneOrSearchedForLabel() {
+		return SearchKeyType.isNone(this.labelName) || !Strings.isBlank(this.labelName);
 	}
 }

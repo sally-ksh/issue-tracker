@@ -1,5 +1,7 @@
 package com.sh.issuetracker.milestone;
 
+import com.sh.issuetracker.issue.IssueService;
+import com.sh.issuetracker.issue.dto.NumberOfIssueStatusDto;
 import com.sh.issuetracker.milestone.dto.MilestoneRequest;
 import com.sh.issuetracker.milestone.dto.MilestoneResponse;
 import com.sh.issuetracker.project.Project;
@@ -10,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,19 +21,21 @@ import lombok.RequiredArgsConstructor;
 public class MilestoneService {
 	private final ProjectService projectService;
 	private final MilestoneRepository milestoneRepository;
+	private final IssueService issueService;
 
 	@Transactional
 	public MilestoneResponse create(MilestoneRequest.Creation creationRequest, AuthUser authUser) {
-		Project projectInfo = projectService.get(authUser.getProjectId());
-		Milestone milestone = milestoneRepository.save(creationRequest.toMilestone(projectInfo));
+		Project project = projectService.get(authUser.getProjectId());
+		Milestone milestone = milestoneRepository.save(creationRequest.toMilestone(project));
 		return MilestoneResponse.from(milestone);
 	}
 
 	@Transactional(readOnly = true)
 	public List<MilestoneResponse> readAll(AuthUser authUser) {
-		List<Milestone> milestones = milestoneRepository.findAllByProjectId(authUser.getProjectId());
-		return milestones.stream()
-			.map(MilestoneResponse::from)
-			.collect(Collectors.toList());
+		List<Milestone> milestoneInfo = milestoneRepository.findAllByProjectId(authUser.getProjectId());
+		Milestones milestones = Milestones.from(milestoneInfo);
+		Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = issueService.readByMilestones(
+			milestones.getMilestoneIds());
+		return milestones.toResponses(numberOfIssueStatusMap);
 	}
 }
