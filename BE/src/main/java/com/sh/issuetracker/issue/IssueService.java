@@ -4,6 +4,7 @@ import com.sh.issuetracker.issue.dto.IssueLabelMapper;
 import com.sh.issuetracker.issue.dto.IssueRequest;
 import com.sh.issuetracker.issue.dto.IssueResponse;
 import com.sh.issuetracker.issue.dto.NumberOfIssueStatus;
+import com.sh.issuetracker.issue.dto.NumberOfIssueStatusAndMilestoneDto;
 import com.sh.issuetracker.issue.dto.NumberOfIssueStatusDto;
 import com.sh.issuetracker.issue.search.IssueLabelDto;
 import com.sh.issuetracker.issue.search.IssueSearchDto;
@@ -15,7 +16,6 @@ import com.sh.issuetracker.user.AuthUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -88,15 +88,6 @@ public class IssueService {
 
 	public Map<Long, NumberOfIssueStatusDto> readByMilestones(List<Long> milestoneIds) {
 		List<NumberOfIssueStatus> numberOfIssueStatuses = issueRepository.findGroupBy(milestoneIds);
-		Map<Long, NumberOfIssueStatusDto> numberOfIssueStatusMap = new HashMap<>();
-		for (NumberOfIssueStatus numberOfIssueStatus : numberOfIssueStatuses) {
-			Long milestoneIdKey = numberOfIssueStatus.getMilestoneId();
-			if (!numberOfIssueStatusMap.containsKey(milestoneIdKey)) {
-				numberOfIssueStatusMap.put(milestoneIdKey, new NumberOfIssueStatusDto());
-			}
-			numberOfIssueStatusMap.get(milestoneIdKey)
-				.insert(numberOfIssueStatus.getIssueStatus(), numberOfIssueStatus.getStatusCount());
-		}
-		return numberOfIssueStatusMap;
+		return NumberOfIssueStatusAndMilestoneDto.from(numberOfIssueStatuses);
 	}
 }
