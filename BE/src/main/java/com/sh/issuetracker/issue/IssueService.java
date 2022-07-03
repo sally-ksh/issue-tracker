@@ -57,10 +57,7 @@ public class IssueService {
 
 	public List<IssueResponse.Row> search(AuthUser authUser, IssueSearchRequest request) {
 		IssueSearchParam searchParam = IssueSearchParam.from(request);
-		List<IssueLabelDto> issueLabels = null;
-		if (searchParam.isNoneOrSearchedForLabel()) {
-			issueLabels = issueSearchRepository.findIssueLabels(searchParam.labelName());
-		}// else issueLabels = null
+		List<IssueLabelDto> issueLabels = issueSearchRepository.findIssueLabels(searchParam.labelName());
 
 		List<IssueSearchDto> resultOfSearch = issueSearchRepository.search(
 			authUser,

@@ -3,8 +3,6 @@ package com.sh.issuetracker.issue.search;
 import com.sh.issuetracker.exception.NoneSearchParamException;
 import com.sh.issuetracker.issue.IssueStatus;
 
-import org.apache.logging.log4j.util.Strings;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -112,7 +110,7 @@ public class IssueSearchParam {
 		return assignee;
 	}
 
-	public boolean isNoneOrSearchedForLabel() {
-		return SearchKeyType.isNone(this.labelName) || !Strings.isBlank(this.labelName);
+	public boolean isLabelNone() {
+		return SearchKeyType.isNone(this.labelName);
 	}
 }

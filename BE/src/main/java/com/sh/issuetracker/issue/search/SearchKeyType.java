@@ -1,5 +1,7 @@
 package com.sh.issuetracker.issue.search;
 
+import org.apache.logging.log4j.util.Strings;
+
 import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,8 +32,12 @@ public enum SearchKeyType {
 		return keys.get(key);
 	}
 
-	public static boolean isNone(String labelName) {
-		return NONE.word.equals(labelName);
+	public static boolean isNone(String value) {
+		return NONE.word.equals(value);
+	}
+
+	public static boolean isNoneOrBlank(String value) {
+		return isNone(value) || Strings.isBlank(value);
 	}
 
 	public boolean equals(String word) {
