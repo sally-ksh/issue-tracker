@@ -9,7 +9,7 @@
 
  <h2>🦸🦹‍♂️🧙‍♀️🧛‍♀️🧞 IssueTracker 클론 프로젝트</h2> <br>
 
-`# IssueTracker` `# milestone` `# issue` `# label` <br/>
+`# sally` `# milestone` `# issue` `# label` <br/>
 `# 검색` `# login`
 
 </div>
